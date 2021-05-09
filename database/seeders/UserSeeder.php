@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'picture_url' => '/site/images/default-user.jpg',
                 'phone' => '+18143519500',
                 'biography' => '',
-                'user_type' => 'u_admin',
+                'type' => 'u_admin',
             ], [
                 'name' => 'John Cook',
                 'email' => 'cook@domain.com',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'picture_url' => '/site/images/default-user.jpg',
                 'phone' => '+18143519500',
                 'biography' => '',
-                'user_type' => 'u_cook',
+                'type' => 'u_cook',
             ]
         ]);
     }

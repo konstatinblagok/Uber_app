@@ -20,6 +20,7 @@ class UpdateUsersTable extends Migration
             $table->string('biography')->after('phone');
             $table->string('user_type')->after('biography');
             $table->foreign('user_type')->references('id')->on('user_types');
+            $table->boolean('is_active')->after('user_type')->default(false);
         });
     }
 
@@ -37,6 +38,7 @@ class UpdateUsersTable extends Migration
             $table->dropColumn('biography');
             $table->dropForeign('users_user_type_foreign');
             $table->dropColumn('user_type');
+            $table->dropColumn('is_active');
         });
     }
 }

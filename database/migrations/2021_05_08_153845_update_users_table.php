@@ -15,9 +15,9 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('address')->nullable()->after('password');
-            $table->string('picture_url')->after('address');
+            $table->string('picture_url')->after('address')->default('/site/images/default-user.jpg');
             $table->string('phone')->after('picture_url');
-            $table->string('biography')->after('phone');
+            $table->string('biography')->nullable()->after('phone');
             $table->string('type')->after('biography');
             $table->foreign('type')->references('id')->on('user_types');
             $table->boolean('is_active')->after('user_type')->default(false);

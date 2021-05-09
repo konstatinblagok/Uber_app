@@ -20,6 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'picture_url',
+        'address',
+        'phone',
+        'biography',
+        'user_active',
+        'type',
+        'is_active'
     ];
 
     /**
@@ -40,4 +47,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function type(){
+        return $this->hasOne(UserType::class, 'id');
+    }
+
+    public function cook_details(){
+        return $this->hasOne(CookDetail::class, 'user_id');
+    }
+
+    public function ratings(){
+        return $this->hasMany(CookRating::class, 'cook_id');
+    }
+
+    public function speclities(){
+        return $this->hasMany(CookSpeciality::class, 'cook_id');
+    }
+
+    public function getRating(){
+        $rating = (5*252 + 4*124 + 3*40 + 2*29 + 1*33) / (252+124+40+29+33);
+        return $rating;
+    }
 }

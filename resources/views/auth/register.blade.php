@@ -1,59 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-
-<!--                        <div class="form-group row">-->
-<!--                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>-->
-<!---->
-<!--                            <div class="col-md-6">-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div class="form-group row">-->
-<!--                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>-->
-<!---->
-<!--                            <div class="col-md-6">-->
-<!--
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div class="form-group row">-->
-<!--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>-->
-<!---->
-<!--                            <div class="col-md-6">-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div class="form-group row mb-0">-->
-<!--                            <div class="col-md-6 offset-md-4">-->
-<!--                                <button type="submit" class="btn btn-primary">-->
-<!--                                    -->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 <div class="contact-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 mt-5">
-            <div class="heading-title text-center">
+            <div class="heading-title text-center mt-5 mb-0">
                 <h2>{{ __('Register') }}</h2>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="offset-3 col-md-6">
-            <form method="POST" action="{{ route('register') }}" class="mb-5">
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                Your Account has been created and is submitted to the admin for the activation.
+                Once activated, you will be able to login from <a href="/login">here</a>.
+            </div>
+            @endif
+
+            <form method="POST" action="{{ route('register') }}" class="mb-5" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div id="profile-container" class="row">
+                                <image id="profileImage" class="offset-4" src="/site/images/default-user.jpg" />
+                            </div>
+                            <input id="imageUpload" type="file" name="profile_photo"
+                                   placeholder="Photo" required="" capture>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -97,6 +74,63 @@
                         </div>
                     </div>
                     <div class="col-md-12">
+                        <div class="form-group">
+                            <input id="phone" type="number" placeholder="Contact #"
+                                   value="{{ old('phone') }}"
+                                   class="form-control @error('phone') is-invalid @enderror"
+                                   name="phone" required autocomplete="phone">
+
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <textarea id="biography" placeholder="Address"
+                                  class="form-control @error('biography') is-invalid @enderror"
+                                  name="biography" required autocomplete="biography">{{ old('biography') }}</textarea>
+
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <textarea id="address" placeholder="About Yourself"
+                                  class="form-control @error('address') is-invalid @enderror"
+                                  name="address" required autocomplete="address">{{ old('address') }}</textarea>
+
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkbox-signup" type="checkbox" required>
+                                <label for="checkbox-signup">
+                                    I accept
+                                    <a href="#" data-toggle="modal" data-target="#terms-conditions-modal">
+                                        Terms and Conditions
+                                    </a>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="submit-button text-center">
                             <button type="submit" id="submit" class="btn btn-common">{{ __('Register') }}</button>
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
@@ -112,4 +146,6 @@
         </div>
     </div>
 </div>
+
+@include('includes.modals.terms-conditions-modal')
 @endsection

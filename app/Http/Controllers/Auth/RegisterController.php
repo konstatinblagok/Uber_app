@@ -79,7 +79,7 @@ class RegisterController extends Controller
         ]);
 
         UserController::updatePicture($user, $data['profile_photo']);
-//        EmailController::sendSignupNotification($user);
+        EmailController::sendSignupNotification($user);
 
         return $user;
     }

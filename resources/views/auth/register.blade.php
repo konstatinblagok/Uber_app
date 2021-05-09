@@ -90,9 +90,9 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                        <textarea id="biography" placeholder="Address"
-                                  class="form-control @error('biography') is-invalid @enderror"
-                                  name="biography" required autocomplete="biography">{{ old('biography') }}</textarea>
+                        <textarea id="address" placeholder="Address"
+                                  class="form-control @error('address') is-invalid @enderror"
+                                  name="address" required autocomplete="address">{{ old('address') }}</textarea>
 
                             @error('address')
                             <span class="invalid-feedback" role="alert">
@@ -104,11 +104,11 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                        <textarea id="address" placeholder="About Yourself"
-                                  class="form-control @error('address') is-invalid @enderror"
-                                  name="address" required autocomplete="address">{{ old('address') }}</textarea>
+                        <textarea id="biography" placeholder="About Yourself"
+                                  class="form-control @error('biography') is-invalid @enderror"
+                                  name="biography" autocomplete="biography">{{ old('biography') }}</textarea>
 
-                            @error('address')
+                            @error('biography')
                             <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

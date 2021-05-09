@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
                 'phone' => '+18143519500',
                 'biography' => '',
                 'type' => 'u_admin',
+                'is_active' => true,
             ], [
                 'name' => 'John Cook',
                 'email' => 'cook@domain.com',

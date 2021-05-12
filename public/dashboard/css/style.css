@@ -325,7 +325,7 @@ a:focus {
   transform: translate(0, -2px);
 }
 .badge-primary {
-  background-color: #3292e0;
+  background-color: #d65106;
 }
 .badge-success {
   background-color: #5cb45b;
@@ -1426,9 +1426,9 @@ File: Components
   border: 1px solid #ee1940 !important;
 }
 .btn-dark {
-  background-color: #2a323c !important;
-  border: 1px solid #2a323c !important;
-  color: #ffffff;
+    background-color: white;
+    border: 1px solid #d65106;
+    color: #d65106;
 }
 .btn-dark:hover,
 .btn-dark:focus,
@@ -1439,8 +1439,8 @@ File: Components
 .btn-dark:focus,
 .btn-dark:hover,
 .open > .dropdown-toggle.btn-dark {
-  background-color: #20262d !important;
-  border: 1px solid #20262d !important;
+  background-color:  #d65106 !important;
+  border: 1px solid #d65106 !important;
   color: #ffffff;
 }
 .btn-link {
@@ -3013,7 +3013,7 @@ File: Menu
 }
 .logo span,
 .logo-sm span {
-  color: #3292e0;
+  color: #d65106;
   font-family: 'Crete Round', serif;
 }
 .logo-sm {
@@ -3028,7 +3028,7 @@ File: Menu
   margin-top: 13px;
 }
 .navbar-default {
-  background-color: #2a323c;
+  background-color: #d65106;
   border-radius: 0px;
   border: none;
   margin-bottom: 0px;
@@ -3181,9 +3181,9 @@ body.fixed-left .side-menu.left {
   padding: 20px 5px 15px 5px;
 }
 .button-menu-mobile {
-  background: #3292e0;
+  background: rgba(255, 255, 255, 0.8);
   border: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: #d65106;
   font-size: 28px;
   height: 42px;
   width: 42px;
@@ -3288,10 +3288,10 @@ body.fixed-left .side-menu.left {
   margin: 3px 0 0 0;
 }
 #sidebar-menu > ul > li > a.active {
-  color: #3292e0;
+  color: #d65106;
 }
 #sidebar-menu > ul > li > a.active i {
-  color: #3292e0;
+  color: #d65106;
 }
 .subdrop {
   background: #f2f2f2 !important;
@@ -3412,7 +3412,7 @@ body.fixed-left .side-menu.left {
   margin-bottom: 5px;
 }
 .user-details .user-info .text-success {
-  color: #3292e0;
+  color: #d65106;
 }
 #wrapper.right-bar-enabled .right-bar {
   right: 0;
@@ -3462,7 +3462,7 @@ body.fixed-left .side-menu.left {
   color: #f7b543;
 }
 .page-header-title {
-  background-color: #2a323c;
+  background-color: #d65106;
   margin: -20px -5px 23px -5px;
   padding: 10px 15px 100px 20px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);

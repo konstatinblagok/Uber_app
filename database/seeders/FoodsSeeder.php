@@ -15,7 +15,7 @@ class FoodsSeeder extends Seeder
     public function run()
     {
         Food::insert([
-            ['id'=>'food_fish' , 'name'=>'fish', 'description'=>''],
+            ['id'=>'food_fish' , 'name'=>'Fish', 'description'=>''],
             ['id'=>'food_meat' , 'name'=>'Meat', 'description'=>''],
             ['id'=>'food_pasta' , 'name'=>'Pasta', 'description'=>''],
             ['id'=>'food_veg' , 'name'=>'Vegan Vegetarian', 'description'=>''],

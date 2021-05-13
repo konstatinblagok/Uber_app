@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Meal;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -59,5 +60,17 @@ class LoginController extends Controller
         ], [
             $this->username() . '.exists' => 'The selected email is invalid or the account has been disabled.'
         ]);
+    }
+
+    protected function authenticated(Request $request, $user) {
+        if ( $user->isCook() ) {
+            $isFoodSelected = empty(Meal::getTodaysMeal());
+
+            if(!$isFoodSelected){
+                return redirect()->route('view-food-selection');
+            }
+        }
+
+        return redirect($this->redirectTo);
     }
 }

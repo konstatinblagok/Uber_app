@@ -1,0 +1,36 @@
+.signup-form{
+    width: 40%;
+}
+
+#imageUpload {
+    display: none;
+}
+
+#profileImage {
+    cursor: pointer;
+}
+
+#profile-container img {
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.employee-record-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+    height: 50px;
+}
+.error{
+    color: #333;
+}
+
+.dataTables_wrapper .dataTables_processing {
+    position: fixed;
+    top: 75%;
+}

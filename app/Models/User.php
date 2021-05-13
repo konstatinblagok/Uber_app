@@ -48,8 +48,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function type(){
-        return $this->hasOne(UserType::class, 'id');
+    public function isAdmin(){
+        return $this->type == 'u_admin';
+    }
+
+    public function isCook(){
+        return $this->type == 'u_cook';
+    }
+
+    public function getUserType(){
+        return $this->hasOne(UserType::class, 'id', 'type');
     }
 
     public function cook_details(){
@@ -67,5 +75,9 @@ class User extends Authenticatable
     public function getRating(){
         $rating = (5*252 + 4*124 + 3*40 + 2*29 + 1*33) / (252+124+40+29+33);
         return $rating;
+    }
+
+    public function getBillingInfos(){
+        return $this->hasMany(BillingInfo::class, 'user_id');
     }
 }

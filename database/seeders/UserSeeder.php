@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
                 'phone' => '+18143519500',
                 'biography' => '',
                 'type' => 'u_cook',
+				'is_active' => true,
             ]
         ]);
     }

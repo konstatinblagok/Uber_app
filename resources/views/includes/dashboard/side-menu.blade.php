@@ -37,12 +37,16 @@
 
         <div id="sidebar-menu">
             <ul>
+                <li class="active">
+                    <a href="{{route('view-food-selection')}}" class="waves-effect">
+                        <i class="mdi mdi-food"></i>
+                        <span> Food Selection </span>
+                    </a>
+                </li>
                 <li>
-                    <a href="" class="waves-effect">
-                        <i class="mdi mdi-home"></i>
-                        <span>
-                            Dashboard <span class="badge badge-primary pull-right">1</span>
-                        </span>
+                    <a href="{{route('view-billing')}}" class="waves-effect">
+                        <i class="mdi mdi-receipt"></i>
+                        <span> billing Info </span>
                     </a>
                 </li>
             </ul>

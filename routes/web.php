@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\BillingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,15 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/home', [HomeController::class, 'showDashboard'])->name('show-dashboard');
 
-    Route::group(['middleware' => ['auth-cook']], function() {
         // Cook Routes
+    Route::group(['middleware' => ['auth-cook']], function() {
         Route::get('/food-selection', [FoodController::class, 'viewFoodSelection'])->name('view-food-selection');
         Route::post('/food-selection', [FoodController::class, 'addFoodSelection'])->name('add-food-selection');
         Route::post('/food-selection/media/upload', [MediaController::class, 'addFoodMedia'])->name('add-food-media');
         Route::post('/food-selection/media/remove', [MediaController::class, 'removeFoodMedia'])->name('remove-food-media');
+
+        Route::get('/billing', [BillingController::class, 'viewBillingInfo'])->name('view-billing');
+        Route::post('/billing', [BillingController::class, 'updateBillingInfo'])->name('update-billing');
     });
 });
 

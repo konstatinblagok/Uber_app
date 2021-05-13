@@ -76,4 +76,8 @@ class User extends Authenticatable
         $rating = (5*252 + 4*124 + 3*40 + 2*29 + 1*33) / (252+124+40+29+33);
         return $rating;
     }
+
+    public function getBillingInfos(){
+        return $this->hasMany(BillingInfo::class, 'user_id');
+    }
 }

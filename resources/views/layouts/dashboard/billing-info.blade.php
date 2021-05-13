@@ -31,12 +31,13 @@
 
                             <form class="form-horizontal m-t-30" role="form" method="POST" action="{{route('update-billing')}}">
                                 @csrf
-                                <input type="hidden" name="info_id" value="{{!isset($billing_info)?:$billing_info->id}}">
+
+                                <input type="hidden" name="info_id" value="{{!isset($billing_info)?'':$billing_info->id}}">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Full Name</label>
                                     <div class="col-md-9">
                                         <input type="text" name="name"
-                                               value="{{!isset($billing_info)?:$billing_info->name}}"
+                                               value="{{!isset($billing_info)? '':$billing_info->name}}"
                                                class="form-control @error('name') is-invalid @enderror"
                                                required autocomplete="name">
                                     </div>
@@ -50,7 +51,7 @@
                                     <label class="col-md-3 control-label">City</label>
                                     <div class="col-md-9">
                                         <input type="text" name="city"
-                                               value="{{!isset($billing_info)?:$billing_info->city}}"
+                                               value="{{!isset($billing_info)?'':$billing_info->city}}"
                                                class="form-control @error('city') is-invalid @enderror"
                                                required autocomplete="city">
                                     </div>
@@ -64,7 +65,7 @@
                                     <label class="col-md-3 control-label">State</label>
                                     <div class="col-md-9">
                                         <input type="text" name="state"
-                                               value="{{!isset($billing_info)?:$billing_info->state}}"
+                                               value="{{!isset($billing_info)?'':$billing_info->state}}"
                                                class="form-control @error('state') is-invalid @enderror"
                                                required autocomplete="state">
                                     </div>
@@ -78,7 +79,7 @@
                                     <label class="col-md-3 control-label">Zip Code</label>
                                     <div class="col-md-9">
                                         <input type="text" name="zip_code"
-                                               value="{{!isset($billing_info)?:$billing_info->zip_code}}"
+                                               value="{{!isset($billing_info)?'':$billing_info->zip_code}}"
                                                class="form-control @error('zip_code') is-invalid @enderror"
                                                required autocomplete="zip_code">
                                     </div>
@@ -92,7 +93,7 @@
                                     <label class="col-md-3 control-label">Contact #</label>
                                     <div class="col-md-9">
                                         <input type="text" name="phone"
-                                               value="{{!isset($billing_info)?:$billing_info->phone}}"
+                                               value="{{!isset($billing_info)?'':$billing_info->phone}}"
                                                class="form-control @error('phone') is-invalid @enderror"
                                                required autocomplete="phone">
                                     </div>
@@ -107,7 +108,7 @@
                                     <div class="col-md-9">
                                         <textarea name="address"
                                                   class="form-control @error('address') is-invalid @enderror"
-                                                  required autocomplete="address">{{!isset($billing_info)?:$billing_info->address}}</textarea>
+                                                  required autocomplete="address">{{!isset($billing_info)?'':$billing_info->address}}</textarea>
                                     </div>
                                     @error('address')
                                     <span class="invalid-feedback" role="alert">

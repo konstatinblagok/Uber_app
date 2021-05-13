@@ -37,6 +37,7 @@
 
         <div id="sidebar-menu">
             <ul>
+                @if(Auth::user()->isCook())
                 <li class="active">
                     <a href="{{route('view-food-selection')}}" class="waves-effect">
                         <i class="mdi mdi-food"></i>
@@ -49,6 +50,7 @@
                         <span> billing Info </span>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
         <div class="clearfix"></div>

@@ -15,10 +15,12 @@ class CreateMealsMediaTable extends Migration
     {
         Schema::create('meals_media', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('path');
+            $table->string('size');
+            $table->string('details')->nullable();
             $table->unsignedBigInteger('meal_id');
             $table->foreign('meal_id')->references('id')->on('meals');
-            $table->string('path');
-            $table->string('details')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

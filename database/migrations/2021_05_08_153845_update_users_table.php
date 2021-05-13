@@ -20,7 +20,7 @@ class UpdateUsersTable extends Migration
             $table->string('biography')->nullable()->after('phone');
             $table->string('type')->after('biography');
             $table->foreign('type')->references('id')->on('user_types');
-            $table->boolean('is_active')->after('user_type')->default(false);
+            $table->boolean('is_active')->after('type')->default(false);
         });
     }
 

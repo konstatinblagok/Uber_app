@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     use HasFactory;
+    public $incrementing = false;
     protected $table = 'foods';
 }

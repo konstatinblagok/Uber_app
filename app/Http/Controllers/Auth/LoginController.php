@@ -64,9 +64,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user) {
         if ( $user->isCook() ) {
-            $isFoodSelected = Meal::where('user_id', $user)
-                ->whereDate('created_at',now())
-                ->exists();
+            $isFoodSelected = empty(Meal::getTodaysMeal());
 
             if(!$isFoodSelected){
                 return redirect()->route('view-food-selection');

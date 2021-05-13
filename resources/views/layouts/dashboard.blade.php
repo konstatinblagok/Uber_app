@@ -22,7 +22,9 @@
 
     <!-- Styles -->
     <!-- Dropzone css -->
-    <link href="{{ asset('dashboard/plugins/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css"
+          integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+          crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
           integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
           crossorigin="anonymous"/>
@@ -98,16 +100,16 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous"></script>
 <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
-<!--<script src="{{ asset('dashboard/js/modernizr.min.js') }}"></script>-->
-<!--<script src="{{ asset('dashboard/js/detect.js') }}"></script>-->
+<script src="{{ asset('dashboard/js/modernizr.min.js') }}"></script>
+<script src="{{ asset('dashboard/js/detect.js') }}"></script>
 <script src="{{ asset('dashboard/js/fastclick.js') }}"></script>
 <script src="{{ asset('dashboard/plugins/morris/morris.min.js') }}"></script>
-<!--<script src="{{ asset('dashboard/plugins/raphael/raphael-min.js') }}"></script>-->
+<script src="{{ asset('dashboard/plugins/raphael/raphael-min.js') }}"></script>
 
 
-<!--<script src="{{ asset('dashboard/js/jquery.slimscroll.js') }}"></script>-->
-<!--<script src="{{ asset('dashboard/js/jquery.blockUI.js') }}"></script>-->
-<!--<script src="{{ asset('dashboard/js/wow.min.js') }}"></script>-->
+<script src="{{ asset('dashboard/js/jquery.slimscroll.js') }}"></script>
+<script src="{{ asset('dashboard/js/jquery.blockUI.js') }}"></script>
+<script src="{{ asset('dashboard/js/wow.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('dashboard/js/waves.js') }}"></script>
 <script src="{{ asset('dashboard/js/jquery.scrollTo.min.js') }}"></script>
@@ -138,8 +140,9 @@
 <!--<script src="{{ asset('dashboard/plugins/datatables/dataTables.responsive.min.js') }}"></script>-->
 <!--<script src="{{ asset('dashboard/plugins/datatables/responsive.bootstrap.min.js') }}"></script>-->
 <script src="{{ asset('dashboard/plugins/datatables/dataTables.scroller.min.js') }}"></script>
-<!-- Dropzone js -->
-<script src="{{ asset('dashboard/plugins/dropzone/dist/dropzone.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.js"
+        integrity="sha512-llCHNP2CQS+o3EUK2QFehPlOngm8Oa7vkvdUpEFN71dVOf3yAj9yMoPdS5aYRTy8AEdVtqUBIsVThzUSggT0LQ=="
+        crossorigin="anonymous"></script>
 <!-- Bootstrap File Style -->
 <script src="{{ asset('dashboard/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js') }}" type="text/javascript"></script>
 
@@ -152,6 +155,9 @@
 <script src="{{ asset('dashboard/js/main.js') }}"></script>
 <script src="{{ asset('dashboard/js/app.js') }}" defer></script>
 <script src="{{ asset('dashboard/js/custom.js') }}" defer></script>
+
+@yield('dashboard-scripts')
+
 </body>
 </html>
 

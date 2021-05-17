@@ -17,6 +17,8 @@ class AuthCook
      */
     public function handle(Request $request, Closure $next)
     {
-        return Auth::user()->isCook() ? $next($request) : route('show-dashboard');
+        return Auth::check() && Auth::user()->isCook()
+            ? $next($request)
+            : redirect()->route('show-dashboard');
     }
 }

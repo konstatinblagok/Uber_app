@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/billing', [BillingController::class, 'viewBillingInfo'])->name('view-billing');
         Route::post('/billing', [BillingController::class, 'updateBillingInfo'])->name('update-billing');
+
+        Route::get('/withdraw', [BillingController::class, 'viewBalance'])->name('view-balance');
+        Route::post('/withdraw', [BillingController::class, 'checkout'])->name('withdraw');
     });
 });
 

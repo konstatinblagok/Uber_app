@@ -46,4 +46,16 @@ class BillingController extends Controller
             'message' => $status ? 'Successully added/updated the information' : 'Something went wrong',
         ]);
     }
+
+    public function viewBalance() {
+        return view('layouts.dashboard.withdraw');
+    }
+
+    public function checkout(Request $request) {
+        return redirect()->back()->with(
+            'message',
+            'Your request has been submitted to the admin for approval.
+             After approval the said amount will be transfered to your paypal account'
+        );
+    }
 }

@@ -75,8 +75,7 @@
                                         <div class="input-group bootstrap-timepicker timepicker">
                                             <input id="pickupTime" name="pickup_time"
                                                    type="text" class="form-control input-small @error('pickup_time') is-invalid @enderror"
-                                                   required autocomplete="pickup_time"
-                                                   value="{{date('H:i', strtotime(isset($todays_meal)?$todays_meal->pickup_time:now()))}}">
+                                                   required autocomplete="pickup_time">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                                         </div>
 

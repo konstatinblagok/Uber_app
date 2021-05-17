@@ -69,17 +69,23 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data) {
+        $is_cook_registration = empty($data['isCustomer']);
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone' => $data['phone'],
             'address' => $data['address'],
-            'type' => 'u_cook',
+            'type' => $is_cook_registration ? 'u_cook' : 'u_customer',
+            'is_active' => !$is_cook_registration,
         ]);
 
         UserController::updatePicture($user, $data['profile_photo']);
-        EmailController::sendSignupNotification($user);
+
+        if($is_cook_registration){
+            EmailController::sendSignupNotification($user);
+        }
 
         return $user;
     }
@@ -95,6 +101,9 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return $this->registered($request, $user) ?: redirect()->back()->with('message', 'success');
+        return $this->registered($request, $user) ?: redirect()->back()->with([
+            'message'=> 'success',
+            'is_cook_registration' => empty($request->input('isCustomer'))
+        ]);
     }
 }

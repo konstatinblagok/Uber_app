@@ -36,6 +36,7 @@ class BillingController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'user_id' => Auth::id(),
+            'paypal_account_id' => $request->has('paypal_account_id') ? $request->paypal_account_id : null,
         ];
 
         $status = (!$request->info_id)
@@ -45,5 +46,17 @@ class BillingController extends Controller
         return redirect()->back()->with([
             'message' => $status ? 'Successully added/updated the information' : 'Something went wrong',
         ]);
+    }
+
+    public function viewBalance() {
+        return view('layouts.dashboard.withdraw');
+    }
+
+    public function checkout(Request $request) {
+        return redirect()->back()->with(
+            'message',
+            'Your request has been submitted to the admin for approval.
+             After approval the said amount will be transfered to your paypal account'
+        );
     }
 }

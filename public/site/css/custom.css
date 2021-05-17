@@ -1,5 +1,9 @@
 
 /** ADD YOUR AWESOME CODES HERE **/
+:root {
+    --color-primary: #d65106;
+    --outline-primary: #d65106;
+}
 
 #imageUpload {
     display: none;
@@ -18,3 +22,19 @@
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+
+/*Bootstrap 4 Switch Button*/
+.btn-outline-primary{
+    background-color: white;
+    border-color: var(--outline-primary);
+    color: var(--color-primary);
+}
+.btn-outline-primary:focus,
+.btn-outline-primary:hover,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.toggle.btn-outline-primary .toggle-handle{
+    background-color: var(--color-primary);
+    border-color: var(--outline-primary);
+    color: white;
+}
+/*Bootstrap 4 Switch Button*/

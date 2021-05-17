@@ -13,17 +13,28 @@ class FoodController extends Controller
     public function viewFoodSelection(){
         return view('layouts.dashboard.food-selection',[
             'foods' => Food::all(),
-            'todays_meal' => Meal::getTodaysMeal(),
+            'todays_meals' => Meal::getTodaysMeal(),
         ]);
     }
 
-    public function addFoodSelection(Request $request){
+    public function viewFoodSelectionForm($meal_id = null, Request $request){
+        $meal = $meal_id
+            ? Meal::findOrFail($request->meal_id)
+            : null;
+
+        return view('layouts.dashboard.food-selection-form',[
+            'foods' => Food::all(),
+            'meal' => $meal,
+        ]);
+    }
+
+    public function addFoodSelection($meal_id = null, Request $request){
         $request->validate([
             'food' => 'required',
             'pickup_time' => 'required',
         ]);
 
-        $todays_meal = Meal::getTodaysMeal();
+        $meal = Meal::find($meal_id);
         $meal_info = [
             'todays_food' => $request->food,
             'pickup_time' => Carbon::parse($request->pickup_time),
@@ -32,11 +43,14 @@ class FoodController extends Controller
             'updated_at' => now(),
         ];
 
-        $status = empty($todays_meal)
-                ?Meal::insert($meal_info)
-                :$todays_meal->update($meal_info);
+        if(empty($meal)){
+            $meal = Meal::create($meal_info);
+            $status = true;
+        } else {
+            $status = $meal->update($meal_info);
+        }
 
-        return redirect()->back()->with([
+        return redirect("/food-selection/change/{$meal->id}")->with([
             'message' => $status ? 'Successully added/updated the information' : 'Something went wrong',
         ]);
     }

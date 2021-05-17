@@ -12,10 +12,11 @@ use Illuminate\Http\File;
 
 class MediaController extends Controller
 {
-    public function addFoodMedia(Request $request) {
-        if(!$request->file){
+    public function addFoodMedia($meal_id = null, Request $request) {
+        if(!$request->file || !$meal_id || !Meal::find($meal_id)->exists()){
             return response()->json('error', 400);
         }
+
         $userId = Auth::id();
         $file = $request->file('file');
 
@@ -30,7 +31,7 @@ class MediaController extends Controller
             ),
             'size' => $file->getSize(),
             'details' => '',
-            'meal_id' => Meal::getTodaysMeal()->id,
+            'meal_id' => $meal_id,
             'user_id' => $userId,
             'created_at' => now(),
             'updated_at' => now(),

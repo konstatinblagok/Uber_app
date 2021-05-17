@@ -14,8 +14,17 @@
         <div class="offset-3 col-md-6">
             @if(session()->has('message'))
             <div class="alert alert-success">
-                Your Account has been created and is submitted to the admin for the activation.
-                Once activated, you will be able to login from <a href="/login">here</a>.
+                @if(session()->get('is_cook_registration'))
+                <span>
+                    Your Account has been created and is submitted to the admin for the activation.
+                    Once activated, you will be able to login from <a href="/login">here</a>.
+                </span>
+                @else
+                <span>
+                    Your Account has been created. You can login from <a href="/login">here</a> to
+                    use the services.
+                </span>
+                @endif
             </div>
             @endif
 
@@ -113,6 +122,23 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="userTypeSwitch" class="form-check-label">
+                                Registring as:
+                            </label>
+                            <span class="ml-4">
+                                <input type="checkbox" id="userTypeSwitch" name="isCustomer"
+                                       class="form-check-input"
+                                       data-toggle="toggle" data-style="android" data-size="xs"
+                                       data-on="Customer" data-off="Cook"
+                                       data-onstyle="outline-primary" data-offstyle="outline-primary"
+                                       {{ old('isCustomer') == 'on' ? 'checked' : '' }}
+                                />
+                            </span>
                         </div>
                     </div>
 

@@ -16,6 +16,7 @@ class BillingInfo extends Model
         'phone',
         'address',
         'user_id',
-        'created_at'
+        'created_at',
+        'paypal_account_id',
     ];
 }

@@ -26,7 +26,11 @@ class Meal extends Model
         return $this->hasMany(MealMedia::class, 'meal_id');
     }
 
+    public function type(){
+        return $this->hasOne(Food::class, 'id', 'todays_food');
+    }
+
     public static function getTodaysMeal(){
-        return Meal::where('user_id', Auth::id())->whereDate('created_at',now())->first();
+        return Meal::where('user_id', Auth::id())->whereDate('created_at',now())->get();
     }
 }

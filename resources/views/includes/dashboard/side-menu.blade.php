@@ -30,6 +30,11 @@
                 </div>
 
                 <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> Online</p>
+
+                <a href="{{route('view-balance')}}" class="btn btn-dark waves-effect waves-light m-t-30">
+                    <strong>Balance:</strong> $89
+                </a>
+
             </div>
         </div>
         <!--- Divider -->
@@ -48,6 +53,12 @@
                     <a href="{{route('view-billing')}}" class="waves-effect">
                         <i class="mdi mdi-receipt"></i>
                         <span> billing Info </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('view-balance')}}" class="waves-effect">
+                        <i class="mdi mdi-checkbox-multiple-blank"></i>
+                        <span> Withdraw Amount</span>
                     </a>
                 </li>
                 @endif

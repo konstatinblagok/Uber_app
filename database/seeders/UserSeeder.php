@@ -36,6 +36,16 @@ class UserSeeder extends Seeder
                 'biography' => '',
                 'type' => 'u_cook',
 				'is_active' => true,
+            ], [
+                'name' => 'John Customer',
+                'email' => 'customer@domain.com',
+                'password' => Hash::make('password'),
+                'address' => '8681 NW. Bay Meadows Street Stuart, FL 34997',
+                'picture_url' => '/site/images/default-user.jpg',
+                'phone' => '+18143519500',
+                'biography' => '',
+                'type' => 'u_customer',
+                'is_active' => true,
             ]
         ]);
     }

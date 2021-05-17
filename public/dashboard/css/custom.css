@@ -1,3 +1,8 @@
+:root {
+    --color-primary: #d65106;
+    --outline-primary: #d65106;
+}
+
 .signup-form{
     width: 40%;
 }
@@ -34,3 +39,25 @@
     position: fixed;
     top: 75%;
 }
+
+.single-food-selection {
+    padding: 10px;
+    -webkit-box-shadow: 0 0 1px #ccc;
+    box-shadow: 0 0 1px #ccc;
+}
+
+.single-food-selection:hover {
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+.single-food-selection a{
+    color: var(--color-primary);
+    margin: 5px 5px 0px 0px;
+}
+.single-food-selection .details{
+    padding: 10px;
+}
+.food-selection-img{
+    width: 300px;
+}
+

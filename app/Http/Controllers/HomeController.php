@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function showDashboard()
     {
-        return redirect()->route('view-food-selection');
+        return redirect('/');
     }
 }

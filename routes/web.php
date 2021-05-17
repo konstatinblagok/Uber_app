@@ -29,9 +29,10 @@ Route::group(['middleware' => ['auth']], function(){
         // Cook Routes
     Route::group(['middleware' => ['auth-cook']], function() {
         Route::get('/food-selection', [FoodController::class, 'viewFoodSelection'])->name('view-food-selection');
-        Route::post('/food-selection', [FoodController::class, 'addFoodSelection'])->name('add-food-selection');
-        Route::post('/food-selection/media/upload', [MediaController::class, 'addFoodMedia'])->name('add-food-media');
-        Route::post('/food-selection/media/remove', [MediaController::class, 'removeFoodMedia'])->name('remove-food-media');
+        Route::get('/food-selection/change/{meal_id?}', [FoodController::class, 'viewFoodSelectionForm'])->name('view-food-selection-form');
+        Route::post('/food-selection/change/{meal_id?}', [FoodController::class, 'addFoodSelection'])->name('add-food-selection');
+        Route::post('/food-selection/{meal_id}/media/upload', [MediaController::class, 'addFoodMedia'])->name('add-food-media');
+        Route::post('/food-selection/{meal_id}/media/remove', [MediaController::class, 'removeFoodMedia'])->name('remove-food-media');
 
         Route::get('/billing', [BillingController::class, 'viewBillingInfo'])->name('view-billing');
         Route::post('/billing', [BillingController::class, 'updateBillingInfo'])->name('update-billing');

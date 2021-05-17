@@ -2,7 +2,6 @@ $(function() {
     $('#pickupTime').timepicker({
         showMeridian: true,
         minuteStep: 15,
-        defaultTime: "0500 PM",
         showInputs: true,
     }).on('changeTime.timepicker', function(evt) {
         const pickupTimeEl = $('#pickupTime');

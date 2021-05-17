@@ -115,6 +115,7 @@
 
 @section('dashboard-scripts')
 <script>
+    const mealId = $('#mealId').val();
     // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
     const previewNode = document.querySelector("#template");
     previewNode.id = "";
@@ -128,7 +129,7 @@
 
     const myDropzone = new Dropzone(".media_upload_container", {
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "{{ route('add-food-media') }}",
+        url: `/food-selection/${mealId}/media/upload/`,
         thumbnailWidth: 80,
         thumbnailHeight: 80,
         parallelUploads: 20,
@@ -137,9 +138,9 @@
         previewsContainer: "#previews",
         clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
         init: function() {
-        @if(isset($todays_meal) && $todays_meal->media)
+        @if(isset($meal) && $meal->media)
             const myDropzone = this;
-            const files = {!! json_encode($todays_meal->media) !!}
+            const files = {!! json_encode($meal->media) !!}
             for (let i in files) {
                 const file = files[i];
                 // this.options.addedfile.call(this, file)
@@ -153,10 +154,11 @@
             if(!file.id) {
                 return removeFileFromList(file);
             } else {
+                // const mealId = $('#mealId').val();
                 return $.ajax({
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     type: 'POST',
-                    url: "{{ route('remove-food-media') }}",
+                    url: `/food-selection/${mealId}/media/remove`,
                     data: {id: file.id},
                     success: function (data) {
                         return removeFileFromList(file);

@@ -4,7 +4,7 @@
 
     <div class="">
         <div class="page-header-title">
-            <h4 class="page-title">Select your Food for today</h4>
+            <h4 class="page-title">Your today's Food Selections</h4>
         </div>
     </div>
 
@@ -13,97 +13,50 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-offset-2 col-sm-8">
+                <div class="col-md-offset-0 col-sm-12">
                     <div class="panel panel-primary">
                         <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-offset-10 col-md-2">
+                                    <a href="{{route('view-food-selection-form')}}"
+                                        class="form-control btn btn-dark waves-effect waves-light m-t-10">
+                                        <i class="mdi mdi-plus"></i> Add
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @if(count($todays_meals) < 1)
+                                <div class="col-md-12 text-center m-t-30 m-b-30">
+                                    No Foods have been added yet
+                                </div>
+                                @endif
 
-                            @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                <div>{{ $error }}</div>
+                                @foreach($todays_meals as $meal)
+                                <div class="col-md-4 single-food-selection m-t-20">
+                                    <div>
+                                        <img class="food-selection-img" src="/site/images/img-05.jpg">
+                                        <div>
+                                            <a class="pull-right" href="/food-selection/change/{{$meal->id}}">Edit</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="details">
+                                        <div>
+                                            <strong>Food Type:</strong> {{$meal->type->name}}
+                                        </div>
+                                        <div>
+                                            <strong>Pickup Time:</strong>
+                                            {{\Carbon\Carbon::parse($meal->pickup_time)->format('d/m/Y g:i A')}}
+                                        </div>
+                                        <div>
+                                            <strong>Added/updated On:</strong>
+                                            {{\Carbon\Carbon::parse($meal->updated_at)->format('d/m/Y g:i A')}}
+                                        </div>
+                                    </div>
+                                </div>
                                 @endforeach
                             </div>
-                            @endif
-
-                            @if (\Session::has('message'))
-                            <div class="alert alert-info"> {{ \Session::get('message') }}</div>
-                            @endif
-
-                            <form class="form-horizontal m-t-30" role="form" method="POST" action="{{route('add-food-selection')}}"
-                                  enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Food</label>
-                                    <div class="col-md-9">
-                                        <select id="foods-list" name="food"
-                                                class="form-control @error('food') is-invalid @enderror"
-                                                required autofocus>
-                                            <option value="" selected>Select food</option>
-                                            @foreach($foods as $food)
-                                            <option value="{{$food->id}}"
-                                                {{isset($todays_meal) && $todays_meal->todays_food==$food->id ?'selected': '' }}>{{$food->name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                    @error('fst_name')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Pickup Date</label>
-                                    <div class="col-md-9">
-                                        <div class="m-t-5">
-                                            {{\Carbon\Carbon::parse(isset($todays_meal)?$todays_meal->pickup_time:now())->format('d/m/Y')}}</div>
-                                    </div>
-                                    @error('lst_name')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Pickup Time</label>
-                                    <div class="col-md-9">
-                                        <!--                                        <input id="pickupTime" data-provide="datetimepicker"-->
-                                        <!--                                               class="form-control @error('pickup_time') is-invalid @enderror"-->
-                                        <!--                                               name="pickup_time" value=""-->
-                                        <!--                                               min="{{\Carbon\Carbon::now()}}"-->
-                                        <!--                                               required autocomplete="pickup_time">-->
-                                        <div class="input-group bootstrap-timepicker timepicker">
-                                            <input id="pickupTime" name="pickup_time"
-                                                   type="text" class="form-control input-small @error('pickup_time') is-invalid @enderror"
-                                                   required autocomplete="pickup_time">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                                        </div>
-
-                                    </div>
-                                    @error('lst_name')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-6">
-                                        <button type="submit"
-                                                class="form-control btn btn-dark waves-effect waves-light m-t-10">
-                                            Update
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-
-                            @if(isset($todays_meal))
-                            <div class="form-group text-center m-t-30">
-                                <h3>Attach Media Files</h3>
-
-                                @include('includes.dashboard.media-selection')
-
-                            </div>
-                            @endif
+                            <!-- End Menu -->
                         </div> <!-- panel-body -->
                     </div> <!-- panel -->
                 </div> <!-- col -->
@@ -114,4 +67,29 @@
     </div> <!-- Page content Wrapper -->
 
 </div> <!-- content -->
+@endsection
+
+@section('dashboard-scripts')
+<script src="/site/js/popper.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="/site/js/jquery.superslides.min.js"></script>
+<script src="/site/js/images-loded.min.js"></script>
+<script src="/site/js/isotope.min.js"></script>
+<script src="/site/js/baguetteBox.min.js"></script>
+<script>
+    var Container = $('.menu-container');
+    Container.imagesLoaded(function () {
+        var portfolio = $('.special-menu');
+        portfolio.on('click', 'button', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({
+                filter: filterValue
+            });
+        });
+        var $grid = $('.special-list').isotope({
+            itemSelector: '.special-grid'
+        });
+    });
+</script>
 @endsection

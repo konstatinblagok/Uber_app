@@ -1,4 +1,4 @@
-<script src="{{ asset('dashboard/js/jquery.min.js') }}"></script>
+<script src="{{ asset('site/js/jquery-3.2.1.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
         integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
         crossorigin="anonymous"></script>

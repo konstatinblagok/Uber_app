@@ -36,6 +36,7 @@ class BillingController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'user_id' => Auth::id(),
+            'paypal_account_id' => $request->has('paypal_account_id') ? $request->paypal_account_id : null,
         ];
 
         $status = (!$request->info_id)

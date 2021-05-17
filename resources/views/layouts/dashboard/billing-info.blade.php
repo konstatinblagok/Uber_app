@@ -47,6 +47,20 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">Paypal Account</label>
+                                    <div class="col-md-9">
+                                        <input type="email" name="paypal_account_id"
+                                               value="{{!isset($billing_info)?'':$billing_info->paypal_account_id}}"
+                                               class="form-control @error('paypal_account_id') is-invalid @enderror"
+                                               required autocomplete="paypal_account_id">
+                                    </div>
+                                    @error('paypal_account_id')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">City</label>
                                     <div class="col-md-9">
                                         <input type="text" name="city"

@@ -4,11 +4,12 @@
     --color-primary: #d65106;
     --outline-primary: #d65106;
 }
-
+.top-navbar .navbar-light .navbar-nav .nav-link {
+    padding: 11px;
+}
 .logo-img{
     width: 140px;
     height: 90px;
-    margin-left: 80px;
 }
 
 #imageUpload {

@@ -54,4 +54,11 @@ class FoodController extends Controller
             'message' => $status ? 'Successully added/updated the information' : 'Something went wrong',
         ]);
     }
+
+    public function showMenu(Request $request) {
+        $meals = [];
+        return view('layouts.site.menu', [
+            'meals' => $meals
+        ]);
+    }
 }

@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function showDashboard()
-    {
+    public function showDashboard(){
         return redirect('/');
+    }
+
+    public function showHomePage(){
+        return view('index');
     }
 }

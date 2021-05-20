@@ -17,9 +17,8 @@ use App\Http\Controllers\BillingController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeController::class, 'showHomePage'] );
+Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
 
 Auth::routes();
 

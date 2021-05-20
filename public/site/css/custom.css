@@ -5,6 +5,12 @@
     --outline-primary: #d65106;
 }
 
+.logo-img{
+    width: 140px;
+    height: 90px;
+    margin-left: 80px;
+}
+
 #imageUpload {
     display: none;
 }

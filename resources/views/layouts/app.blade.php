@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    @include('includes.styles')
+    @include('includes.site.styles')
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -24,15 +24,15 @@
 
 <body>
 
-@include('includes.nav')
+@include('includes.site.nav')
 
 @yield('content')
 
-@include('includes.footer')
+@include('includes.site.footer')
 
 <a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
 
-@include('includes.scripts')
+@include('includes.site.scripts')
 @yield('scripts')
 </body>
 </html>

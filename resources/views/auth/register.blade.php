@@ -173,5 +173,5 @@
     </div>
 </div>
 
-@include('includes.modals.terms-conditions-modal')
+@include('includes.site.modals.terms-conditions-modal')
 @endsection

@@ -10,23 +10,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbars-rs-food">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item {{ request()->is('vision') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Our Vision</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->is('order') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Order Online</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}">
                         <a class="nav-link" href="{{route('show-menu')}}">Menu</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->is('contact-us') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->is('gallery') ? 'active' : '' }}">
                         <a class="nav-link" href="#">Shared Gallery</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('members')) ? 'active' : '' }}">
                         <a class="nav-link" href="#">Members</a>
                     </li>
 <!--                    <li class="nav-item dropdown">-->

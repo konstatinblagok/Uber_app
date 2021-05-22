@@ -23,7 +23,7 @@ Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/home', [HomeController::class, 'showDashboard'])->name('show-dashboard');
+    Route::get('/home', [Dashb::class, 'showDashboard'])->name('show-dashboard');
 
         // Cook Routes
     Route::group(['middleware' => ['auth-cook']], function() {

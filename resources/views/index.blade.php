@@ -4,7 +4,7 @@
 <div id="slides" class="cover-slides">
     <ul class="slides-container">
         <li class="text-left">
-            <img src="{{asset('site/images/slider-01.jpg')}}" alt="">
+            <img src="{{asset('site/images/background.png')}}" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -17,7 +17,7 @@
             </div>
         </li>
         <li class="text-left">
-            <img src="{{asset('site/images/slider-02.jpg')}}" alt="">
+            <img src="{{asset('site/images/background.png')}}" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -30,7 +30,7 @@
             </div>
         </li>
         <li class="text-left">
-            <img src="{{asset('site/images/slider-03.jpg')}}" alt="">
+            <img src="{{asset('site/images/background.png')}}" alt="">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">

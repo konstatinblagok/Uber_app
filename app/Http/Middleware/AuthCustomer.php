@@ -19,6 +19,6 @@ class AuthCustomer
     {
         return Auth::check() && Auth::user()->isCustomer()
             ? $next($request)
-            : redirect()->guest(route('login'));
+            : abort(401);
     }
 }

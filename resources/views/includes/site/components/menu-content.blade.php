@@ -63,14 +63,16 @@
                         <div class="row">
                             @foreach($meals as $meal)
                             <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="{{asset($meal->cover())}}" class="img-fluid menu-content-img " alt="Image">
-                                    <div class="why-text">
-                                        <h4>{{$meal->type->name}}</h4>
-                                        <p>$meal->description</p>
-                                        <h5>$meal->cost</h5>
+                                <a href="{{route('show-menu-details', $meal->id)}}">
+                                    <div class="gallery-single fix">
+                                        <img src="{{asset($meal->cover())}}" class="img-fluid menu-content-img " alt="Image">
+                                        <div class="why-text">
+                                            <h4>{{$meal->type->name}}</h4>
+                                            <p>$meal->description</p>
+                                            <h5>$meal->cost</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             @endforeach
 

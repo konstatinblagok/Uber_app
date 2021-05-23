@@ -61,4 +61,13 @@ class FoodController extends Controller
             'meals' => $meals
         ]);
     }
+
+    public function showMenuDetails($menuId = null){
+        $meal = Meal::findOrFail($menuId);
+        return view('layouts.site.menu-details', [
+            'meal' => $meal,
+            'recent_meals' => Meal::where('user_id', $meal->user_id)->orderBy('created_at', 'desc')->limit(4)->get(),
+            'food_types' => Food::all(),
+        ]);
+    }
 }

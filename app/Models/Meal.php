@@ -22,6 +22,15 @@ class Meal extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected $dates = [
+        'pickup_time'
+    ];
+
+    public function cook() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
     public function media(){
         return $this->hasMany(MealMedia::class, 'meal_id');
     }

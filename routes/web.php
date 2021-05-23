@@ -19,6 +19,7 @@ use App\Http\Controllers\BillingController;
 
 Route::get('/', [HomeController::class, 'showHomePage'] );
 Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
+Route::get('/menu-details/{menu_id}', [FoodController::class, 'showMenuDetails'])->name('show-menu-details');
 
 Auth::routes();
 

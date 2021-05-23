@@ -65,7 +65,7 @@
 .btn-outline-primary.focus, .btn-outline-primary:focus{
     background-color: transparent;
     box-shadow: 0 0 0 0.2rem var(--color-primary-shadow);
-    color: var(--color-primary);
+    color: var(--color-primary) !important;
     outline: var(--color-primary);
 }
 .dropdown-item.active{

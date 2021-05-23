@@ -21,7 +21,7 @@ class MenuContent extends Component
      *
      * @return void
      */
-    public function __construct($showFilters = true, $recordsLimit = 3) {
+    public function __construct($showFilters = true, $recordsLimit = 29) {
         try{
             $this->show_filters = $showFilters;
             $filters = request();
@@ -38,7 +38,7 @@ class MenuContent extends Component
                 $meals->whereIn('todays_food', (array) $filters->type);
             }
 
-            $this->meals = $meals->paginate($recordsLimit);
+            $this->meals = $meals->orderBy('pickup_time', 'desc')->paginate($recordsLimit);
         } catch (\Exception $exception){
             throw new BadRequestException();
         }

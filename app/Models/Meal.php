@@ -26,6 +26,16 @@ class Meal extends Model
         return $this->hasMany(MealMedia::class, 'meal_id');
     }
 
+    public function cover(){
+        $cover = $this->media()
+            ->where('name' ,'LIKE', '%.jpg')
+            ->orWhere('name' ,'LIKE', '%.jpeg')
+            ->orWhere('name' ,'LIKE', '%.png')
+            ->orWhere('name' ,'LIKE', '%.bmp')
+            ->first();
+        return isset($cover) ? $cover->path : '/site/images/img-01.jpg';
+    }
+
     public function type(){
         return $this->hasOne(Food::class, 'id', 'todays_food');
     }

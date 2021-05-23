@@ -18,13 +18,13 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [HomeController::class, 'showHomePage'] );
+Route::get('/', [HomeController::class, 'showHomePage'] )->name('index');
 Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
 Route::get('/menu-details/{menu_id}', [FoodController::class, 'showMenuDetails'])->name('show-menu-details');
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth-cook-or-admin']], function(){
     Route::get('/home', [DashboardController::class, 'showDashboard'])->name('show-dashboard');
 
         // Cook Routes

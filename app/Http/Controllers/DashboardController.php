@@ -12,7 +12,7 @@ class DashboardController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -21,6 +21,6 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function showDashboard(){
-        return redirect('/');
+        return redirect()->route('view-food-selection');
     }
 }

@@ -84,3 +84,12 @@
 .recent-img img{
     width: 50px;
 }
+.meal-gallery-img{
+    height: 16rem;
+}
+.menu-detail .blog-inner-box{
+    margin-bottom: 0;
+}
+.menu-detail .side-blog-img img{
+    height: 25rem;
+}

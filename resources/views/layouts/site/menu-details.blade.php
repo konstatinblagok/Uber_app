@@ -13,7 +13,7 @@
 <!-- End All Pages -->
 
 <!-- Start blog details -->
-<div class="blog-box">
+<div class="blog-box menu-detail">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -43,10 +43,6 @@
                             </blockquote>
                         </div>
                     </div>
-
-                    <!--Show Comments-->
-                    <x-site.meal-comments />
-                    <!-- End Show Comments-->
                 </div>
             </div>
 
@@ -98,6 +94,24 @@
             </div>
 
         </div>
+
+        <!--Show Media-->
+        <div class="row">
+            <div class="col-sm-12">
+                <x-site.meal-gallery meal-id="{{$meal->id}}" />
+            </div>
+        </div>
+        <!-- End Show Media-->
+
+        <!--Show Comments-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <x-site.meal-comments />
+                </div>
+            </div>
+        </div>
+        <!-- End Show Comments-->
     </div>
 </div>
 <!-- End details -->

@@ -141,7 +141,7 @@ class PaymentController extends Controller {
         ];
 
         if (!empty($response['status']) && $response['status'] == 'COMPLETED') {
-            EmailController::sendMealPurchaseNotification($this->meal);
+            EmailController::sendMealPurchaseNotification(Meal::findOrFail($order_details->meal_id));
             $payment_status = [
                 'status' => 'success',
                 'message' => 'Successfully Purchased the meal.'

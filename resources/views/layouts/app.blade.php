@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{{ asset('dashboard/images/favicon.ico') }}">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>@isset($title) {{$title}} @else {{env('app_name')}} @endisset</title>
+    <title>@isset($title) {{$title}} @else {{config('app.name')}} @endisset</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">

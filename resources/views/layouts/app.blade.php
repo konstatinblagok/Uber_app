@@ -34,6 +34,6 @@
 <a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
 
 @include('includes.site.scripts')
-@yield('scripts')
+@stack('scripts')
 </body>
 </html>

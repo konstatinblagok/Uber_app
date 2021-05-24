@@ -26,13 +26,18 @@ class MenuContent extends Component
             $this->show_filters = $showFilters;
             $filters = request();
 
+            $pickup_date = Carbon::parse($filters->has('date') ?$filters->date : Carbon::now()->addMonths(6))
+                ->toDateString();
+
             $pickup_time = Carbon::parse($filters->has('time') ?$filters->time : '05:30 PM')
                 ->addMinutes(30)
                 ->toTimeString();
 
             $this->food_types = Food::all();
 
-            $meals = Meal::whereDate('pickup_time', '>=',  now())->whereTime('pickup_time', '<=', $pickup_time);
+            $meals = Meal::whereDate('pickup_time', '>=',  now())
+                ->whereDate('pickup_time', '<=', $pickup_date)
+                ->whereTime('pickup_time', '<=', $pickup_time);
 
             if($filters->has('type') && $filters->type != 'all'){
                 $meals->whereIn('todays_food', (array) $filters->type);

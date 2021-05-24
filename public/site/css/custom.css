@@ -62,7 +62,13 @@
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .pagination .page-link:focus,
 .show>.btn-outline-primary.dropdown-toggle:focus,
-.btn-outline-primary.focus, .btn-outline-primary:focus{
+.btn-outline-primary.focus, .btn-outline-primary:focus
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker .dow:hover,
+.datepicker .day:hover,
+.datepicker .datepicker-switch:hover
+{
     background-color: transparent;
     box-shadow: 0 0 0 0.2rem var(--color-primary-shadow);
     color: var(--color-primary) !important;
@@ -72,8 +78,17 @@
     background-color: var(--color-primary);
 }
 .pagination .page-link,
-.check-mark{
+.check-mark,
+.input-group.date *{
+    cursor: pointer;
     color: var(--color-primary);
+}
+
+.datepicker {
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--color-primary);
+    cursor: pointer;
 }
 /*Bootstrap 4 Switch Button*/
 

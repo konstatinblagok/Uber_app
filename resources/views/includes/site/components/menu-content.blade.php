@@ -12,7 +12,7 @@
         @if($show_filters)
         <form action="{{route('show-menu')}}" method="get">
             <div class="row">
-                <div class="offset-3 col-3">
+                <div class="offset-2 col-3">
                    <div class="form-group">
                        <select name="type[]" class="selectpicker form-control" multiple data-live-search="true"
                                title="Select your food..." data-style="btn-outline-primary">
@@ -25,7 +25,16 @@
                        </select>
                    </div>
                 </div>
-                <div class="m-l-10 col-3">
+                <div class="m-l-10 col-2">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control input-small" name="date"
+                               value="{{request()->query('date') ?? ''}}"/>
+                        <span class="input-group-text input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="m-l-10 col-2">
                     <div class="input-group bootstrap-timepicker timepicker">
                         <input id="pickupTime" name="time"
                                type="text" class="form-control input-small"
@@ -93,3 +102,6 @@
 
     </div>
 </div>
+@push('scripts')
+<script src="{{ asset('dashboard/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+@endpush

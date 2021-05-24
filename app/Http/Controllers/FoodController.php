@@ -32,6 +32,9 @@ class FoodController extends Controller
         $request->validate([
             'food' => 'required',
             'pickup_time' => 'required',
+            'title' => 'required|string',
+            'price' => 'required|integer|min:10',
+            'description' => 'string',
         ]);
 
         $meal = Meal::find($meal_id);
@@ -39,8 +42,9 @@ class FoodController extends Controller
             'todays_food' => $request->food,
             'pickup_time' => Carbon::parse($request->pickup_time),
             'user_id' => Auth::id(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'title' => $request->title,
+            'price' => $request->price,
+            'description' => $request->description,
         ];
 
         if(empty($meal)){

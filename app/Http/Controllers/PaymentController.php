@@ -36,9 +36,9 @@ class PaymentController extends Controller {
             "purchase_units"=> [
                 0 => [
                 'reference_id' => uniqid(),
-                'description' => "{$this->portions} x {$this->meal->id} ({$this->meal->type->name}) Purchase",
+                'description' => "{$this->portions} x {$this->meal->title} ({$this->meal->type->name}) Purchase",
                 'custom_id' => config('app.name') . '-'. uniqid(),
-                'soft_descriptor' => "{$this->meal->type->id} Purchase",
+                'soft_descriptor' => "{$this->meal->id} Purchase",
                 'amount' => [
                     'currency_code' => 'USD',
                     'value' => '100.00',
@@ -67,8 +67,8 @@ class PaymentController extends Controller {
                 ],
                 'items' => [
                     0 => [
-                        'name' => $this->meal->type->name,
-                        'description' => $this->meal->type->name,
+                        'name' => $this->meal->title,
+                        'description' => $this->meal->description,
                         'sku' => "sku-".uniqid(),
                         'unit_amount' =>[
                             'currency_code' => 'USD',

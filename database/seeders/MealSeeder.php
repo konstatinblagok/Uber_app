@@ -30,11 +30,15 @@ class MealSeeder extends Seeder
                 "todays_food" => $food_type->id,
                 "pickup_time" => $meal_date_time,
                 "user_id" => 7,
+                "title" => "{$food_type->name} Meal",
+                "description" => "Some sample meal description. this describes the tastiness of the meal.",
+                "price" => rand(50,100),
+                "portions" => 0,
             ]);
 
             MealMedia::create([
                 "name" => "blog-img-01.jpg",
-                "path" => "/site/images/blog-img-01.jpg",
+                "path" => "/site/images/blog-img-0". rand(1, 9) .".jpg",
                 "size" => "66937",
                 "details" => "",
                 "meal_id" => $meal->id,

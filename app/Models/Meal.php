@@ -19,6 +19,9 @@ class Meal extends Model
         'todays_food',
         'pickup_time',
         'user_id',
+        'title',
+        'description',
+        'price',
         'created_at',
         'updated_at',
     ];

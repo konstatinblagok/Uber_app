@@ -67,9 +67,9 @@
                                     <div class="gallery-single fix">
                                         <img src="{{asset($meal->cover())}}" class="img-fluid menu-content-img " alt="Image">
                                         <div class="why-text">
-                                            <h4>{{$meal->type->name}}</h4>
-                                            <p>$meal->description</p>
-                                            <h5>$meal->cost</h5>
+                                            <h4>{{$meal->title}}</h4>
+                                            <p>{{$meal->description}}</p>
+                                            <h5>Price: ${{$meal->price}}</h5>
                                         </div>
                                     </div>
                                 </a>

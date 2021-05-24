@@ -27,8 +27,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-title text-center">
-                    <h2>$meal->type->title</h2>
-                    <p>$meal->type->cost</p>
+                    <h2>{{$meal->title}}</h2>
+                    <p>Price: ${{$meal->price}}</p>
                 </div>
             </div>
         </div>
@@ -41,14 +41,14 @@
                             <div class="date-blog-up">{{$meal->pickup_time->format('M d')}}</div>
                         </div>
                         <div class="inner-blog-detail details-page">
-                            <h3>$meal->title</h3>
+                            <h3>{{$meal->title}}</h3>
                             <ul>
                                 <li><i class="zmdi zmdi-account"></i>Cooked By : <span>{{$meal->cook->name}}</span></li>
                                 <li>|</li>
                                 <li><i class="zmdi zmdi-time"></i>Pickup Time : <span>{{$meal->pickup_time->format('h:i A')}}</span></li>
                             </ul>
                             <blockquote>
-                                <p>$meal->type->description</p>
+                                <p>{{$meal->description}}</p>
                             </blockquote>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
 
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar mb-3">
                 <div class="right-side-blog">
-                    <h3>Buy</h3>
+                    <h3>Buy @ ${{$meal->price}}</h3>
                    @if(Auth::check() && Auth::user()->isCustomer())
                     <form method="get" action="{{ route('order.payment') }}">
                         @csrf
@@ -93,7 +93,7 @@
                                         <li>|</li>
                                         <li><i class="zmdi zmdi-time"></i>Pickup Time : <span>{{$meal->pickup_time->format('M d h:i A')}}</span></li>
                                     </ul>
-                                    <h4>$meal->title</h4>
+                                    <h4>{{$meal->title}}</h4>
                                 </div>
                             </div>
                             @endforeach

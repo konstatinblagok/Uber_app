@@ -56,6 +56,10 @@ class User extends Authenticatable
         return $this->type == 'u_cook';
     }
 
+    public function isCustomer(){
+        return $this->type == 'u_customer';
+    }
+
     public function getUserType(){
         return $this->hasOne(UserType::class, 'id', 'type');
     }

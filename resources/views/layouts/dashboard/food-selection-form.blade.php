@@ -35,7 +35,7 @@
                                 @csrf
                                 <input type="hidden" id="mealId" name="meal_id" value="{{request()->meal_id}}">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Food</label>
+                                    <label class="col-md-3 control-label">Food *</label>
                                     <div class="col-md-9">
                                         <select id="foods-list" name="food"
                                                 class="form-control @error('food') is-invalid @enderror"
@@ -67,7 +67,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Pickup Time</label>
+                                    <label class="col-md-3 control-label">Pickup Time *</label>
                                     <div class="col-md-9">
                                         <!--                                        <input id="pickupTime" data-provide="datetimepicker"-->
                                         <!--                                               class="form-control @error('pickup_time') is-invalid @enderror"-->
@@ -83,7 +83,48 @@
                                         </div>
 
                                     </div>
-                                    @error('lst_name')
+                                    @error('pickup_time')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Title</label>
+                                    <div class="col-md-9">
+                                        <input name="title" type="text"
+                                               value="{{$meal->title ?? ''}}"
+                                               class="form-control input-small @error('title') is-invalid @enderror"
+                                               required autocomplete="title" />
+                                    </div>
+                                    @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Price *</label>
+                                    <div class="col-md-9">
+                                        <input name="price" type="number" min="10"
+                                               value="{{$meal->price ?? ''}}"
+                                               class="form-control input-small @error('price') is-invalid @enderror"
+                                               required autocomplete="price" />
+                                    </div>
+                                    @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Description</label>
+                                    <div class="col-md-9">
+                                        <textarea name="description"
+                                                  class="form-control @error('description') is-invalid @enderror"
+                                                  autocomplete="description" >{{$meal->description ?? ''}}</textarea>
+                                    </div>
+                                    @error('description')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

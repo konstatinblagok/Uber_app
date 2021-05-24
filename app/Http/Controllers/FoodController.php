@@ -32,6 +32,9 @@ class FoodController extends Controller
         $request->validate([
             'food' => 'required',
             'pickup_time' => 'required',
+            'title' => 'required|string',
+            'price' => 'required|integer|min:10',
+            'description' => 'string',
         ]);
 
         $meal = Meal::find($meal_id);
@@ -39,8 +42,9 @@ class FoodController extends Controller
             'todays_food' => $request->food,
             'pickup_time' => Carbon::parse($request->pickup_time),
             'user_id' => Auth::id(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'title' => $request->title,
+            'price' => $request->price,
+            'description' => $request->description,
         ];
 
         if(empty($meal)){
@@ -52,6 +56,22 @@ class FoodController extends Controller
 
         return redirect("/food-selection/change/{$meal->id}")->with([
             'message' => $status ? 'Successully added/updated the information' : 'Something went wrong',
+        ]);
+    }
+
+    public function showMenu(Request $request) {
+        $meals = [];
+        return view('layouts.site.menu', [
+            'meals' => $meals
+        ]);
+    }
+
+    public function showMenuDetails($menuId = null){
+        $meal = Meal::findOrFail($menuId);
+        return view('layouts.site.menu-details', [
+            'meal' => $meal,
+            'recent_meals' => Meal::where('user_id', $meal->user_id)->orderBy('created_at', 'desc')->limit(4)->get(),
+            'food_types' => Food::all(),
         ]);
     }
 }

@@ -14,6 +14,7 @@
         <div class="offset-3 col-md-6">
             <form method="POST" action="{{ route('login') }}" class="mb-5">
                 @csrf
+                <input type="hidden" name="return_url" value="{{request()->has('return_url') ?request()->return_url :''}}">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

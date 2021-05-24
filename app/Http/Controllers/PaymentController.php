@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Srmklive\PayPal\Facades\PayPal;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use \App\Http\Controllers\EmailController;
 
 class PaymentController extends Controller {
     public $provider;
@@ -142,6 +141,7 @@ class PaymentController extends Controller {
         ];
 
         if (!empty($response['status']) && $response['status'] == 'COMPLETED') {
+            EmailController::sendMealPurchaseNotification($this->meal);
             $payment_status = [
                 'status' => 'success',
                 'message' => 'Successfully Purchased the meal.'

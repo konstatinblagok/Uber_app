@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MealPurchaseNotification;
 use App\Mail\UserActiveNotification;
 use App\Mail\UserSignupNotification;
 use App\Models\User;
@@ -23,5 +24,9 @@ class EmailController extends Controller
 
     public static function sendUserActiveNotification($user) {
         Mail::queue(new UserActiveNotification($user));
+    }
+
+    public static function sendMealPurchaseNotification($meal) {
+        Mail::queue(new MealPurchaseNotification($meal));
     }
 }

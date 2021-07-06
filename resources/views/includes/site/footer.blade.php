@@ -1,54 +1,25 @@
-<!-- Start Footer -->
-<footer class="footer-area bg-f">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h3>About Us</h3>
-                <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui.</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Subscribe</h3>
-                <div class="subscribe_form">
-                    <form class="subscribe_form">
-                        <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
-                        <button type="submit" class="submit">SUBSCRIBE</button>
-                        <div class="clearfix"></div>
-                    </form>
-                </div>
-                <ul class="list-inline f-social">
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Contact information</h3>
-                <p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
-                <p class="lead"><a href="#">+01 2000 800 9999</a></p>
-                <p><a href="#"> info@admin.com</a></p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Opening hours</h3>
-                <p><span class="text-color">Monday: </span>Closed</p>
-                <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
-                <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
-                <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
-            </div>
+{{-- Start Footer --}}
+<footer>
+    <h2><b>Chez Don</b></h2>
+    <div class="section">
+        <div class="bottom" id="contact">
+            <p>Contact:</p>
+            <P>E-mail:<span>chezdon_luxembourg@gmail.com</span></P>
+            <P>Tel:<span>+352661333643</span></P>
+        </div>
+        <div class="bottom" id="Address">
+            <p>Address:</p>
+            <span>14,Rue d'Oradour,L-2266,Luxembourg</span>
+        </div>
+        <div class="bottom" id="FollowUs">
+            <p>Follow Us:</p>
+            <a href="https://www.facebook.com/ChezDon-106627471638469" id="icons"><i
+                    class="fab fa-facebook-square"></i></a>
+            <a href="https://www.instagram.com/chezdon_luxembourg/" id="icons"><i
+                    class="fab fa-instagram-square"></i>
+            </a>
         </div>
     </div>
-
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="company-name">All Rights Reserved. &copy; 2018 <a href="#">Live Dinner Restaurant</a> Design By :
-                        <a href="https://html.design/">html design</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <h4>©2021 Chez Don. All rights reserved. </h4>
 </footer>
-<!-- End Footer -->
+{{-- End Footer --}}

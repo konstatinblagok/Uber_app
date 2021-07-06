@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-//    public function viewProfile(){
-//        return view('pages.profile')->with('user', Auth::user());
-//    }
-
+    public function showProfile(){
+        
+        return view('user.profile');
+    }
 
     public static function updatePicture ($user, $picture_file){
         //        Save Picture

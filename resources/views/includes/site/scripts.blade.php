@@ -1,21 +1,10 @@
-<!-- ALL JS FILES -->
-<script src="{{asset('site/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('site/js/popper.min.js')}}"></script>
-<script src="{{asset('site/js/bootstrap.min.js')}}"></script>
-<!-- ALL PLUGINS -->
-<script src="{{asset('site/js/jquery.superslides.min.js')}}"></script>
-<script src="{{asset('site/js/images-loded.min.js')}}"></script>
-<script src="{{asset('site/js/isotope.min.js')}}"></script>
-<script src="{{asset('site/js/baguetteBox.min.js')}}"></script>
-<script src="{{asset('site/js/form-validator.min.js')}}"></script>
-<script src="{{asset('site/js/contact-form-script.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+{{-- Javascript Scripts --}}
+<script src="https://kit.fontawesome.com/e7239cd96d.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
-<script src="{{ asset('dashboard/plugins/timepicker/bootstrap-timepicker.js') }}"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<!-- Bootstrap Switch Button -->
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<!-- Custom JS -->
-<script src="{{asset('site/js/custom.js')}}"></script>
+<script src="{{ asset('site-asset/js/resp.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>

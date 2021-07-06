@@ -7,6 +7,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,31 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Auth::routes();
+//Start Frontend Routes
 
 Route::get('/', [HomeController::class, 'showHomePage'])->name('index');
-Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
+Route::get('/about-us', [HomeController::class, 'showAboutUsPage'])->name('about.us');
+Route::get('/our-vision', [HomeController::class, 'showOurVisionPage'])->name('our.vision');
+Route::get('/how-it-works', [HomeController::class, 'showHowItWorkPage'])->name('how.it.works');
+Route::get('/contact-us', [HomeController::class, 'showContactUsPage'])->name('contact.us');
+Route::post('/contact-us/store', [HomeController::class, 'storeContactUs'])->name('contact.us.store');
+Route::get('/menu', [HomeController::class, 'showMenuPage'])->name('show.menu');
+
+//End Frontend Routes
+
+//Start User Routes
+
+Auth::routes();
+
+Route::prefix('user')->middleware(['auth'])->group(function () {
+   
+    Route::get('profile', [UserController::class, 'showProfile'])->name('user.show.profile');
+    
+});
+
+//End User Routes
+
+// Route::get('/menu', [FoodController::class, 'showMenu'])->name('show-menu');
 Route::get('/menu-details/{menu_id}', [FoodController::class, 'showMenuDetails'])->name('show-menu-details');
 
 Route::group(['middleware' => ['auth-customer']], function(){

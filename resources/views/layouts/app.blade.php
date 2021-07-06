@@ -27,6 +27,8 @@
 
 @include('includes.site.nav')
 
+@include('includes.site.alerts')
+
 @yield('content')
 
 @include('includes.site.footer')
@@ -34,6 +36,8 @@
 <a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
 
 @include('includes.site.scripts')
+
 @stack('scripts')
+
 </body>
 </html>

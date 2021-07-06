@@ -1,232 +1,75 @@
 @extends('layouts.app')
 @section('content')
-<!-- Start slides -->
-<div id="slides" class="cover-slides">
-    <ul class="slides-container">
-        <li class="text-left">
-            <img src="{{asset('site/images/background.png')}}" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view  <br>
-                            trends to see any changes in performance over time.</p>
-                        <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-left">
-            <img src="{{asset('site/images/background.png')}}" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view  <br>
-                            trends to see any changes in performance over time.</p>
-                        <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-left">
-            <img src="{{asset('site/images/background.png')}}" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Welcome To <br> Yamifood Restaurant</strong></h1>
-                        <p class="m-b-40">See how your users experience your website in realtime or view  <br>
-                            trends to see any changes in performance over time.</p>
-                        <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
-<!-- End slides -->
 
-<!-- Start About -->
-<div class="about-section-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                <div class="inner-column">
-                    <h1>Welcome To <span>Live Dinner Restaurant</span></h1>
-                    <h4>Little Story</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
-                    <p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>
-                    <a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <img src="{{asset('site/images/about-img.jpg')}}" alt="" class="img-fluid">
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End About -->
+<main>
+    <div class="backg" id="image1">
+        <!-- slider -->
+        <div class="container">
 
-<!-- Start QT -->
-<div class="qt-box qt-background">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
-                <p class="lead ">
-                    " If you're not the one cooking, stay out of the way and compliment the chef. "
-                </p>
-                <span class="lead">Michael Strahan</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End QT -->
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
 
-<!-- Start Menu -->
-<x-site.menu-content show_filters="true" records-limit="6"/>
-<!-- End Menu -->
-
-<!-- Start Gallery -->
-<div class="gallery-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Gallery</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                 </div>
-            </div>
-        </div>
-        <div class="tz-gallery">
-            <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-01.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-01.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-02.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-02.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-03.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-03.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-04.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-04.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-05.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-05.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="{{asset('site/images/gallery-img-06.jpg')}}">
-                        <img class="img-fluid" src="{{asset('site/images/gallery-img-06.jpg')}}" alt="Gallery Images">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Gallery -->
-
-<!-- Start Customer Reviews -->
-<div class="customer-reviews-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Customer Reviews</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 mr-auto ml-auto text-center">
-                <div id="reviews" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner mt-4">
-                        <div class="carousel-item text-center active">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="{{asset('site/images/quotations-button.png')}}" alt="">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="{{ asset('site-asset/images/white.jpg') }}" class="d-block w-100" alt="white">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Homemade Food Delivered to Your Doorstep</h5>
+                            <div class="slider-btn">
+                                <button class="btn btn-1">Get it</button>
                             </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
-                            <h6 class="text-dark m-0">Web Developer</h6>
-                            <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-                        </div>
-                        <div class="carousel-item text-center">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="{{asset('site/images/quotations-button.png')}}" alt="">
-                            </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
-                            <h6 class="text-dark m-0">Web Designer</h6>
-                            <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-                        </div>
-                        <div class="carousel-item text-center">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="{{asset('site/images/quotations-button.png')}}" alt="">
-                            </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
-                            <h6 class="text-dark m-0">Seo Analyst</h6>
-                            <p class="m-0 pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{ asset('site-asset/images/grey.jpg') }}" class="d-block w-100" alt="grey">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 id="grey">Get in YOUR KITCHEN and get Paid</h5>
+                            <div class="slider-btn">
+                                <button class="btn btn-2">Sign up to cook</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </div>
-</div>
-<!-- End Customer Reviews -->
+    <h2><b>Welcome to Chez Don !<b></h2>
+    <h3 class="subhead">Local fresh cuisine for everyone & everywhere</h3>
+    <div class="section" id="1">
+        <div id="box2">
+            <img src="{{ asset('site-asset/images/i2.png') }}" alt="couple cooking" id="i2">
+            <img src="{{ asset('site-asset/images/i4.png') }}" alt="meat" id="i4">
+            <p>Cook at home and get paid for it</p>
+            <a href="aboutus" id="readmore">Read more Here ></a>
+        </div>
+        <div id="box1">
+            <p>The first platform in Luxembourg to get fresh, home-made food delivered to your home for a very affordable price.</p>
+            <a href="aboutus" id="readmore">Read more Here ></a>
+            <img src="{{ asset('site-asset/images/i3.png') }}" alt="salad" id="i3">
+            <img src="{{ asset('site-asset/images/i5.png') }}" alt="dish" id="i5">
+        </div>
+    </div>
+    <div class="section" id="menuicon">
+        <div id="menubutton">
+            <a href="#">Menu</a>
+        </div>
+    </div>
+    <div class="backg" id="foot">
+    </div>
+</main>
 
-<!-- Start Contact info -->
-<div class="contact-imfo-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 arrow-right">
-                <i class="fa fa-volume-control-phone"></i>
-                <div class="overflow-hidden">
-                    <h4>Phone</h4>
-                    <p class="lead">
-                        +01 123-456-4590
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4 arrow-right">
-                <i class="fa fa-envelope"></i>
-                <div class="overflow-hidden">
-                    <h4>Email</h4>
-                    <p class="lead">
-                        yourmail@gmail.com
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <i class="fa fa-map-marker"></i>
-                <div class="overflow-hidden">
-                    <h4>Location</h4>
-                    <p class="lead">
-                        800, Lorem Street, US
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Contact info -->
 @endsection

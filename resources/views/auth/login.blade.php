@@ -1,73 +1,96 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="contact-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 mt-5">
-            <div class="heading-title text-center">
-                <h2>{{ __('Login') }}</h2>
-            </div>
+
+<style>
+
+    .error {
+  
+      color: red;
+    }
+  
+  </style>
+
+<main>
+    <div class="section" id="contactus">
+        <div id="contactword">
+            <p>Login</p>
         </div>
     </div>
-    <div class="row">
-        <div class="offset-3 col-md-6">
-            <form method="POST" action="{{ route('login') }}" class="mb-5">
-                @csrf
-                <input type="hidden" name="return_url" value="{{request()->has('return_url') ?request()->return_url :''}}">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                   name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                                   placeholder="Email">
+    <div class="container mt-4 mb-5">
+        <div class="row">
 
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input id="password" type="password" placeholder="Password"
-                                   class="form-control @error('password') is-invalid @enderror" name="password" required
-                                   autocomplete="current-password">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xs-8 col-xl-8 offset-md-3 offset-lg-3 offset-xs-2 offset-xl-2">
 
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember')
-                            ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="submit-button text-center">
-                            <button type="submit" id="submit" class="btn btn-common">{{ __('Login') }}</button>
-                            <div id="msgSubmit" class="h3 text-center hidden"></div>
-                            <div class="clearfix"></div>
-
-                            @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                            @endif
+                <div class="section" id="location">
+                    <div class="location_hours">
+                        <h3 class="subhead" id="hours">Cook or Customer</h3>
+                        <h5>Login as cook to sell your meal and login as customer to buy meal.</h5>
+                        <div class="row">
+                            <form id="userLoginForm" action="{{ route('login') }}" method="post">
+                                @csrf
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="email" class="col-4 col-form-label">Email</label> 
+                                            <input id="email" name="email" placeholder="Enter Your Email" class="form-control" type="email" required>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="password" class="col-4 col-form-label">Password</label> 
+                                            <input id="password" name="password" placeholder="Enter Your Password" class="form-control" type="password" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <a href="{{ route('auth.password.email') }}">Forgot Password?</a>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <a href="{{ route('register') }}">Register</a>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="form-control btn btn-chezdon">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </form>
+
+            </div>
+
         </div>
     </div>
-</div>
+</main>
+
 @endsection
+
+@push('scripts')
+
+<script>
+
+  $(document).ready(function () {
+
+      //Form Validation
+      $('#userLoginForm').validate({
+
+          rules: {
+
+              email: {
+
+                  required: true,
+                  email: true,
+              },
+              password:{
+                  
+                  required: true,
+                  minlength: 6
+              }
+          },
+          submitHandler: function (form) { 
+
+                form.submit();
+          }
+      });
+  });
+
+</script>
+  
+@endpush

@@ -1,8 +1,8 @@
 {{-- Start header --}}
 <header>
     <div class="top">
-        <img src="{{ asset('site-asset/images/logo.webp') }}" alt="logo" class="logo">
-        <a href="https://daleoswald7.wixsite.com/my-site-1" class="tagline">Chez Don</a>
+        <img src="{{ asset('public/site-asset/images/logo.webp') }}" alt="logo" class="logo">
+        <a href="{{ route('index') }}" class="tagline">Chez Don</a>
         <div id="user">
             @if(Auth::check())
             <a href="{{ route('logout') }}"
@@ -38,7 +38,11 @@
                 <li><a href="{{ route('show.menu') }}">Menu</a></li>
                 <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
                 @if(Auth::check())
-                <li><a href="{{ route('user.show.profile') }}">My Profile</a></li>
+                    @if(Auth::user()->isCook())
+                        <li><a href="{{ route('cook.dashboard') }}">Dashboard</a></li>
+                    @elseif(Auth::user()->isCustomer())
+                        <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li>
+                    @endif
                 @endif
             </ul>
             <div class="burger">

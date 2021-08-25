@@ -15,11 +15,18 @@ class CreateMealsTable extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
-            $table->string('todays_food');
-            $table->foreign('todays_food')->references('id')->on('foods');
-            $table->dateTime('pickup_time');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('food_type_id');
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->unsignedBigInteger('currency_id');
+            $table->double('price', 10, 2)->comment = 'This price belongs to one portion';
+            $table->integer('portions')->default(0);
+            $table->date('delivery_date')->nullable();
+            $table->integer('reserved_portions')->default(0);
+            $table->boolean('mail_to_cook')->default(false);
+            $table->boolean('expired')->default(false);
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }

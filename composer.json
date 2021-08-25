@@ -6,12 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cviebrock/eloquent-sluggable": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "paypal/rest-api-sdk-php": "^1.14",
         "srmklive/paypal": "^3.0"
     },
     "require-dev": {
@@ -27,7 +29,16 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helper/ValidationHelper.php",
+            "app/Helper/MailHelper.php",
+            "app/Helper/AppSettingHelper.php",
+            "app/Helper/CookHelper.php",
+            "app/Helper/CustomerHelper.php",
+            "app/Helper/MealHelper.php"
+
+        ]
     },
     "autoload-dev": {
         "psr-4": {

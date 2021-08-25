@@ -13,4 +13,9 @@ class Currency extends Model
     {
         return $this->hasOne(Menu::class, 'currency_id');
     }
+
+    public function reviewBasedCharge()
+    {
+        return $this->hasOne(ReviewBasedCharge::class, 'currency_id');
+    }
 }

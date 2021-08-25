@@ -16,17 +16,17 @@
             </p>
         </div>
         <div class="woman_image">
-            <img src="{{ asset('site-asset/images/woman.png') }}" alt="Woman Working">
+            <img src="{{ asset('public/site-asset/images/woman.png') }}" alt="Woman Working">
         </div>
     </div>
     <div class="section" id="working">
         <div class="cup_pic">
-            <img src="{{ asset('site-asset/images/phone.png') }}" alt="cup">
+            <img src="{{ asset('public/site-asset/images/phone.png') }}" alt="cup">
         </div>
         <div class="secondcoloumn" id="woman_para">
             <h3>For cooks:</h3>
             <p>You enjoy cooking at home and wish more people could taste your creations? With Chez Don you have this opportunity! Just sign up on the platform to become a cook, prepare dishes which others can enjoy, get reviews and rankings and get paid for it. </p>
-            <button class="submit">How it works ></button>
+            <a class="submit" href="{{ route('how.it.works') }}">How it works ></a>
         </div>
     </div>
     <h3 class="subhead" id="press">From the Press</h3> 

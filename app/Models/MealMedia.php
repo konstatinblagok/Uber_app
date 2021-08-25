@@ -19,4 +19,9 @@ class MealMedia extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function cookFoodMedia()
+    {
+        return $this->belongsTo(CookFoodMedia::class, 'cook_food_media_id', 'id');
+    }
 }

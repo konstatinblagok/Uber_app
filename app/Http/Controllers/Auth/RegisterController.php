@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\EmailController;
-use App\Http\Controllers\UserController;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Setting;
+use App\Models\FoodType;
 use Illuminate\Http\Request;
+use App\Models\CookFoodSpeciality;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -45,65 +46,77 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function showRegistrationForm()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'phone' => ['required', 'string', 'max:15'],
-        ]);
+        $foodTypes = FoodType::where('status', 1)->get();
+        
+        return view('auth.register', ['foodTypes' => $foodTypes]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data) {
-        $is_cook_registration = empty($data['isCustomer']);
+    public function register(Request $request) {
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'type' => $is_cook_registration ? 'u_cook' : 'u_customer',
-            'is_active' => !$is_cook_registration,
+        $validator = Validator::make($request->all(), [
+            
+            'name' => 'bail|required|string|max:255',
+            'email' => 'bail|required|string|email|max:255|unique:users',
+            'password' => 'bail|required|string|min:6',
+            'password_confirmation' => 'bail|required|string|min:6|same:password',
+            'userType' => 'bail|required',
         ]);
 
-        UserController::updatePicture($user, $data['profile_photo']);
+        if ($validator->fails()) {
 
-        if($is_cook_registration){
-            EmailController::sendSignupNotification($user);
+            return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        return $user;
-    }
+        else {
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function register(Request $request){
-        $this->validator($request->all())->validate();
+            $newUser = User::create([
+                
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'user_role_id' => $request->userType,
+                'user_status_id' => (int)$request->userType == 2 ? 1 : 2,
+                'is_approved' => (int)$request->userType == 2 ? 0 : 1,
+                'approved_at' => (int)$request->userType == 2 ? NULL : date('Y-m-d H:i:s'),
+                'admin_approved_verification_code' => substr(md5(rand()),0,60),
+                'currency_id' => 1,
+            ]);
 
-        event(new Registered($user = $this->create($request->all())));
+            if($newUser) {
 
-        return $this->registered($request, $user) ?: redirect()->back()->with([
-            'message'=> 'success',
-            'is_cook_registration' => empty($request->input('isCustomer'))
-        ]);
+                sendLoginInfoEmail($request);
+
+                if($newUser->isCook()) {
+
+                    $data = array();
+                    $foodSpecialityString = '';
+    
+                    foreach($request->foodType as $foodType) {
+    
+                        $data[] = ['user_id' => $newUser->id, 'food_type_id' => $foodType];
+    
+                        $foodSpecialityString .= FoodType::where('id', $foodType)->where('status', 1)->first() ? FoodType::where('id', $foodType)->where('status', 1)->first()->name.',' : '';
+                    }
+    
+                    CookFoodSpeciality::insert($data);
+                    
+                    sendApprovalEmail(getAdminApprovalEmail(), $newUser->user_role_name, $newUser->name, $newUser->email, $foodSpecialityString, $newUser->admin_approved_verification_code);
+    
+                    return redirect()->route('login')->with('success', 'User registered successfully! Once admin approved your account then you will be notified through email to login.');
+                } 
+                else if($newUser->isCustomer()) {
+    
+                    Auth::login($newUser);
+    
+                    return redirect()->route('show.menu');
+                }
+            }
+            else {
+
+                return redirect()->route('register')->with('error', 'Something went wrong!');
+            }
+        }
     }
 }

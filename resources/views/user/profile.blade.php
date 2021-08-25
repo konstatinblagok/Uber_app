@@ -5,7 +5,7 @@
     <div class="row">
         <div class="memcol">
             <div class="memberimg">
-                <img src="{{ asset('site-asset/images/sample.jpg') }}" alt="member image">
+                <img src="{{ asset('public/site-asset/images/sample.jpg') }}" alt="member image">
                 <p class="span">{{ Auth::user()->name }}</p>
             </div>
             <div class="followers">

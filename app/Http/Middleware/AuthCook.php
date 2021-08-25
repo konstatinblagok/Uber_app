@@ -19,6 +19,6 @@ class AuthCook
     {
         return Auth::check() && Auth::user()->isCook()
             ? $next($request)
-            : redirect()->route('show-dashboard');
+            : redirect()->route('show.menu')->with('error', 'You are not allowed to access this page!');
     }
 }

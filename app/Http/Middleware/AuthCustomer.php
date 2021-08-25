@@ -19,6 +19,6 @@ class AuthCustomer
     {
         return Auth::check() && Auth::user()->isCustomer()
             ? $next($request)
-            : abort(401);
+            : redirect()->route('show.menu')->with('error', 'You are not allowed to access this page!');
     }
 }

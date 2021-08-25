@@ -15,8 +15,7 @@ class CurrencySeeder extends Seeder
     public function run()
     {
         Currency::insert([
-            ['name'=>'Dollar', 'symbol'=>'$'],
-            ['name'=>'Pound', 'symbol'=>'£'],
+            ['name' => 'Euro', 'symbol' => '€'],
         ]);
     }
 }

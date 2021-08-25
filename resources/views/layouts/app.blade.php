@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="{{ asset('dashboard/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('public/site-asset/images/favicon.ico') }}">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    {{-- <body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;"> --}}
 
 @include('includes.site.nav')
 

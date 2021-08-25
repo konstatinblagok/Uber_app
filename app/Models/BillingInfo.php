@@ -8,15 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class BillingInfo extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'city',
-        'state',
-        'zip_code',
-        'phone',
-        'address',
-        'user_id',
-        'created_at',
-        'paypal_account_id',
-    ];
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
 }

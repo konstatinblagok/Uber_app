@@ -13,7 +13,7 @@
             </p>
         </div>
         <div class="woman_image " id="vision">
-            <img src="{{ asset('site-asset/images/woman.png') }}" alt="Woman Working">
+            <img src="{{ asset('public/site-asset/images/woman.png') }}" alt="Woman Working">
         </div>
     </div> 
     <div class="backg" id="plates"></div>  

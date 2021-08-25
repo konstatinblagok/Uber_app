@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\Meal;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -46,32 +47,69 @@ class LoginController extends Controller
      * @return array
      */
     public function credentials(Request $request) {
+        
         return [
+
             'email'     => $request->email,
             'password'  => $request->password,
-            'is_active' => '1'
         ];
     }
 
-    protected function validateLogin(Request $request) {
-        $this->validate($request, [
-            $this->username() => 'exists:users,' . $this->username() . ',is_active,1',
-            'password' => 'required|string',
-        ], [
-            $this->username() . '.exists' => 'The selected email is invalid or the account has been disabled.'
-        ]);
+    protected function attemptLogin(Request $request)
+    {   
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
     }
 
     protected function authenticated(Request $request, $user) {
-        if ( $user->isCook() ) {
-            return redirect()->to('/');
-            /*$isFoodSelected = !empty(Meal::getTodaysMeal());
+        
+        if($user->isApproved()) {
 
-            if(!$isFoodSelected){
-                return redirect()->route('view-food-selection');
-            }*/
+            if($user->isDeleted()) {
+
+                $deleteReason = 'Your account has been deleted! ';
+
+                if($user->user_status_remarks != NULL) {
+
+                    $deleteReason .= $user->user_status_remarks.' ';
+                }
+
+                $deleteReason .= 'Please contact to admin! ';
+
+                Auth::logout();
+
+                return redirect()->route('login')->with('error', $deleteReason);
+            }
+            else {
+
+                if($user->isCook()) {
+
+                    if(checkCookBillingInfoStatus()) {
+    
+                        return redirect()->route('cook.dashboard');
+                    }
+                    else {
+    
+                        return redirect()->route('cook.billing.info.index')->with('error', 'Please provide your billing information!');
+                    }
+                }
+                else if($user->isCustomer()) {
+    
+                    return redirect()->route('show.menu');
+                }
+            }
         }
+        else {
 
-        return redirect()->to('/');
+            Auth::logout();
+
+            return redirect()->route('login')->with('error', 'Your account is not approved by admin!');
+        }
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect()->back()->with('error', 'Email or password is incorrect!');
     }
 }

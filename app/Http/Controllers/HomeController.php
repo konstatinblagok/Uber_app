@@ -124,7 +124,7 @@ class HomeController extends Controller
             if($request->minRating != '') {
 
                 $minRatingVal = (int)$request->minRating;
-                $minRatingVal = $minRatingVal < 0 ? 0 : $minRatingVal;
+                $minRatingVal = $minRatingVal < 3 ? 3 : $minRatingVal;
                 $minRatingVal = $minRatingVal > 5 ? 5 : $minRatingVal;
 
                 $minRatingCookIDs = DB::table('users')
@@ -137,26 +137,9 @@ class HomeController extends Controller
                                         ->toArray();
             }
 
-            if($request->maxRating != '') {
-
-                $maxRatingVal = (int)$request->maxRating;
-                $maxRatingVal = $maxRatingVal < 0 ? 0 : $maxRatingVal;
-                $maxRatingVal = $maxRatingVal > 5 ? 5 : $maxRatingVal;
-
-                $maxRatingCookIDs = DB::table('users')
-                                        ->join('cook_reviews', 'users.id', '=', 'cook_reviews.cook_user_id')
-                                        ->select('users.id')
-                                        ->selectRaw('AVG(cook_reviews.rating) AS average_rating')
-                                        ->groupBy('users.id')
-                                        ->havingRaw('AVG(cook_reviews.rating) <= ?', [$maxRatingVal])
-                                        ->pluck('user.id')
-                                        ->toArray();
-            }
-
             if(isset($request->mealCategory) && $request->mealCategory != '') {
 
-                $foodTypeArray = FoodType::where('food_menu_category_id', $request->mealCategory)->pluck('id')->toArray();
-                $mealIDCategory = Meal::whereIn('food_type_id', $foodTypeArray)->pluck('id')->toArray();
+                $mealIDCategory = Meal::where('food_category_id', $request->mealCategory)->pluck('id')->toArray();
             }
 
             if(isset($request->mealType) && $request->mealType != '') {
@@ -184,11 +167,7 @@ class HomeController extends Controller
 
                 return $q1->with(['cookFoodMedia']);
 
-            }, 'user', 'foodType' => function($q3) use ($request) {
-
-                return $q3->with(['foodMenuCategory']);
-
-            }, 'currency'])->where('expired', false);
+            }, 'user', 'foodMenuCategory', 'foodType', 'currency'])->where('expired', false);
 
             if(isset($finalMealArray)) {
 
@@ -200,17 +179,12 @@ class HomeController extends Controller
                 $menu->whereIn('user_id', $minRatingCookIDs);
             }
 
-            if(isset($maxRatingCookIDs)) {
-
-                $menu->whereIn('user_id', $maxRatingCookIDs);
-            }
-
             if(isset($request->deliveryDate) && $request->deliveryDate != '') {
 
                 $menu->where('delivery_date', $request->deliveryDate);
             }
 
-            $menuResult = $menu->orderBy('price', 'ASC')->paginate(10);
+            $menuResult = $menu->orderBy('created_at', 'DESC')->paginate(10);
 
             $mealCategories = FoodMenuCategory::all();
             $mealType = FoodType::all();

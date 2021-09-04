@@ -9,6 +9,7 @@ use App\Models\Currency;
 use App\Models\MealMedia;
 use Illuminate\Http\Request;
 use App\Models\CookFoodMedia;
+use App\Models\FoodMenuCategory;
 use App\Models\CookFoodSpeciality;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,13 +37,15 @@ class MealController extends Controller
     public function create(Request $request) {
 
         $cookMealTypeArray = CookFoodSpeciality::where('user_id', Auth::user()->id)->pluck('food_type_id')->toArray();
-        $foodType = FoodType::whereIn('id', $cookMealTypeArray)->get();
+        $foodType = FoodType::whereIn('id', $cookMealTypeArray)->where('status', 1)->get();
+        $categories = FoodMenuCategory::where('status', 1)->get();
         $currencies = Currency::all();
 
         $data = [
 
             'foodType' => $foodType,
-            'currencies' => $currencies
+            'currencies' => $currencies,
+            'categories' => $categories,
         ];
 
         return view('cook.meal.create', $data);
@@ -54,14 +57,15 @@ class MealController extends Controller
 
             $validator = Validator::make($request->all(), [
             
-                'foodType' => 'bail|required',
+                'category' => 'required',
+                'foodType' => 'required',
                 'title' => 'bail|required|string',
                 'description' => 'bail|required|string',
-                'currency' => 'bail|required',
+                'currency' => 'required',
                 'price' => 'bail|required|min:1',
                 'portion' => 'bail|required|min:1',
-                'deliveryDate' => 'bail|required',
-                'mealMedia' => 'bail|required',
+                'deliveryDate' => 'required',
+                'mealMedia' => 'required',
             ]);
     
             if ($validator->fails()) {
@@ -106,6 +110,7 @@ class MealController extends Controller
             $meal = new Meal();
 
             $meal->user_id = Auth::user()->id;
+            $meal->food_category_id = $request->category;
             $meal->food_type_id = $request->foodType;
             $meal->title = $request->title;
             $meal->description = $request->description;
@@ -148,14 +153,16 @@ class MealController extends Controller
         if($mealData->user_id == Auth::user()->id) {
 
             $cookMealTypeArray = CookFoodSpeciality::where('user_id', Auth::user()->id)->pluck('food_type_id')->toArray();
-            $foodType = FoodType::whereIn('id', $cookMealTypeArray)->get();
+            $foodType = FoodType::whereIn('id', $cookMealTypeArray)->where('status', 1)->get();
+            $categories = FoodMenuCategory::where('status', 1)->get();
             $currencies = Currency::all();
 
             $data = [
 
                 'meal' => $mealData,
                 'foodType' => $foodType,
-                'currencies' => $currencies
+                'currencies' => $currencies,
+                'categories' => $categories,
             ];
 
             return view('cook.meal.edit', $data);
@@ -193,13 +200,14 @@ class MealController extends Controller
 
             $validator = Validator::make($request->all(), [
             
-                'foodType' => 'bail|required',
+                'category' => 'required',
+                'foodType' => 'required',
                 'title' => 'bail|required|string',
                 'description' => 'bail|required|string',
-                'currency' => 'bail|required',
+                'currency' => 'required',
                 'price' => 'bail|required|min:1',
                 'portion' => 'bail|required|min:1',
-                'deliveryDate' => 'bail|required',
+                'deliveryDate' => 'required',
             ]);
     
             if ($validator->fails()) {
@@ -240,6 +248,7 @@ class MealController extends Controller
             }
 
             $meal->user_id = Auth::user()->id;
+            $meal->food_category_id = $request->category;
             $meal->food_type_id = $request->foodType;
             $meal->title = $request->title;
             $meal->description = $request->description;

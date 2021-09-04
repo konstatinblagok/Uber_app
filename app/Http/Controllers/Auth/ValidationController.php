@@ -13,4 +13,11 @@ class ValidationController extends Controller
 
         return response()->json(array('success' => $emailResponse));
     }
+
+    public function phone(Request $request) {
+        
+        $phoneResponse = userPhoneExists($request->phone, $request->countryCode, $request->requestSource, $request->userID);
+
+        return response()->json(array('success' => $phoneResponse));
+    }
 }

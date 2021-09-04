@@ -30,6 +30,12 @@
 
 @include('includes.site.alerts')
 
+@if(Auth::check() && Auth::user()->emailNotVerified())
+
+    @include('includes.site.emailVerificationNotification')
+
+@endif
+
 @yield('content')
 
 @include('includes.site.footer')

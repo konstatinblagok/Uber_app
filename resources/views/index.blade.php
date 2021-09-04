@@ -54,11 +54,11 @@
             <img src="{{ asset('public/site-asset/images/i2.png') }}" alt="couple cooking" id="i2">
             <img src="{{ asset('public/site-asset/images/i4.png') }}" alt="meat" id="i4">
             <p>Cook at home and get paid for it</p>
-            <a href="aboutus" id="readmore">Read more Here ></a>
+            <a href="{{ route('how.it.works') }}" id="readmore">Read more Here ></a>
         </div>
         <div id="box1">
             <p>The first platform in Luxembourg to get fresh, home-made food delivered to your home for a very affordable price.</p>
-            <a href="aboutus" id="readmore">Read more Here ></a>
+            <a href="{{route('about.us')}}" id="readmore">Read more Here ></a>
             <img src="{{ asset('public/site-asset/images/i3.png') }}" alt="salad" id="i3">
             <img src="{{ asset('public/site-asset/images/i5.png') }}" alt="dish" id="i5">
         </div>

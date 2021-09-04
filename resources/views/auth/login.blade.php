@@ -31,11 +31,11 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="email" class="col-4 col-form-label">Email</label> 
+                                            <label for="email" class="col-12 col-form-label">Email <small class="text-danger">*</small></label> 
                                             <input id="email" name="email" placeholder="Enter Your Email" class="form-control" type="email" required>
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="password" class="col-4 col-form-label">Password</label> 
+                                            <label for="password" class="col-12 col-form-label">Password <small class="text-danger">*</small></label> 
                                             <input id="password" name="password" placeholder="Enter Your Password" class="form-control" type="password" required>
                                         </div>
                                         <div class="form-group col-md-6">

@@ -46,8 +46,6 @@ class PayPalController extends Controller
             $paypal_conf['secret'])
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
-
-        $this->middleware('auth-customer');
     }
     
     public function pay(Request $request) {
@@ -83,46 +81,57 @@ class PayPalController extends Controller
         //User Billing Information
         if(BillingInfo::where('user_id', Auth::user()->id)->exists()) {
 
-            $billInfo = BillingInfo::where('user_id', Auth::user()->id)->latest('updated_at')->first();
+            if(Auth::user()->isCustomer()) {
 
-            $isPreviousData = false;
+                $billInfo = BillingInfo::where('user_id', Auth::user()->id)->latest('updated_at')->first();
 
-            if($billInfo->first_name == $request->firstName) {
+                $isPreviousData = false;
 
-                if($billInfo->last_name == $request->lastName) {
+                if($billInfo->first_name == $request->firstName) {
 
-                    if($billInfo->address == $request->address) {
+                    if($billInfo->last_name == $request->lastName) {
 
-                        if($billInfo->apartment_suite_unit == $request->apartmentSuiteUnit) {
+                        if($billInfo->address == $request->address) {
 
-                            if($billInfo->city_id == $request->city) {
+                            if($billInfo->apartment_suite_unit == $request->apartmentSuiteUnit) {
 
-                                if($billInfo->zip_code == $request->zipCode) {
+                                if($billInfo->city_id == $request->city) {
 
-                                    $isPreviousData = true;
+                                    if($billInfo->zip_code == $request->zipCode) {
+
+                                        $isPreviousData = true;
+                                    }
                                 }
                             }
                         }
-                    }
-                }   
-            }
+                    }   
+                }
 
-            if(!($isPreviousData)) {
+                if(!($isPreviousData)) {
 
-                $billInfo = new BillingInfo();
+                    $billInfo = new BillingInfo();
 
-                $billInfo->user_id = Auth::user()->id;
-                $billInfo->first_name = $request->firstName;
-                $billInfo->last_name = $request->lastName;
-                $billInfo->address = $request->address;
-                $billInfo->apartment_suite_unit = $request->apartmentSuiteUnit;
-                $billInfo->city_id = $request->city;
-                $billInfo->zip_code = $request->zipCode;
+                    $billInfo->user_id = Auth::user()->id;
+                    $billInfo->first_name = $request->firstName;
+                    $billInfo->last_name = $request->lastName;
+                    $billInfo->address = $request->address;
+                    $billInfo->apartment_suite_unit = $request->apartmentSuiteUnit;
+                    $billInfo->city_id = $request->city;
+                    $billInfo->zip_code = $request->zipCode;
 
-                $billInfo->save();
+                    $billInfo->save();
+                }
             }
         }
         else {
+
+            if(Auth::user()->isCook()) {
+
+                Session::forget('callBackUrl');
+                Session::put(['callBackUrl' => URL::previous()]);
+
+                return redirect()->route('cook.billing.info.index')->with('error', 'Please provide your billing information.');
+            }
 
             $billInfo = new BillingInfo();
 

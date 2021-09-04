@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Models\User;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +19,12 @@ class ProfileController extends Controller
     public function index(Request $request) {
 
         $user = Auth::user();
+        $contries = Country::all();
         
         $data = [
 
             'user' => $user,
+            'contries' => $contries,
         ];
         
         return view('customer.profile', $data);
@@ -32,6 +35,8 @@ class ProfileController extends Controller
         $user = User::findOrFail(Auth::user()->id);
 
         $user->name = $request->name;
+        $user->country_code = $request->countryCode;
+        $user->phone = $request->phone;
 
         if($request->newPassword != null) {
 

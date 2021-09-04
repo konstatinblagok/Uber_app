@@ -83,18 +83,56 @@ class LoginController extends Controller
             }
             else {
 
+                \Session::forget('url.intented');
+
                 if($user->isCook()) {
 
                     if(checkCookBillingInfoStatus()) {
+
+                        if(\Session::has('callBackUrl')) {
+
+                            $url = \Session::get('callBackUrl');
+
+                            \Session::forget('callBackUrl');
+
+                            if(strpos($url, 'menu') !== false || strpos($url, 'meal') !== false) {
+
+                                return redirect()->to($url);
+                            }
+                        }
     
                         return redirect()->route('cook.dashboard');
                     }
                     else {
+
+                        if(\Session::has('callBackUrl')) {
+
+                            $url = \Session::get('callBackUrl');
+
+                            \Session::forget('callBackUrl');
+                            
+                            if(strpos($url, 'menu') !== false || strpos($url, 'meal') !== false) {
+
+                                return redirect()->to($url);
+                            }
+                        }
     
                         return redirect()->route('cook.billing.info.index')->with('error', 'Please provide your billing information!');
                     }
                 }
                 else if($user->isCustomer()) {
+
+                    if(\Session::has('callBackUrl')) {
+
+                        $url = \Session::get('callBackUrl');
+
+                        \Session::forget('callBackUrl');
+                        
+                        if(strpos($url, 'menu') !== false || strpos($url, 'meal') !== false) {
+
+                            return redirect()->to($url);
+                        }
+                    }
     
                     return redirect()->route('show.menu');
                 }

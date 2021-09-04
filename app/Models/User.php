@@ -26,6 +26,9 @@ class User extends Authenticatable
         'user_role_id',
         'user_status_id',
         'admin_approved_verification_code',
+        'email_verification_code',
+        'country_code',
+        'phone',
         'is_approved',
         'approved_at',
         'currency_id'
@@ -112,8 +115,14 @@ class User extends Authenticatable
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
 
-    public function getBillingInfos(){
+    public function getBillingInfos() {
+
         return $this->hasMany(BillingInfo::class, 'user_id');
+    }
+
+    public function emailNotVerified() {
+    
+        return $this->email_verified_at == NULL;
     }
 
     public function sluggable(): array

@@ -136,6 +136,8 @@
                                 <p>Zip Code : <span>{{ $order->billingInfo->zip_code }}</span></p>
                             </div>
 
+                            <hr>
+
                             {{-- Meal & Cook Information --}}
                             <div class="col-md-12 form-group">
                                 <h4>Meal & Cook Information</h4>
@@ -144,6 +146,10 @@
 
                             <div class="col-md-6 form-group">
                                 <p>Meal Title : <span>{{ $order->meal->title }}</span></p>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <p>Meal Category : <span>{{ $order->meal->foodMenuCategory->name }}</span></p>
                             </div>
 
                             <div class="col-md-6 form-group">

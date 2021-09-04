@@ -68,7 +68,20 @@
                                 @csrf
                               <div class="col-md-12">
                                 <div class="row">
-                                    <div class="form-group col-md-6">
+
+                                    <div class="form-group col-md-4">
+                                        <label for="category" class="col-12 col-form-label">Category <small class="text-danger">*</small></label> 
+                                        <select name="category" id="category" class="form-control">
+                                          <option value="">Select Category...</option>
+                                          @if(count($categories) > 0)
+                                            @foreach ($categories as $category)
+                                              <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                          @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
                                         <label for="foodType" class="col-12 col-form-label">Food <small class="text-danger">*</small></label> 
                                         <select name="foodType" id="foodType" class="form-control">
                                           <option value="">Select Food...</option>
@@ -79,14 +92,17 @@
                                           @endif
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+
+                                    <div class="form-group col-md-4">
                                         <label for="portion" class="col-12 col-form-label">Total Portion <small class="text-danger">*</small></label> 
                                         <input id="portion" name="portion" placeholder="No of Portions" class="form-control" type="number" min="1">
                                     </div>
+
                                     <div class="form-group col-md-4">
                                         <label for="price" class="col-12 col-form-label">Price <small class="text-danger">*</small></label> 
                                         <input id="price" name="price" placeholder="Price (One Portion)" class="form-control" type="number">
                                     </div>
+
                                     <div class="form-group col-md-4">
                                         <label for="price" class="col-12 col-form-label">Currency <small class="text-danger">*</small></label> 
                                         <select name="currency" id="currency" class="form-control">
@@ -98,25 +114,30 @@
                                             @endif
                                         </select>
                                     </div>
+
                                     <div class="form-group col-md-4">
                                         <label for="deliveryDate" class="col-12 col-form-label">Pickup Date <small class="text-danger">*</small></label> 
                                         <input id="deliveryDate" name="deliveryDate" class="form-control" type="date">
                                         <span>The time of pickup is always between {{ foodPickUpStartTime() }} to {{ foodPickUpEndTime() }}!</span>
                                     </div>
+
                                     <div class="form-group col-md-12">
                                         <label for="title" class="col-12 col-form-label">Title <small class="text-danger">*</small></label> 
                                         <input id="title" name="title" placeholder="Title" class="form-control" type="text">
                                     </div>
+
                                     <div class="form-group col-md-12">
                                         <label for="description" class="col-12 col-form-label">Description <small class="text-danger">*</small></label> 
                                         <textarea id="description" placeholder="Description" name="description" class="form-control" rows="4"></textarea>
                                     </div>
+
                                     <div class="form-group col-md-12 main-section">
                                         <label for="file-1" class="col-12 col-form-label">Media <small class="text-danger">*</small></label> 
                                         <div class="file-loading">
                                             <input id="file-1" name="mealMedia[]" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2" required>
                                         </div>
                                     </div>
+                                    
                                   <div class="form-group col-md-12">
                                     <button type="submit" class="btn btn-chezdon form-control">Add</button>
                                   </div>
@@ -188,6 +209,10 @@
 
             rules: {
 
+                category: {
+
+                    required: true,
+                },
                 foodType: {
 
                     required: true,

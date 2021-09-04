@@ -19,6 +19,7 @@ class BillingInfoController extends Controller
 
     public function index(Request $request) {
 
+        Session::forget('backUrl');
         Session::put('backUrl', URL::previous());
         
         $countries = Country::where('status', 1)->get();

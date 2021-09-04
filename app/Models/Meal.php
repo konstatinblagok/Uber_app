@@ -35,6 +35,11 @@ class Meal extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function foodMenuCategory()
+    {
+        return $this->belongsTo(FoodMenuCategory::class, 'food_category_id', 'id');
+    }
+
     public function foodType()
     {
         return $this->belongsTo(FoodType::class, 'food_type_id', 'id');

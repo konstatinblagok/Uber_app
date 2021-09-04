@@ -16,6 +16,7 @@ class CreateMealsTable extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('food_category_id');
             $table->unsignedBigInteger('food_type_id');
             $table->string('title');
             $table->string('description')->nullable();

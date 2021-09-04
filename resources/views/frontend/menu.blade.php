@@ -26,6 +26,61 @@
         margin-bottom: 0.50rem;
     }
 
+    .user-rating {
+        direction: rtl;
+        font-size: 20px;
+        unicode-bidi: bidi-override;
+        padding: 10px 30px;
+        display: inline-block;
+    }
+
+    .user-rating input {
+        opacity: 0;
+        position: relative;
+        left: -15px;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .user-rating span.star:before {
+        color: #777777;
+        content:"ï€†";
+        /*padding-right: 5px;*/
+    }
+
+    .user-rating span.star {
+        display: inline-block;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        position: relative;
+        z-index: 1;
+    }
+
+    .user-rating span {
+        margin-left: -15px;
+    }
+
+    .user-rating span.star:before {
+        color: #777777;
+        content:"\f006";
+        /*padding-right: 5px;*/
+    }
+
+    .user-rating input:hover + span.star:before, .user-rating input:hover + span.star ~ span.star:before, .user-rating input:checked + span.star:before, .user-rating input:checked + span.star ~ span.star:before {
+        color: #ffd100;
+        content:"\f005";
+    }
+
+    .selected-rating{
+        color: #ffd100;
+        font-weight: bold;
+        font-size: 3em;
+    }
+    option.orange {
+    color: orange;
+    }
+
 </style>
 
 @php
@@ -82,13 +137,12 @@
                             </div>
 
                             <div class="col-md-2 form-group">
-                                <label for="minRating">Min Rating</label>
-                                <input type="number" class="form-control" id="minRating" name="minRating" min="0" value="{{ \Request::get('minRating') ? \Request::get('minRating') : '' }}" max="5">
-                            </div>
-
-                            <div class="col-md-2 form-group">
-                                <label for="maxRating">Max Rating</label>
-                                <input type="number" class="form-control" id="maxRating" name="maxRating" min="0" value="{{ \Request::get('maxRating') ? \Request::get('maxRating') : '' }}" max="5">
+                                <label for="minRating">Rating</label>
+                                <select name="minRating" id="minRating" class="form-control" size="4">
+                                    <option class="orange" value="5" {{ \Request::get('minRating') ? (\Request::get('minRating') == '5' ? 'selected' : '') : ''}}>&starf; &starf; &starf; &starf; &star; <span style="color:black;"> & Up</span> </option>
+                                    <option class="orange" value="4" {{ \Request::get('minRating') ? (\Request::get('minRating') == '4' ? 'selected' : '') : ''}}>&starf; &starf; &starf; &star; &star; <span style="color:black;"> & Up</span> </option>
+                                    <option class="orange" value="3" {{ \Request::get('minRating') ? (\Request::get('minRating') == '3' ? 'selected' : '') : ''}}>&starf; &starf; &star; &star; &star; <span style="color:black;"> & Up</span> </option>
+                                </select>
                             </div>
 
                             <div class="col-md-2 form-group">
@@ -144,10 +198,27 @@
                                         
                                     <div class="card-body">
                                         <h5 class="chezdon-color card-title">{{ \Str::limit($mnMeal->title, $mealTitleCharactersLimit, $end='...') }}</h5>
-                                        <p>Category : <span class="chezdon-color">{{ $mnMeal->foodType->foodMenuCategory->name }}</span></p>
+                                        <p>Category : <span class="chezdon-color">{{ $mnMeal->foodMenuCategory->name }}</span></p>
                                         <p>Food Type : <span class="chezdon-color">{{ $mnMeal->foodType->name }}</span></p>
                                         <p>Price : <span class="chezdon-color">{{ $mnMeal->currency->symbol }}{{ $mnMeal->price }}</span></p>
-                                        <p>Available Portions : <span class="chezdon-color">{{ getMealAvailablePortion($mnMeal->id) > 0 ? getMealAvailablePortion($mnMeal->id) : 'Sold out! Someone was hungrier than you.' }}</span></p>
+                                        <p>Available Portions : <span class="chezdon-color">
+
+                                            @if(getMealAvailablePortion($mnMeal->id) <= 0)
+                                            
+                                                {{ 'Sold out! Someone was hungrier than you.' }}
+
+                                            @elseif($mnMeal->mail_to_cook == 1)
+
+                                                {{ 'Reservation Closed!' }}
+
+                                            @else
+
+                                                {{ getMealAvailablePortion($mnMeal->id) }}
+
+                                            @endif
+
+                                            
+                                        </span></p>
                                         <p>Delivery Date : <span class="chezdon-color">{{ $mnMeal->delivery_date }}</span></p>
                                     </div>
                                 </div>
@@ -157,7 +228,7 @@
                                 <div class="item" id="box1">
                                     <h5 class="chezdon-color">{{ $mnMeal->title }}</h5>
                                     <p>{{ $mnMeal->description }}</p>
-                                    <p>Category : <span class="chezdon-color">{{ $mnMeal->foodType->foodMenuCategory->name }}</span></p>
+                                    <p>Category : <span class="chezdon-color">{{ $mnMeal->foodMenuCategory->name }}</span></p>
                                     <p>Food Type : <span class="chezdon-color">{{ $mnMeal->foodType->name }}</span></p>
                                     <p>Price : <span class="chezdon-color">{{ $mnMeal->currency->symbol }}{{ $mnMeal->price }}</span></p>
                                     <p>Available Portions : <span class="chezdon-color">{{ getMealAvailablePortion($mnMeal->id) > 0 ? getMealAvailablePortion($mnMeal->id) : 'Sold out! Someone was hungrier than you.' }}</span></p>

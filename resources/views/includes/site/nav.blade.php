@@ -33,7 +33,7 @@
             <ul class="nav_links v-class ">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('about.us') }}">About</a></li>
-                <li><a href="{{ route('how.it.works') }}">How it works ?</a></li>
+                <li><a href="{{ route('how.it.works') }}">How it works</a></li>
                 <li><a href="{{ route('our.vision') }}">Our Vision</a></li>
                 <li><a href="{{ route('show.menu') }}">Menu</a></li>
                 <li><a href="{{ route('contact.us') }}">Contact Us</a></li>

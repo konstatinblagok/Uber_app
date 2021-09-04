@@ -48,6 +48,7 @@
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Meal Type</th>
                                     <th scope="col">No. of Portion</th>
                                     <th scope="col">Pickup Date</th>
@@ -60,6 +61,7 @@
                                         <tr>
                                             <th scope="row">{{$userMealCount++}}</th>
                                             <td>{{ $meal->title }}</td>
+                                            <td>{{ $meal->foodMenuCategory->name }}</td>
                                             <td>{{ $meal->foodType->name }}</td>
                                             <td>{{ $meal->portions }}</td>
                                             <td>{{ date('d-m-Y', strtotime($meal->delivery_date)) }}</td>

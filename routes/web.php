@@ -16,6 +16,7 @@ use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\Auth\ValidationController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Auth\LoginController;
 
 //Cook Controllers
 use App\Http\Controllers\Cook\DashboardController as CookDashboardController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Cook\FoodMediaController as CookFoodMediaController;
 use App\Http\Controllers\Cook\ProfileController as CookProfileController;
 use App\Http\Controllers\Cook\BillingInfoController as CookBillingInfoController;
 use App\Http\Controllers\Cook\AccountController as CookAccountController;
+use App\Http\Controllers\Cook\OrderController as CookOrderController;
 
 //Customer Controllers
 use App\Http\Controllers\Customer\Payment\PayPalController as CustomerPaymentPayPalController;
@@ -101,12 +103,27 @@ Route::group(['middleware' => ['auth-cook-or-admin']], function(){
 //Admin Approve Account
 Route::get('approve/account/{secret}', [VerificationController::class, 'accountApprovedByAdmin'])->name('user.account.approve.admin');
 
+//User Email Verification
+Route::get('email/verification/{secret}', [VerificationController::class, 'emailVerificationByUser'])->name('user.email.verification');
+
+//Resend User Email Verification
+Route::get('resend/email/verification', [VerificationController::class, 'resendVerificationEmail'])->name('user.email.verification.resend');
+
 
 /*-------------------------------------------------------------------------------
 ------------------------------------Auth Routes----------------------------------
 -------------------------------------------------------------------------------*/
 
 Auth::routes();
+
+Route::get('login', function() {
+
+    \Session::forget('callBackUrl');
+    \Session::put(['callBackUrl' => \URL::previous()]);
+
+    return view('auth.login');
+    
+})->name('login');
 
 //Auth - Validation
 Route::prefix('auth')->group(function () {
@@ -115,6 +132,8 @@ Route::prefix('auth')->group(function () {
 
         //Email
         Route::post('email', [ValidationController::class, 'email'])->name('auth.validation.email');
+        //Phone
+        Route::post('phone', [ValidationController::class, 'phone'])->name('auth.validation.phone');
     });
 
     Route::prefix('password')->group(function () {
@@ -158,6 +177,15 @@ Route::prefix('cook')->middleware(['auth-cook'])->group(function () {
         Route::get('/', [CookFoodMediaController::class, 'index'])->name('cook.meal.media.index');
     });
 
+    //Order History Routes
+    Route::prefix('order')->group(function () {
+
+        Route::get('/history', [CookOrderController::class, 'orderHistory'])->name('cook.order.history');
+        Route::get('/review/{id}', [CookOrderController::class, 'orderReview'])->name('cook.order.review');
+        Route::get('/detail/{id}', [CookOrderController::class, 'orderDetail'])->name('cook.order.detail');
+        Route::post('/save-review', [CookOrderController::class, 'saveReview'])->name('cook.order.save.review');
+    }); 
+
     //Profile Routes
     Route::prefix('profile')->group(function () {
 
@@ -188,6 +216,18 @@ Route::prefix('cook')->middleware(['auth-cook'])->group(function () {
 ------------------------------------Customer Routes------------------------------
 -------------------------------------------------------------------------------*/
 
+Route::prefix('customer')->group(function () {
+
+    //Payment Routes
+    Route::prefix('payment')->group(function () {
+
+        Route::post('/paypal', [CustomerPaymentPayPalController::class, 'pay'])->name('customer.payment.paypal.pay');
+        Route::get('/status', [CustomerPaymentPayPalController::class, 'getPaymentStatus'])->name('customer.payment.paypal.status');
+    });
+    
+});
+
+
 Route::prefix('customer')->middleware(['auth-customer'])->group(function () {
 
     //Dashboard Routes
@@ -217,13 +257,6 @@ Route::prefix('customer')->middleware(['auth-customer'])->group(function () {
 
         Route::get('/', [CustomerBillingInfoController::class, 'index'])->name('customer.billing.info.index');
         Route::post('save', [CustomerBillingInfoController::class, 'saveInfo'])->name('customer.billing.info.save');
-    });
-
-    //Payment Routes
-    Route::prefix('payment')->group(function () {
-
-        Route::post('/paypal', [CustomerPaymentPayPalController::class, 'pay'])->name('customer.payment.paypal.pay');
-        Route::get('/status', [CustomerPaymentPayPalController::class, 'getPaymentStatus'])->name('customer.payment.paypal.status');
     });
     
 });

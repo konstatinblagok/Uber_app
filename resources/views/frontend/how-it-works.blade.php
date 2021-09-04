@@ -14,7 +14,9 @@
             <p>Everyone who is passionate about cooking in Luxembourg city can apply on the platform to become a cook of Chez Don.</p><br>
             <p>The dishes which are prepared by the cooks need to be ready by the time between 16:30 - 17:30. Chez Don will pick them up from the cooks' home and deliver them to the customers' home.</p><br>
             <p>Our Prices for our different dishes are fixed for 1 portion.</p><br>
-            <p>Vegetarian / Vegan = 5 €  
+            <p>Meat. = 6 €</p>
+            <p>Fish = 7 €</p>
+            <p>Vegetarian / Vegan = 5 €</p>
             <p> Pasta = 4 €</p>
             <p> Dessert = 1 €</p> 
             <p> Every Cook has a rating between 1-5 stars. Depending on this rating a cook can earn more money.</p><br>

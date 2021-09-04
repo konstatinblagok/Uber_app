@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 function sendApprovalEmail($adminEmail, $userType, $userName, $userEmail, $foodSpeciality, $token) {
 
@@ -97,6 +99,25 @@ function sendLoginInfoEmail($requestUser) {
         \Mail::send('emails.loginInfo', ['requestUser' => $requestUser] ,function($message) use($requestUser) {
             $message->to($requestUser->email);
             $message->subject('Login Information');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
+function sendVerificationEmail($email) {
+
+    $token = substr(md5(rand()),0,60);
+
+    $user = User::where('email', $email)->update(['email_verification_code' => $token]);
+
+    try {
+
+        \Mail::send('emails.emailVerification', ['token' => $token] ,function($message) use($email) {
+            $message->to($email);
+            $message->subject('Email Verification');
         });
     }
     catch(\Exception $e) {

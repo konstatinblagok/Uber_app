@@ -204,7 +204,7 @@
 
                         @if(Auth::check())
 
-                            @if(Auth::user()->isCustomer())
+                            @if(Auth::user()->id != $mealDetails->user_id)
 
                                 <div class="col-md-12">
 
@@ -284,7 +284,7 @@
 
                                                         <div class="col-md-6">
 
-                                                            <p>Delivery Time : <span id="deliveryTime"></span></p>
+                                                            <p>Delivery Date Time : <span>{{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</span><span id="deliveryTime"></span></p>
                                                             <input type="hidden" id="deliveryTimeInput" name="deliveryTimeInput">
 
                                                         </div>
@@ -299,66 +299,69 @@
 
                                                 </div>
 
-                                                <div class="container">
+                                                @if(Auth::user()->isCustomer())
 
-                                                    <div class="row">
+                                                    <div class="container">
 
-                                                        <div class="form-group col-md-12">
-                                                            <h3>Billing Information</h3>
-                                                        </div>
+                                                        <div class="row">
 
-                                                        <div class="form-group col-md-6">
-                                                            <label for="firstName" class="col-4 col-form-label">First Name <small class="text-danger">*</small></label> 
-                                                            <input id="firstName" name="firstName" placeholder="First Name" class="form-control" type="text" value="{{ isset($billingInfo->first_name) ? $billingInfo->first_name : '' }}">
-                                                        </div>
+                                                            <div class="form-group col-md-12">
+                                                                <h3>Billing Information</h3>
+                                                            </div>
 
-                                                        <div class="form-group col-md-6">
-                                                            <label for="lastName" class="col-4 col-form-label">Last Name <small class="text-danger">*</small></label> 
-                                                            <input id="lastName" name="lastName" placeholder="Last Name" class="form-control" value="{{ isset($billingInfo->last_name) ? $billingInfo->last_name : '' }}">
-                                                        </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="firstName" class="col-4 col-form-label">First Name <small class="text-danger">*</small></label> 
+                                                                <input id="firstName" name="firstName" placeholder="First Name" class="form-control" type="text" value="{{ isset($billingInfo->first_name) ? $billingInfo->first_name : '' }}">
+                                                            </div>
 
-                                                        <div class="form-group col-md-12">
-                                                            <label for="address" class="col-4 col-form-label">Address <small class="text-danger">*</small></label> 
-                                                            <input id="address" name="address" placeholder="Street Address, P.O box" class="form-control" type="text" value="{{ isset($billingInfo->address) ? $billingInfo->address : '' }}">
-                                                            <input id="apartmentSuiteUnit" name="apartmentSuiteUnit" placeholder="Apartment, Suite, Unit (Optional)" class="form-control" type="text" value="{{ isset($billingInfo->apartment_suite_unit) ? $billingInfo->apartment_suite_unit : '' }}">
-                                                        </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="lastName" class="col-4 col-form-label">Last Name <small class="text-danger">*</small></label> 
+                                                                <input id="lastName" name="lastName" placeholder="Last Name" class="form-control" value="{{ isset($billingInfo->last_name) ? $billingInfo->last_name : '' }}">
+                                                            </div>
 
-                                                        <input type="hidden" id="getToken" value="{{ csrf_token() }}">
-                                                        
-                                                        <div class="form-group col-md-4">
-                                                            <label for="country" class="col-4 col-form-label">Country <small class="text-danger">*</small></label> 
-                                                            <select name="country" id="country" class="form-control">
-                                                            <option value="">Choose your Country...</option>
-                                                            @if(count($countries) > 0)
-                                                                @foreach ($countries as $country)
-                                                                <option value="{{$country->id}}" {{ isset($billingInfo->city) && isset($billingInfo->city->state) && isset($billingInfo->city->state->country) && $billingInfo->city->state->country->id == $country->id ? 'selected' : '' }}>{{$country->name}}</option>
-                                                                @endforeach
-                                                            @endif
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-8">
-                                                            <label for="state" class="col-4 col-form-label">State/Province <small class="text-danger">*</small></label> 
-                                                            <select name="state" id="state" class="form-control">
-                                                            <option value="">Choose your State/Province...</option>
-                                                            </select>
-                                                        </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="address" class="col-4 col-form-label">Address <small class="text-danger">*</small></label> 
+                                                                <input id="address" name="address" placeholder="Street Address, P.O box" class="form-control" type="text" value="{{ isset($billingInfo->address) ? $billingInfo->address : '' }}">
+                                                                <input id="apartmentSuiteUnit" name="apartmentSuiteUnit" placeholder="Apartment, Suite, Unit (Optional)" class="form-control" type="text" value="{{ isset($billingInfo->apartment_suite_unit) ? $billingInfo->apartment_suite_unit : '' }}">
+                                                            </div>
 
-                                                        <div class="form-group col-md-4">
-                                                            <label for="city" class="col-4 col-form-label">City <small class="text-danger">*</small></label> 
-                                                            <select name="city" id="city" class="form-control">
-                                                            <option value="">Choose your City...</option>
-                                                            </select>
-                                                        </div>
+                                                            <input type="hidden" id="getToken" value="{{ csrf_token() }}">
+                                                            
+                                                            <div class="form-group col-md-4">
+                                                                <label for="country" class="col-4 col-form-label">Country <small class="text-danger">*</small></label> 
+                                                                <select name="country" id="country" class="form-control">
+                                                                <option value="">Choose your Country...</option>
+                                                                @if(count($countries) > 0)
+                                                                    @foreach ($countries as $country)
+                                                                    <option value="{{$country->id}}" {{ isset($billingInfo->city) && isset($billingInfo->city->state) && isset($billingInfo->city->state->country) && $billingInfo->city->state->country->id == $country->id ? 'selected' : '' }}>{{$country->name}}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-8">
+                                                                <label for="state" class="col-4 col-form-label">State/Province <small class="text-danger">*</small></label> 
+                                                                <select name="state" id="state" class="form-control">
+                                                                <option value="">Choose your State/Province...</option>
+                                                                </select>
+                                                            </div>
 
-                                                        <div class="form-group col-md-8">
-                                                            <label for="zipCode" class="col-4 col-form-label">Zip/Postal Code</label> 
-                                                            <input id="zipCode" name="zipCode" placeholder="Zip/Postal Code" class="form-control" type="text" value="{{ isset($billingInfo->zip_code) ? $billingInfo->zip_code : '' }}">
+                                                            <div class="form-group col-md-4">
+                                                                <label for="city" class="col-4 col-form-label">City <small class="text-danger">*</small></label> 
+                                                                <select name="city" id="city" class="form-control">
+                                                                <option value="">Choose your City...</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group col-md-8">
+                                                                <label for="zipCode" class="col-4 col-form-label">Zip/Postal Code</label> 
+                                                                <input id="zipCode" name="zipCode" placeholder="Zip/Postal Code" class="form-control" type="text" value="{{ isset($billingInfo->zip_code) ? $billingInfo->zip_code : '' }}">
+                                                            </div>
+
                                                         </div>
 
                                                     </div>
 
-                                                </div>
-
+                                                @endif
                                             
                                             </div>
                                             <div class="modal-footer">
@@ -389,6 +392,8 @@
                     <p class="mt-4">Cook : {{$mealDetails->user->name}}</p>
 
                     <p class="mt-4">Cook Rating : {{ number_format((float)$userReview, 2, '.', '')  }} ({{ $userReviewCount }})</p>
+                    
+                    <p class="mt-4">Delivery Date : {{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</p>
 
                 </div>
 
@@ -606,7 +611,9 @@
 
     $(document).ready(function () {
 
-      //Form Validation
+        @if(Auth::check() && Auth::user()->isCustomer())
+
+        //Form Validation
         $('#checkOutForm').validate({
 
             rules: {
@@ -639,11 +646,23 @@
                     required: true,
                 },
             },
+
             submitHandler: function (form) { 
 
                 form.submit();
             }
         });
+        @elseif(Auth::check() && Auth::user()->isCook())
+
+            $('#checkOutForm').validate({
+
+                submitHandler: function (form) { 
+
+                    form.submit();
+                }
+            });
+
+        @endif
     });
 
 </script>

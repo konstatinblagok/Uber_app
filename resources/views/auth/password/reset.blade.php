@@ -32,11 +32,11 @@
                                     <input type="hidden" name="token" value="{{$token}}">
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="email" class="col-4 col-form-label">Password</label> 
+                                            <label for="email" class="col-12 col-form-label">Password</label> 
                                             <input type="password" id="password" name="password" placeholder="Enter Password" class="form-control">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="password" class="col-4 col-form-label">Confirm Password</label> 
+                                            <label for="password" class="col-12 col-form-label">Confirm Password</label> 
                                             <input type="password" name="password_confirmation" placeholder="Enter Confirm Password" class="form-control">
                                         </div>
                                         <div class="form-group col-md-12">

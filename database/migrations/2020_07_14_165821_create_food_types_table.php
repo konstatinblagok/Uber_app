@@ -15,7 +15,6 @@ class CreateFoodTypesTable extends Migration
     {
         Schema::create('food_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('food_menu_category_id');
             $table->string('name');
             $table->boolean('status')->default(true);
             $table->timestamps();

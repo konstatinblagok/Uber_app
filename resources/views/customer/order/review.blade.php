@@ -64,6 +64,9 @@
         font-weight: bold;
         font-size: 3em;
     }
+    option.orange {
+    color: orange;
+    }
 
 </style>
 
@@ -95,9 +98,9 @@
                                 <input type="hidden" name="orderID" id="orderID" value="{{ $order->id }}">
 
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 form-group">
 
-                                <form id="user-rating-form">
+                                {{-- <form id="user-rating-form">
                                     <span>Rating : </span>
                                     <span class="user-rating">
                                         <input type="radio" name="rating" value="5"><span class="star"></span>
@@ -110,10 +113,17 @@
                                     
                                         <input type="radio" name="rating" value="1"><span class="star"></span>
                                     </span>
-                                </form>
+                                </form> --}}
+
+                                <label for="rating">Rating</label>
+                                <select name="rating" id="rating" class="form-control" size="4">
+                                    <option class="orange" value="5">&starf; &starf; &starf; &starf; &star; <span style="color:black;"> & Up</span> </option>
+                                    <option class="orange" value="4">&starf; &starf; &starf; &star; &star; <span style="color:black;"> & Up</span> </option>
+                                    <option class="orange" value="3">&starf; &starf; &star; &star; &star; <span style="color:black;"> & Up</span> </option>
+                                </select>
 
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 form-group">
 
                                 <textarea class="form-control mt-2" name="ratingComment" id="ratingComment" cols="30" rows="10" placeholder="Comments..."></textarea>
                                 
@@ -137,16 +147,16 @@
 
     <script>
 
-        var ratingValue = 0;
+        // var ratingValue = 0;
 
-        $('#user-rating-form').on('change','[name="rating"]', function() {
+        // $('#user-rating-form').on('change','[name="rating"]', function() {
 
-	        ratingValue = $('[name="rating"]:checked').val();
-        });
+	    //     ratingValue = $('[name="rating"]:checked').val();
+        // });
 
         $('#submitRating').click(function() {
 
-            if(ratingValue > 0 && ratingValue <= 5) {
+            if($('#rating').val() > 0 && $('#rating').val() <= 5) {
 
                 if($.trim($('#ratingComment').val()) != '') {
 
@@ -154,7 +164,7 @@
                         url: "{{ route('customer.order.save.review') }}",
                         method: "POST",
                         data: {
-                            'rating': ratingValue,
+                            'rating': $('#rating').val(),
                             'comment': $('#ratingComment').val(),
                             '_token': '{{csrf_token()}}',
                             'orderID': $('#orderID').val(),

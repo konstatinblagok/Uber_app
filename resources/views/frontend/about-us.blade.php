@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+
+    a:hover {
+
+        background-color: #936f3b;
+        color: #fff;
+    }
+
+</style>
+
 <main>
     <div class="section" id="aboutus">
         <div id="aboutword">

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Cook;
 use App\Models\Country;
 use App\Models\BillingInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class BillingInfoController extends Controller
 {
@@ -16,6 +18,9 @@ class BillingInfoController extends Controller
     }
 
     public function index(Request $request) {
+
+        Session::forget('backUrl');
+        Session::put('backUrl', URL::previous());
 
         $countries = Country::where('status', 1)->get();
         $billingInfo = BillingInfo::with(['city' => function($query) {
@@ -66,6 +71,6 @@ class BillingInfoController extends Controller
 
         $billInfo->save();
 
-        return redirect()->route('cook.dashboard')->with('success', $msg);
+        return redirect()->to(Session::get('backUrl'))->with('success', $msg);
     }
 }

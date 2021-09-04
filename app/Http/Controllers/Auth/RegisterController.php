@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Country;
 use App\Models\FoodType;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\CookFoodSpeciality;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -48,9 +50,17 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $foodTypes = FoodType::where('status', 1)->get();
+        $foodTypes = FoodType::where('status', 1)->where('status', 1)->get();
+
+        $contries = Country::all();
+
+        $data = [
+            
+            'foodTypes' => $foodTypes,
+            'contries' => $contries
+        ];
         
-        return view('auth.register', ['foodTypes' => $foodTypes]);
+        return view('auth.register', $data);
     }
 
     public function register(Request $request) {
@@ -59,6 +69,11 @@ class RegisterController extends Controller
             
             'name' => 'bail|required|string|max:255',
             'email' => 'bail|required|string|email|max:255|unique:users',
+            'countryCode' => 'required',
+            'phone' => 'bail|required|min:6|max:15', Rule::unique('users')->where(function ($query) use($request) {
+                return $query->where('country_code', $request->countryCode)
+                ->where('phone', $request->phone);
+            }),
             'password' => 'bail|required|string|min:6',
             'password_confirmation' => 'bail|required|string|min:6|same:password',
             'userType' => 'bail|required',
@@ -75,6 +90,8 @@ class RegisterController extends Controller
                 
                 'name' => $request->name,
                 'email' => $request->email,
+                'country_code' => $request->countryCode,
+                'phone' => $request->phone,
                 'password' => Hash::make($request->password),
                 'user_role_id' => $request->userType,
                 'user_status_id' => (int)$request->userType == 2 ? 1 : 2,
@@ -87,6 +104,7 @@ class RegisterController extends Controller
             if($newUser) {
 
                 sendLoginInfoEmail($request);
+                sendVerificationEmail($request->email);
 
                 if($newUser->isCook()) {
 
@@ -109,6 +127,15 @@ class RegisterController extends Controller
                 else if($newUser->isCustomer()) {
     
                     Auth::login($newUser);
+
+                    if(\Session::has('callBackUrl')) {
+
+                        $url = \Session::get('callBackUrl');
+
+                        \Session::forget('callBackUrl');
+                        
+                        return redirect()->to($url);
+                    }
     
                     return redirect()->route('show.menu');
                 }

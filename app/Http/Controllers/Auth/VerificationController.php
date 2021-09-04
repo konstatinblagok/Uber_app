@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -35,5 +36,37 @@ class VerificationController extends Controller
         }
   
         return $message;
+    }
+
+    public function emailVerificationByUser($secret) {
+
+        $approvedUser = User::where('email_verification_code', $secret)->first();
+
+        $message = 'Sorry this account cannot be identified.';
+  
+        if($approvedUser){
+              
+            if($approvedUser->email_verified_at == NULL) {
+
+                $approvedUser->email_verified_at = date('Y-m-d H:i:s');
+
+                $approvedUser->save();
+                
+                $message = "Email is verified.";
+            } 
+            else {
+
+                $message = "Email is already verified.";
+            }
+        }
+  
+        return $message;
+    }
+
+    public function resendVerificationEmail() {
+
+        sendVerificationEmail(Auth::user()->email);
+
+        return redirect()->back()->with('success', 'Verification email sent successfully!');
     }
 }

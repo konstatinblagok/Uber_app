@@ -25,12 +25,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-9">
-                                <h3>Meal Management</h3>
+                            <div class="col-md-8">
+                                <h3>@lang('lang.Meal Management')</h3>
                                 <hr>
                             </div>
-                            <div class="col-md-3">
-                              <a href="{{ route('cook.meal.create') }}" class="btn btn-chezdon"><i class="fas fa-plus"></i>&nbsp;Add Meal</a>
+                            <div class="col-md-4">
+                              <a href="{{ route('cook.meal.create') }}" class="btn btn-chezdon form-control"><i class="fas fa-plus"></i>&nbsp;@lang('lang.Add Meal')</a>
                               <hr>
                           </div>
                         </div>
@@ -47,12 +47,12 @@
                                 <thead class="thead-dark">
                                   <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Meal Type</th>
-                                    <th scope="col">No. of Portion</th>
-                                    <th scope="col">Pickup Date</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">@lang('lang.Title')</th>
+                                    <th scope="col">@lang('lang.Category')</th>
+                                    <th scope="col">@lang('lang.Meal Type')</th>
+                                    <th scope="col">@lang('lang.No. of Portion')</th>
+                                    <th scope="col">@lang('lang.Pickup Date')</th>
+                                    <th scope="col">@lang('lang.Actions')</th>
                                   </tr>
                                 </thead>
                                 <tbody>

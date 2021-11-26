@@ -46,6 +46,18 @@
                                         <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777;"> Your order details are given below.</p>
                                     </td>
                                 </tr>
+
+                                @php
+
+                                    $str = 'Portion';
+
+                                    if($orderObject->quantity > 1) {
+
+                                        $str .= 's';
+                                    }
+
+                                @endphp
+
                                 <tr>
                                     <td align="left" style="padding-top: 20px;">
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -54,11 +66,11 @@
                                                 <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;"> {{ $orderObject->id }} </td>
                                             </tr>
                                             <tr>
-                                                <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;"> {{ $orderObject->meal->title.' ('.$orderObject->quantity.' Portions)' }} </td>
+                                                <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;"> {{ $orderObject->meal->title.' ('.$orderObject->quantity.' '.$str.')' }} </td>
                                                 <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;"> {{ $orderObject->currency->symbol.''.$orderObject->quantity * $orderObject->meal_price }} </td>
                                             </tr>
                                             <tr>
-                                                <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> {{ 'Service Charges (Packaging + delivery + responsibility of the hygiene standard for the cooks) ('.$orderObject->quantity.' Portions)' }}</td>
+                                                <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> {{ 'Service Charges' }}</td>
                                                 <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; color: #333333; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> {{ $orderObject->currency->symbol.''.$orderObject->quantity * $orderObject->delivery_cost }} </td>
                                             </tr>
                                         </table>

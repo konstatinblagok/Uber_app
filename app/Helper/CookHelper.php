@@ -31,3 +31,8 @@ function getCookAverageRating($userID) {
 
     return $averageRating;
 }
+
+function cookUserRoleID() {
+
+    return 2;
+}

@@ -13,4 +13,14 @@ class WithdrawRequest extends Model
         
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
+
+    public function user() {
+        
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function lastUpdatedByUser() {
+        
+        return $this->belongsTo(User::class, 'updated_by_user_id', 'id');
+    }
 }

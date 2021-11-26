@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function index(Request $request) {
 
         $user = Auth::user();
-        $contries = Country::all();
+        $contries = Country::where('status', 1)->get();
         
         $data = [
 

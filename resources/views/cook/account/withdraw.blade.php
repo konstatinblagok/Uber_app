@@ -20,15 +20,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <h3>Withdraw Amount</h3>
+                            <div class="col-md-6">
+                                <h3>@lang('lang.Withdraw Amount')</h3>
                                 <hr>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
 
                             </div>
-                            <div class="col-md-2 form-group">
-                                <a href="{{ route('cook.account.index') }}" type="button" class="btn btn-chezdon form-control">Back to list</a>
+                            <div class="col-md-3 form-group">
+                                <a href="{{ route('cook.account.index') }}" type="button" class="btn btn-chezdon form-control">@lang('lang.Back to list')</a>
+                                <hr>
                             </div>
                         </div>
 
@@ -38,8 +39,8 @@
                                     <div class="form-group row">
                                         <div class="card">
                                             <div class="card-body">
-                                              <p>Total Remaining Balance : {{ getDeliveryChargesCurrency() }}{{ Auth::user()->remaining_amount }}</p>
-                                              <p>Minimum Balance Withdrawal :  {{ getDeliveryChargesCurrency() }}{{ getMinimumWithdrawalAmount() }}</p>
+                                              <p>@lang('lang.Total Remaining Balance') : {{ getDeliveryChargesCurrency() }}{{ Auth::user()->remaining_amount }}</p>
+                                              <p>@lang('lang.Minimum Balance Withdrawal') :  {{ getDeliveryChargesCurrency() }}{{ getMinimumWithdrawalAmount() }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -56,11 +57,11 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-8 form-group">
-                                            <label for="amount" class="col-4 col-form-label">Withdraw Amount <small class="text-danger">*</small></label> 
-                                            <input id="amount" name="amount" placeholder="Amount" class="form-control" required="required" type="number" min="{{ getMinimumWithdrawalAmount() }}">
+                                            <label for="amount" class="col-4 col-form-label">@lang('lang.Withdraw Amount') <small class="text-danger">*</small></label> 
+                                            <input id="amount" name="amount" placeholder="@lang('lang.Amount')" class="form-control" required="required" type="number" min="{{ getMinimumWithdrawalAmount() }}">
                                         </div>
                                         <div class="col-md-4 form-group">
-                                            <label for="currency" class="col-4 col-form-label">Currency <small class="text-danger">*</small></label> 
+                                            <label for="currency" class="col-4 col-form-label">@lang('lang.Currency') <small class="text-danger">*</small></label> 
                                             <select name="currency" id="currency" class="form-control" required="required">
                                                 @if(count($currencies) > 0)
                                                     @foreach ($currencies as $currency)
@@ -72,7 +73,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-12 form-group">
-                                            <button type="submit" class="btn btn-chezdon form-control">Withdraw</button>
+                                            <button type="submit" class="btn btn-chezdon form-control">@lang('lang.Withdraw')</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,6 +120,7 @@
 
         var minimumWithdrawAmountLimit = {!! getMinimumWithdrawalAmount() !!};
         var maximumWithdrawAmountLimit = {!! Auth::user()->remaining_amount !!};
+        var CurrentLanguage = "{!! \Session::get('locale'); !!}";
 
         //Form Validation
         $('#balanceWithdrawForm').validate({
@@ -135,6 +137,59 @@
 
                     required: true,
                 },
+            },
+            messages: {
+
+                amount: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le montant du retrait est requis';
+                        }
+                        else {
+
+                            return 'Withdraw amount is required';
+                        }   
+                    },
+                    min: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nom doit être supérieur ou égal à '+minimumWithdrawAmountLimit;
+                        }
+                        else {
+
+                            return 'Withdraw amount must be greater than or equal to '+minimumWithdrawAmountLimit;
+                        }   
+                    },
+                    max: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nom doit être supérieur ou égal à '+maximumWithdrawAmountLimit;
+                        }
+                        else {
+
+                            return 'Withdraw amount must be greater than or equal to '+maximumWithdrawAmountLimit;
+                        }   
+                    }
+                },
+                currency: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La devise est requise';
+                        }
+                        else {
+
+                            return 'Currency is required';
+                        }   
+                    }
+                }
             },
             submitHandler: function (form) { 
 

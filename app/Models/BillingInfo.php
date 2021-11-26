@@ -13,4 +13,9 @@ class BillingInfo extends Model
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
+
+    public function paymentMethod() {
+
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
+    }
 }

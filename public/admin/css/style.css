@@ -1,0 +1,23 @@
+#messages {
+    width: 100% !important;
+}
+
+.dataTables_wrapper {
+    padding: 15px !important;
+}
+
+.detailKey {
+    font-weight: bold;
+}
+
+.detailValue {
+    text-align: justify;
+}
+
+.badge {
+    font-size: 90% !important;
+}
+
+.error {
+    color: red;
+}

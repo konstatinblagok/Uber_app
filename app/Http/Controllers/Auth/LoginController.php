@@ -79,7 +79,7 @@ class LoginController extends Controller
 
                 Auth::logout();
 
-                return redirect()->route('login')->with('error', $deleteReason);
+                return redirect()->back()->with('error', $deleteReason);
             }
             else {
 
@@ -136,13 +136,26 @@ class LoginController extends Controller
     
                     return redirect()->route('show.menu');
                 }
+                else if($user->isAdmin()){
+
+                    return redirect()->route('admin.dashboard');
+                }
             }
         }
         else {
 
-            Auth::logout();
+            if($user->isAdmin()) {
 
-            return redirect()->route('login')->with('error', 'Your account is not approved by admin!');
+                Auth::logout();
+
+                return redirect()->route('admin.auth.login.page')->with('error', 'Your account is not approved by admin!');
+            }
+            else {
+
+                Auth::logout();
+
+                return redirect()->route('login')->with('error', 'Your account is not approved by admin!');
+            }
         }
     }
 

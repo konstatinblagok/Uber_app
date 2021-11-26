@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Dashboard</h3>
+                                <h3>@lang('lang.Dashboard')</h3>
                                 <hr>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3> {{ $totalMeal }} </h3>
-                                    <p> Total Meals </p>
+                                    <p>@lang('lang.Total Meals') </p>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             <div class="card-box bg-green">
                                 <div class="inner">
                                     <h3> {{ $totalOrder }} </h3>
-                                    <p> Total Orders </p>
+                                    <p> @lang('lang.Total Orders') </p>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             <div class="card-box bg-orange">
                                 <div class="inner">
                                     <h3> {{Auth::user()->currency->symbol.''.Auth::user()->remaining_amount }} </h3>
-                                    <p> Account Balance </p>
+                                    <p> @lang('lang.Account Balance') </p>
                                 </div>
                             </div>
                         </div>

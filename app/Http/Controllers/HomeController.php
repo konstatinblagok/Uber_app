@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }        
     }
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         } 
     }
 
@@ -63,7 +63,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -76,7 +76,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -89,7 +89,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -113,7 +113,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', 'Some went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -187,7 +187,7 @@ class HomeController extends Controller
             $menuResult = $menu->orderBy('created_at', 'DESC')->paginate(10);
 
             $mealCategories = FoodMenuCategory::all();
-            $mealType = FoodType::all();
+            $mealType = FoodType::where('status', 1)->get();
 
             $data = [
 
@@ -201,7 +201,7 @@ class HomeController extends Controller
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 
@@ -277,13 +277,19 @@ class HomeController extends Controller
             
             else {
 
-                return redirect()->back()->with('error', 'No meal details found');
+                return redirect()->back()->with('error', 'No meal details found!');
             }
         }
 
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
+    }
+
+    public function changeLang(Request $request) {
+
+        \App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
     }
 }

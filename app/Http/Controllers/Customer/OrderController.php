@@ -140,34 +140,79 @@ class OrderController extends Controller
                         }
 
                         $status = true;
-                        $message = 'Thanks for your feedback!';
+                        
+                        if(\Session::get('locale') == 'fr') {
+
+                            $message = 'Merci pour vos commentaires!';
+                        }
+                        else {
+
+                            $message = 'Thanks for your feedback!';
+                        }
+                        
                         $url = route('customer.order.history');
                     }
                     else {
 
                         $status = false;
-                        $message = 'This order has been already rated.';
+                        
+                        if(\Session::get('locale') == 'fr') {
+
+                            $message = 'Cette commande a déjà été notée.';
+                        }
+                        else {
+
+                            $message = 'This order has been already rated.';
+                        }
+
                         $url = '';
                     }
                 }
                 else {
     
                     $status = false;
-                    $message = 'You can only give review when the order has been delivered!';
+                    
+                    if(\Session::get('locale') == 'fr') {
+
+                        $message = 'Vous ne pouvez donner votre avis que lorsque la commande a été livrée !';
+                    }
+                    else {
+
+                        $message = 'You can only give review when the order has been delivered!';
+                    }
+
                     $url = '';
                 }
             }
             else {
 
                 $status = false;
-                $message = 'You have not authorized for this order!';
+                
+                if(\Session::get('locale') == 'fr') {
+
+                    $message = 'Vous n\'avez pas autorisé cette commande !';
+                }
+                else {
+
+                    $message = 'You have not authorized for this order!';
+                }
+
                 $url = '';
             }
         }
         else {
 
             $status = false;
-            $message = 'Invalid Order ID!';
+            
+            if(\Session::get('locale') == 'fr') {
+
+                $message = 'ID de commande invalide !';
+            }
+            else {
+
+                $message = 'Invalid Order ID!';
+            }
+
             $url = '';
         }
 

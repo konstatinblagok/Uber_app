@@ -92,7 +92,7 @@
 <main>
     <div class="section" id="menu">
         <div id="menuword">
-            <p>Menu</p>
+            <a href="{{ route('show.menu') }}" style="color: #94703A;">@lang('lang.Menu')</a>
         </div>
     </div>
     <div class="menusection mt-5">
@@ -108,9 +108,9 @@
                         <div class="row">
 
                             <div class="col-md-2 form-group">
-                                <label for="mealCategory">Category</label>
+                                <label for="mealCategory">@lang('lang.Category')</label>
                                 <select name="mealCategory" id="mealCategory" class="form-control">
-                                    <option value="">Select...</option>
+                                    <option value="">@lang('lang.Select')...</option>
                                     @if(count($mealCategories) > 0)
                                         @foreach ($mealCategories as $mealCategory)
                                             <option value="{{ $mealCategory->id }}" {{ \Request::get('mealCategory') == $mealCategory->id ? 'selected' : '' }}>{{ $mealCategory->name }}</option>
@@ -120,9 +120,9 @@
                             </div>
                             
                             <div class="col-md-2 form-group">
-                                <label for="mealType">Meal Type</label>
+                                <label for="mealType">@lang('lang.Meal Type')</label>
                                 <select name="mealType" id="mealType" class="form-control">
-                                    <option value="">Select...</option>
+                                    <option value="">@lang('lang.Select')...</option>
                                     @if(count($mealType) > 0)
                                         @foreach ($mealType as $type)
                                             <option value="{{ $type->id }}" {{ \Request::get('mealType') == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
@@ -132,12 +132,12 @@
                             </div>
 
                             <div class="col-md-2 form-group">
-                                <label for="deliveryDate">Delivery Date</label>
+                                <label for="deliveryDate">@lang('lang.Delivery Date')</label>
                                 <input type="date" class="form-control" id="deliveryDate" name="deliveryDate" value="{{ \Request::get('deliveryDate') ? \Request::get('deliveryDate') : ''}}">
                             </div>
 
                             <div class="col-md-2 form-group">
-                                <label for="minRating">Rating</label>
+                                <label for="minRating">@lang('lang.Rating')</label>
                                 <select name="minRating" id="minRating" class="form-control" size="4">
                                     <option class="orange" value="5" {{ \Request::get('minRating') ? (\Request::get('minRating') == '5' ? 'selected' : '') : ''}}>&starf; &starf; &starf; &starf; &star; <span style="color:black;"> & Up</span> </option>
                                     <option class="orange" value="4" {{ \Request::get('minRating') ? (\Request::get('minRating') == '4' ? 'selected' : '') : ''}}>&starf; &starf; &starf; &star; &star; <span style="color:black;"> & Up</span> </option>
@@ -147,7 +147,7 @@
 
                             <div class="col-md-2 form-group">
                                 <label for=""></label>
-                                <button type="submit" class="btn btn-chezdon form-control">Filter</button>
+                                <button type="submit" class="btn btn-chezdon form-control">@lang('lang.Filter')</button>
                             </div>
 
                         </div>
@@ -181,18 +181,18 @@
                                         else {
 
                                             $type = 'image';
-                                            $url = 'public/site-asset/images/beans.png';
+                                            $url = 'public/site-asset/images/noImageFound.png';
                                         }
 
                                     @endphp
 
                                     @if($type == 'image')
 
-                                        <img src="{{ asset($url) }}" class="card-img" alt="..." height="230">
+                                        <img src="{{ asset($url) }}" class="card-img" style="height:15rem; object-fit: cover;" alt="...">
                                     
                                     @elseif($type == 'video')
 
-                                        <iframe src="{{ asset($url) }}" height="230" sandbox></iframe>
+                                        <iframe src="{{ asset($url) }}" sandbox style="height:15rem; object-fit: cover;"></iframe>
 
                                     @endif
                                         
@@ -223,20 +223,6 @@
                                     </div>
                                 </div>
                             </a>
-
-                            {{-- <a href="{{ route('show.meal.detail', ['id' => $mnMeal->id]) }}" class="{{ getMealAvailablePortion($mnMeal->id) <= 0 ? 'soldOutLink' : '' }}">
-                                <div class="item" id="box1">
-                                    <h5 class="chezdon-color">{{ $mnMeal->title }}</h5>
-                                    <p>{{ $mnMeal->description }}</p>
-                                    <p>Category : <span class="chezdon-color">{{ $mnMeal->foodMenuCategory->name }}</span></p>
-                                    <p>Food Type : <span class="chezdon-color">{{ $mnMeal->foodType->name }}</span></p>
-                                    <p>Price : <span class="chezdon-color">{{ $mnMeal->currency->symbol }}{{ $mnMeal->price }}</span></p>
-                                    <p>Available Portions : <span class="chezdon-color">{{ getMealAvailablePortion($mnMeal->id) > 0 ? getMealAvailablePortion($mnMeal->id) : 'Sold out! Someone was hungrier than you.' }}</span></p>
-                                    <p>Delivery Date : <span class="chezdon-color">{{ $mnMeal->delivery_date }}</span></p>
-                                    <p>Cook : {{ $mnMeal->user->name }}</p>
-                                    <hr>
-                                </div>
-                            </a> --}}
 
                         </div>
 

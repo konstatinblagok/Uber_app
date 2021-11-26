@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+@font-face {
+    font-family: 'FuturaLight';
+    src: url('../fonts/FuturaLight/FuturaLight.otf') format('opentype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -85,11 +92,11 @@ hr {
 
 .backg {
     background-image: url("../images/bg.png");
-    height: 80vh;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 95vh;
     background-size: cover;
-    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
 }
 
 #foot {
@@ -125,9 +132,10 @@ hr {
 }
 
 .carousel-caption h5 {
-    font-size: 18px;
+    font-size: 17px;
     font-family: futura, san-serif;
     letter-spacing: .3em;
+    font-weight: 100;
 }
 
 #grey {
@@ -175,13 +183,13 @@ h3 {
 
 .subhead {
     font-size: 30px;
-    font-style: italic;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
     color: #94703A;
     padding-left: 10rem;
     margin-right: 20rem;
     letter-spacing: 0.02em;
-    width: 500px;
+    width: 530px;
 }
 
 .section {
@@ -209,8 +217,8 @@ h3 {
 
 .section #box1 p {
     font-size: 23px;
-    font-weight: 300;
-    font-family: 'Basic', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
     letter-spacing: 0.2em;
     border: 2px solid black;
     padding: .5rem 1.8rem;
@@ -270,8 +278,8 @@ h3 {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: scroll;
-    margin: 50px 10rem 30px 10rem;
+    /*background-attachment: fixed;*/
+    margin: 50px 10rem 0px 10rem;
 }
 
 #menubutton {
@@ -283,9 +291,14 @@ h3 {
 }
 
 #menubutton a {
-    border: 2px solid black;
+    border: 2px solid #302f2f;
     border-radius: 20px;
     padding: 6.5px 60px;
+}
+
+#menubutton a:hover {
+    background-color: #302f2f;
+    color: white;
 }
 
 footer {
@@ -350,7 +363,7 @@ h4 {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
 }
 
 #menuword,
@@ -518,15 +531,16 @@ h4 {
 
 .secondcoloumn h2 {
     margin-top: 30px;
-    font-family: futura, sans-serif;
+    font-family: 'FuturaLight', sans-serif;
     font-size: 38px;
     color: #605E5E;
 }
 
 .secondcoloumn p {
-    font-family: futura, sans-serif;
+    font-family: 'FuturaLight', sans-serif;
+    font-weight: 100;
     font-size: 16px;
-    color: #605E5E;
+    color: #605e5e;
 }
 
 .coldevider {
@@ -550,7 +564,7 @@ h4 {
     background-image: url("../images/cherry.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     height: 70vh;
     margin-top: 0;
 }
@@ -574,9 +588,10 @@ h4 {
 }
 
 #Our_concept {
-    margin-top: 20px;
+    margin-top: 48px;
     color: black;
-    font-weight: bold;
+    font-family: 'FuturaLight', sans-serif;
+    font-weight: 800;
 }
 
 #woman_para {
@@ -589,7 +604,63 @@ h4 {
 }
 
 .woman_image img {
-    width: 32vw;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1070px) and (max-width: 1200px) {
+    .woman_image img {
+        height: 90%;
+        width: 37vw !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+    .woman_image img {
+        height: 90%;
+        width: 32vw !important;
+    }
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1800px) {
+    .woman_image img {
+        height: 75%;
+        width: 25vw !important;
+    }
+}
+
+@media only screen and (min-width: 1800px) and (max-width: 2100px) {
+    .woman_image img {
+        height: 65%;
+        width: 19vw !important;
+    }
+}
+
+@media only screen and (min-width: 2100px) and (max-width: 2400px) {
+    .woman_image img {
+        height: 55%;
+        width: 15vw !important;
+    }
+}
+
+@media only screen and (min-width: 2400px) and (max-width: 2700px) {
+    .woman_image img {
+        height: 48%;
+        width: 12vw !important;
+    }
+}
+
+@media only screen and (min-width: 2700px) and (max-width: 3100px) {
+    .woman_image img {
+        height: 54%;
+        width: 9vw !important;
+    }
+}
+
+@media only screen and (min-width: 3100px) and (max-width: 3400px) {
+    .woman_image img {
+        height: 56%;
+        width: 7vw !important;
+    }
 }
 
 .cup_pic img {
@@ -654,6 +725,7 @@ h4 {
 #potatoes {
     margin-top: 50px;
     background-image: url("../images/potato.png");
+    height: 65vh;
 }
 
 
@@ -736,7 +808,7 @@ h4 {
 
 
 /* .followers  p{
-    margin-right: 8px;
+margin-right: 8px;
 } */
 
 #rb {
@@ -747,10 +819,40 @@ h4 {
     padding: 4px 8px;
 }
 
+.welcomeHeading b {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.signUpButton {
+    text-align: center;
+}
+
 
 /* responsive */
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 3000px) {
+    .carousel-control-next {
+        margin-right: 290px;
+        margin-top: 250px;
+    }
+    .carousel-control-prev {
+        margin-left: 290px;
+        margin-top: 250px;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .carousel-control-next {
+        margin-right: 290px;
+        margin-top: 270px;
+    }
+    .carousel-control-prev {
+        margin-left: 290px;
+        margin-top: 280px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
     .top {
         flex-direction: column;
     }
@@ -772,9 +874,11 @@ h4 {
     }
     .carousel-control-next {
         margin-right: 290px;
+        margin-top: 255px;
     }
     .carousel-control-prev {
         margin-left: 290px;
+        margin-top: 255px;
     }
     .section #box2 p {
         width: auto;
@@ -789,15 +893,17 @@ h4 {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1050px) {
     .carousel-inner {
         width: 60vw;
     }
     .carousel-control-next {
         margin-right: 150px;
+        margin-top: 255px;
     }
     .carousel-control-prev {
         margin-left: 150px;
+        margin-top: 255px;
     }
     .section {
         flex-direction: column;
@@ -830,7 +936,6 @@ h4 {
     .woman_image {
         width: 100%;
     }
-    .woman_image img,
     .cup_pic img {
         width: 100% !important;
         padding: 20px 2rem 50px 2rem;
@@ -874,7 +979,7 @@ h4 {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 780px) {
     .d-none {
         display: block !important;
     }
@@ -884,12 +989,20 @@ h4 {
     .carousel-inner {
         width: 60vw;
     }
+    .carousel-control-next {
+        margin-right: 100px;
+        margin-top: 250px;
+    }
+    .carousel-control-prev {
+        margin-left: 100px;
+        margin-top: 250px;
+    }
     #menuicon {
         margin: 50px 0 30px 0;
     }
     /* .tagline {
-        width: 365px;
-    } */
+width: 365px;
+} */
     #press {
         padding: 2rem;
     }
@@ -900,21 +1013,23 @@ h4 {
         padding: 0 1rem;
     }
     /* .backg{
-        height: 30vh;
-    }
-     */
+height: 30vh;
+}
+*/
     /* .tagline{
-        font-size: 51px;
-        letter-spacing: 0.08rem;
-    } */
+font-size: 51px;
+letter-spacing: 0.08rem;
+} */
 }
 
 @media only screen and (max-width: 575px) {
     .carousel-control-next {
         margin-right: 100px;
+        margin-top: 250px;
     }
     .carousel-control-prev {
         margin-left: 100px;
+        margin-top: 250px;
     }
     .carousel-inner {
         width: 60vw;
@@ -945,9 +1060,11 @@ h4 {
 @media only screen and (max-width: 470px) {
     .carousel-control-next {
         margin-right: 90px;
+        margin-top: 260px;
     }
     .carousel-control-prev {
         margin-left: 90px;
+        margin-top: 260px;
     }
     .carousel-inner {
         height: 70vh;
@@ -965,9 +1082,11 @@ h4 {
 @media only screen and (max-width: 410px) {
     .carousel-control-next {
         margin-right: 50px;
+        margin-top: 199px;
     }
     .carousel-control-prev {
         margin-left: 50px;
+        margin-top: 199px;
     }
     .carousel-inner {
         height: 80vh;
@@ -982,9 +1101,11 @@ h4 {
 @media only screen and (max-width: 380px) {
     .carousel-control-next {
         margin-right: 30px;
+        margin-top: 204px;
     }
     .carousel-control-prev {
         margin-left: 30px;
+        margin-top: 204px;
     }
     .carousel-inner {
         height: 80vh;

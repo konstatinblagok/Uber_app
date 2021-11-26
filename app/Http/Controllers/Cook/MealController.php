@@ -134,11 +134,11 @@ class MealController extends Controller
                 }
             }
 
-            return redirect()->back()->with('success', 'Meal Added Successfully!');
+            return redirect()->back()->with('success', 'Meal added successfully!');
         }
         catch(Exception $e) {
 
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
 

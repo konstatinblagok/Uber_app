@@ -21,7 +21,7 @@ class Order extends Model
 
     public function payment() {
         
-        return $this->belongsTo(Payment::class, 'payment_id', 'id')->select(['id', 'payment_transaction_id', 'payment_method', 'payment_status', 'payer_email', 'payer_first_name', 'payer_last_name', 'total_amount', 'currency']);
+        return $this->belongsTo(Payment::class, 'payment_id', 'id')->select(['id', 'payment_transaction_id', 'payment_method', 'payment_status', 'payer_id', 'payer_email', 'payer_first_name', 'payer_last_name', 'payee_merchant_id', 'total_amount', 'currency', 'created_at']);
     }
 
     public function meal() {

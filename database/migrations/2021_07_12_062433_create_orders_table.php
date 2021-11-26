@@ -28,6 +28,8 @@ class CreateOrdersTable extends Migration
             $table->longText('status_remarks')->nullable();
             $table->timestamp('delivery_time');
             $table->timestamp('delivered_at')->nullable();
+            $table->boolean('reminder_email')->default(false);
+            $table->boolean('admin_email')->default(false);
             $table->timestamps();
         });
     }

@@ -80,21 +80,22 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <h3>Order Review</h3>
+                            <div class="col-md-6">
+                                <h3>@lang('lang.Order Review')</h3>
                                 <hr>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
 
                             </div>
-                            <div class="col-md-2 form-group">
-                                <a href="{{ route('customer.order.history') }}" type="button" class="btn btn-chezdon form-control">Back to list</a>
+                            <div class="col-md-3 form-group">
+                                <a href="{{ route('customer.order.history') }}" type="button" class="btn btn-chezdon form-control">@lang('lang.Back to list')</a>
+                                <hr>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
 
-                                <p>Order ID : <span> {{ $order->id}} </span></p>
+                                <p>@lang('lang.Order ID') : <span> {{ $order->id}} </span></p>
                                 <input type="hidden" name="orderID" id="orderID" value="{{ $order->id }}">
 
                             </div>
@@ -115,8 +116,9 @@
                                     </span>
                                 </form> --}}
 
-                                <label for="rating">Rating</label>
+                                <label for="rating">@lang('lang.Rating')</label>
                                 <select name="rating" id="rating" class="form-control" size="4">
+                                    <option value="">Select Rating...</option>
                                     <option class="orange" value="5">&starf; &starf; &starf; &starf; &star; <span style="color:black;"> & Up</span> </option>
                                     <option class="orange" value="4">&starf; &starf; &starf; &star; &star; <span style="color:black;"> & Up</span> </option>
                                     <option class="orange" value="3">&starf; &starf; &star; &star; &star; <span style="color:black;"> & Up</span> </option>
@@ -125,12 +127,12 @@
                             </div>
                             <div class="col-md-12 form-group">
 
-                                <textarea class="form-control mt-2" name="ratingComment" id="ratingComment" cols="30" rows="10" placeholder="Comments..."></textarea>
+                                <textarea class="form-control mt-2" name="ratingComment" id="ratingComment" cols="30" rows="10" placeholder="@lang('lang.Comments')..."></textarea>
                                 
                             </div>
                             <div class="col-md-12">
 
-                                <button type="button" class="btn btn-chezdon form-control mt-4" id="submitRating">Submit</button>
+                                <button type="button" class="btn btn-chezdon form-control mt-4" id="submitRating">@lang('lang.Submit')</button>
                                 
                             </div>
                         </div>
@@ -147,12 +149,12 @@
 
     <script>
 
-        // var ratingValue = 0;
+        var CurrentLanguage = '';
 
-        // $('#user-rating-form').on('change','[name="rating"]', function() {
+        $(document).ready(function() {
 
-	    //     ratingValue = $('[name="rating"]:checked').val();
-        // });
+            CurrentLanguage = "{!! \Session::get('locale'); !!}";
+        });
 
         $('#submitRating').click(function() {
 
@@ -185,12 +187,26 @@
                 }
                 else {
                     
-                    alert('Please enter rating comments!');
+                    if(CurrentLanguage == 'fr') {
+
+                        alert('Veuillez saisir des commentaires d\'évaluation !');
+                    }
+                    else {
+
+                        alert('Please enter rating comments!');
+                    }
                 }
             }
             else {
 
-                alert('Please select stars for rating!');
+                if(CurrentLanguage == 'fr') {
+
+                    alert('Veuillez sélectionner des étoiles pour l\'évaluation !');
+                }
+                else {
+
+                    alert('Please select stars for rating!');
+                }
             }
         });
     </script>

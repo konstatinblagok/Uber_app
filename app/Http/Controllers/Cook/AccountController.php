@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cook;
 
 use Exception;
 use App\Models\User;
+use App\Models\Setting;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 use App\Models\WithdrawRequest;
@@ -45,22 +46,35 @@ class AccountController extends Controller
 
         try {
 
-            $withdraw = new WithdrawRequest();
+            if($request->amount <= Auth::user()->remaining_amount) {
 
-            $withdraw->user_id = Auth::user()->id;
-            $withdraw->currency_id = $request->currency;
-            $withdraw->amount = $request->amount;
-            $withdraw->status = 'Pending';
+                $withdraw = new WithdrawRequest();
 
-            $withdraw->save();
+                $withdraw->user_id = Auth::user()->id;
+                $withdraw->currency_id = $request->currency;
+                $withdraw->amount = $request->amount;
+                $withdraw->status = 'Pending';
 
-            $userData = User::findOrFail(Auth::user()->id);
+                $withdraw->save();
 
-            $userData->remaining_amount = (double)$userData->remaining_amount - (double)$request->amount;
+                $userData = User::findOrFail(Auth::user()->id);
 
-            $userData->save();
+                $userData->remaining_amount = (double)$userData->remaining_amount - (double)$request->amount;
 
-            return redirect()->back()->with('success', 'Your withdrawal request is successfully transfered to admin.');
+                $userData->save();
+
+                sendEmailAmountWithDrawToUser($userData->email);
+
+                $currencySymbol = Currency::getCurrencySymbol($request->currency);
+
+                sendEmailAmountWithDrawToAdmin(getAdminApprovalEmail(), $userData, $currencySymbol.''.$request->amount);
+
+                return redirect()->back()->with('success', 'Your withdrawal request is successfully transfered to admin.');
+            }
+            else {
+
+                return redirect()->back()->with('error', 'Invalid amount received!');
+            }
         }
         catch(Exception $e) {
 

@@ -125,6 +125,11 @@ class User extends Authenticatable
         return $this->email_verified_at == NULL;
     }
 
+    public function latestBillingInfo() {
+
+        return $this->hasOne(BillingInfo::class, 'user_id', 'id')->latest();
+    }
+
     public function sluggable(): array
     {
         return [

@@ -184,7 +184,7 @@
 
                     @else
 
-                        <h3>No Media Found!</h3>
+                        <h3>@lang('lang.No Media Found!')</h3>
 
                     @endif
 
@@ -196,9 +196,9 @@
 
                     <h3>{{$mealDetails->title}}</h3>
 
-                    <p>Meal Price : {{$mealDetails->currency->symbol}} {{$mealDetails->price}} / Portion</p>
-                    <p title="(Packaging + delivery + responsibility of the hygiene standard for the cooks)">Service Charges : {{  getDeliveryChargesCurrency()  }} {{  getDeliveryChargesAmount()  }} / Portion</p>
-                    <p>Available Portions : {{ getMealAvailablePortion($mealDetails->id) }}</p>
+                    <p>@lang('lang.Meal Price') : {{$mealDetails->currency->symbol}} {{$mealDetails->price}} / @lang('lang.Portion')</p>
+                    <p title="(Packaging + delivery + responsibility of the hygiene standard for the cooks)">@lang('lang.Service Charges') : {{  getDeliveryChargesCurrency()  }} {{  getDeliveryChargesAmount()  }} / @lang('lang.Portion')</p>
+                    <p>@lang('lang.Available Portions') : {{ getMealAvailablePortion($mealDetails->id) }}</p>
 
                     <div class="row">
 
@@ -212,7 +212,7 @@
 
                                         <div class="col-md-4 form-group">
 
-                                            <input type="text" class="form-control timepicker" name="timePicker" id="timePicker" placeholder="Select Delivery Time">
+                                            <input type="text" class="form-control timepicker" name="timePicker" id="timePicker" placeholder="@lang('lang.Select Delivery Time')">
             
                                         </div>
                                         
@@ -224,7 +224,7 @@
             
                                         <div class="col-md-3 form-group">
             
-                                            <button type="submit" class="btn btn-chezdon form-control checkoutModalBtn">Checkout</button>
+                                            <button type="submit" class="btn btn-chezdon form-control checkoutModalBtn">@lang('lang.Checkout')</button>
             
                                         </div>
 
@@ -237,7 +237,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Checkout Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">@lang('lang.Checkout Details')</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form id="checkOutForm" action="{{ route('customer.payment.paypal.pay') }}" method="post">
@@ -256,35 +256,35 @@
 
                                                         <div class="col-md-12">
 
-                                                            <p>Quantity : <span id="totalQuantity"></span></p>
+                                                            <p>@lang('lang.Quantity') : <span id="totalQuantity"></span></p>
                                                             <input type="hidden" id="totalQuantityInput" name="totalQuantityInput">
 
                                                         </div>
 
                                                         <div class="col-md-6">
 
-                                                            <p>Total Meal Amount : <span id="totalMealPrice"></span></p>
+                                                            <p>@lang('lang.Total Meal Amount') : <span id="totalMealPrice"></span></p>
                                                             <input type="hidden" id="totalMealPriceInput" name="totalMealPriceInput">
 
                                                         </div>
 
                                                         <div class="col-md-6">
 
-                                                            <p title="(Packaging + delivery + responsibility of the hygiene standard for the cooks)">Total Service Charges : <span id="totalDeliveryPrice"></span></p>
+                                                            <p title="(Packaging + delivery + responsibility of the hygiene standard for the cooks)">@lang('lang.Total Service Charges') : <span id="totalDeliveryPrice"></span></p>
                                                             <input type="hidden" id="totalDeliveryPriceInput" name="totalDeliveryPriceInput">
 
                                                         </div>
 
                                                         <div class="col-md-6">
 
-                                                            <p>Net Total : <span id="netTotalPrice"></span></p>
+                                                            <p>@lang('lang.Net Total') : <span id="netTotalPrice"></span></p>
                                                             <input type="hidden" id="netTotalPriceInput" name="netTotalPriceInput">
 
                                                         </div>
 
                                                         <div class="col-md-6">
 
-                                                            <p>Delivery Date Time : <span>{{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</span><span id="deliveryTime"></span></p>
+                                                            <p>@lang('lang.Delivery Date Time') : <span>{{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</span><span id="deliveryTime"></span></p>
                                                             <input type="hidden" id="deliveryTimeInput" name="deliveryTimeInput">
 
                                                         </div>
@@ -306,31 +306,31 @@
                                                         <div class="row">
 
                                                             <div class="form-group col-md-12">
-                                                                <h3>Billing Information</h3>
+                                                                <h3>@lang('lang.Billing Information')</h3>
                                                             </div>
 
                                                             <div class="form-group col-md-6">
-                                                                <label for="firstName" class="col-4 col-form-label">First Name <small class="text-danger">*</small></label> 
-                                                                <input id="firstName" name="firstName" placeholder="First Name" class="form-control" type="text" value="{{ isset($billingInfo->first_name) ? $billingInfo->first_name : '' }}">
+                                                                <label for="firstName" class="col-12 col-form-label">@lang('lang.First Name') <small class="text-danger">*</small></label> 
+                                                                <input id="firstName" name="firstName" placeholder="@lang('lang.First Name')" class="form-control" type="text" value="{{ isset($billingInfo->first_name) ? $billingInfo->first_name : '' }}">
                                                             </div>
 
                                                             <div class="form-group col-md-6">
-                                                                <label for="lastName" class="col-4 col-form-label">Last Name <small class="text-danger">*</small></label> 
-                                                                <input id="lastName" name="lastName" placeholder="Last Name" class="form-control" value="{{ isset($billingInfo->last_name) ? $billingInfo->last_name : '' }}">
+                                                                <label for="lastName" class="col-12 col-form-label">@lang('lang.Last Name') <small class="text-danger">*</small></label> 
+                                                                <input id="lastName" name="lastName" placeholder="@lang('lang.Last Name')" class="form-control" value="{{ isset($billingInfo->last_name) ? $billingInfo->last_name : '' }}">
                                                             </div>
 
                                                             <div class="form-group col-md-12">
-                                                                <label for="address" class="col-4 col-form-label">Address <small class="text-danger">*</small></label> 
-                                                                <input id="address" name="address" placeholder="Street Address, P.O box" class="form-control" type="text" value="{{ isset($billingInfo->address) ? $billingInfo->address : '' }}">
-                                                                <input id="apartmentSuiteUnit" name="apartmentSuiteUnit" placeholder="Apartment, Suite, Unit (Optional)" class="form-control" type="text" value="{{ isset($billingInfo->apartment_suite_unit) ? $billingInfo->apartment_suite_unit : '' }}">
+                                                                <label for="address" class="col-12 col-form-label">@lang('lang.Address') <small class="text-danger">*</small></label> 
+                                                                <input id="address" name="address" placeholder="@lang('lang.Street Address'), @lang('lang.P.O box')" class="form-control" type="text" value="{{ isset($billingInfo->address) ? $billingInfo->address : '' }}">
+                                                                <input id="apartmentSuiteUnit" name="apartmentSuiteUnit" placeholder="@lang('lang.Apartment'), @lang('lang.Suite'), @lang('lang.Unit (Optional)')" class="form-control" type="text" value="{{ isset($billingInfo->apartment_suite_unit) ? $billingInfo->apartment_suite_unit : '' }}">
                                                             </div>
 
                                                             <input type="hidden" id="getToken" value="{{ csrf_token() }}">
                                                             
                                                             <div class="form-group col-md-4">
-                                                                <label for="country" class="col-4 col-form-label">Country <small class="text-danger">*</small></label> 
+                                                                <label for="country" class="col-12 col-form-label">@lang('lang.Country') <small class="text-danger">*</small></label> 
                                                                 <select name="country" id="country" class="form-control">
-                                                                <option value="">Choose your Country...</option>
+                                                                <option value="">@lang('lang.Choose your Country')...</option>
                                                                 @if(count($countries) > 0)
                                                                     @foreach ($countries as $country)
                                                                     <option value="{{$country->id}}" {{ isset($billingInfo->city) && isset($billingInfo->city->state) && isset($billingInfo->city->state->country) && $billingInfo->city->state->country->id == $country->id ? 'selected' : '' }}>{{$country->name}}</option>
@@ -339,22 +339,22 @@
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-md-8">
-                                                                <label for="state" class="col-4 col-form-label">State/Province <small class="text-danger">*</small></label> 
+                                                                <label for="state" class="col-12 col-form-label">@lang('lang.State')/@lang('lang.Province') <small class="text-danger">*</small></label> 
                                                                 <select name="state" id="state" class="form-control">
-                                                                <option value="">Choose your State/Province...</option>
+                                                                <option value="">@lang('lang.Choose your State')/@lang('lang.Province')...</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="form-group col-md-4">
-                                                                <label for="city" class="col-4 col-form-label">City <small class="text-danger">*</small></label> 
+                                                                <label for="city" class="col-12 col-form-label">@lang('lang.City') <small class="text-danger">*</small></label> 
                                                                 <select name="city" id="city" class="form-control">
-                                                                <option value="">Choose your City...</option>
+                                                                <option value="">@lang('lang.Choose your City')...</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="form-group col-md-8">
-                                                                <label for="zipCode" class="col-4 col-form-label">Zip/Postal Code</label> 
-                                                                <input id="zipCode" name="zipCode" placeholder="Zip/Postal Code" class="form-control" type="text" value="{{ isset($billingInfo->zip_code) ? $billingInfo->zip_code : '' }}">
+                                                                <label for="zipCode" class="col-12 col-form-label">@lang('lang.Zip')/@lang('lang.Postal Code')</label> 
+                                                                <input id="zipCode" name="zipCode" placeholder="@lang('lang.Zip')/@lang('lang.Postal Code')" class="form-control" type="text" value="{{ isset($billingInfo->zip_code) ? $billingInfo->zip_code : '' }}">
                                                             </div>
 
                                                         </div>
@@ -365,8 +365,8 @@
                                             
                                             </div>
                                             <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-chezdon">Continue to Checkout</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.Cancel')</button>
+                                            <button type="submit" class="btn btn-chezdon">@lang('lang.Continue to Checkout')</button>
                                             </div>
 
                                         </form>
@@ -379,9 +379,9 @@
 
                         @else
 
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-6 form-group">
 
-                                <a href="{{ route('login') }}" class="btn btn-chezdon form-control">Sign in to Order</a>
+                                <a href="{{ route('login') }}" class="btn btn-chezdon form-control">@lang('lang.Sign in to Order')</a>
 
                             </div>
 
@@ -389,11 +389,11 @@
 
                     </div>
 
-                    <p class="mt-4">Cook : {{$mealDetails->user->name}}</p>
+                    <p class="mt-4">@lang('lang.Cook') : {{$mealDetails->user->name}}</p>
 
-                    <p class="mt-4">Cook Rating : {{ number_format((float)$userReview, 2, '.', '')  }} ({{ $userReviewCount }})</p>
+                    <p class="mt-4">@lang('lang.Cook Rating') : {{ number_format((float)$userReview, 2, '.', '')  }} ({{ $userReviewCount }})</p>
                     
-                    <p class="mt-4">Delivery Date : {{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</p>
+                    <p class="mt-4">@lang('lang.Delivery Date') : {{date('d-m-Y', strtotime($mealDetails->delivery_date))}}</p>
 
                 </div>
 
@@ -407,7 +407,7 @@
 
                 <div class="col-md-10">
 
-                    <h3>Description</h3>
+                    <h3>@lang('lang.Description')</h3>
 
                 </div>
 
@@ -427,7 +427,7 @@
 
                 <div class="col-md-10">
 
-                    <h3>Reviews</h3>
+                    <h3>@lang('lang.Reviews')</h3>
 
                 </div>
 
@@ -470,7 +470,7 @@
                         @endforeach
 
                     @else    
-                        <h3>No reviews found!</h3>
+                        <h3>@lang('lang.No Reviews Found!')</h3>
                     @endif
 
                 </div>
@@ -553,6 +553,7 @@
             var mealID = {!! $mealDetails->id !!};
             var mealAvailablePortion = {!! getMealAvailablePortion($mealDetails->id) !!}
             var mealName = '{!! $mealDetails->title !!}';
+            var mealType = '{!! $mealDetails->foodType->name !!}';
             var mealDeliveryTimeStamp = '{!! $mealDetails->delivery_timestamp !!}';
             var mealPortionPrice = {!! $mealDetails->price !!};
             var deliveryPortionPrice = {!! getDeliveryChargesAmount() !!};
@@ -576,6 +577,24 @@
 
                     var totalMealPrice = quantity * mealPortionPrice;
                     var totalDeliveryPrice = quantity * deliveryPortionPrice;
+
+                    if(mealType.toLowerCase() == 'dessert' || mealType.toLowerCase() == 'desert') {
+
+                        if(totalMealPrice >= 12 && quantity > 1) {
+
+                            var totalFreeDeliveryQuantityTemp = Math.floor(totalMealPrice / 12);
+
+                            if(totalFreeDeliveryQuantityTemp >= quantity) {
+
+                                totalFreeDeliveryQuantityTemp = totalFreeDeliveryQuantityTemp - 1;
+                            }
+
+                            var deductedPrice = totalFreeDeliveryQuantityTemp * deliveryPortionPrice;
+
+                            totalDeliveryPrice = (totalDeliveryPrice - deductedPrice) > deliveryPortionPrice ? totalDeliveryPrice - deductedPrice : deliveryPortionPrice;
+                        }
+                    }
+
                     var netTotalPrice = totalMealPrice + totalDeliveryPrice;
                     
                     $('#totalMealPrice').html(mealPriceCurrency +' '+ totalMealPrice);
@@ -596,7 +615,14 @@
                 }
                 else {
 
-                    alert('Please select delivery time!');
+                    if(CurrentLanguage == 'fr') {
+
+                        alert('Veuillez sélectionner le délai de livraison !');
+                    }
+                    else {
+
+                        alert('Please select delivery time!');
+                    }
                 }
             });
         });
@@ -610,6 +636,8 @@
 <script>
 
     $(document).ready(function () {
+
+        var CurrentLanguage = "{!! \Session::get('locale'); !!}";
 
         @if(Auth::check() && Auth::user()->isCustomer())
 
@@ -646,7 +674,126 @@
                     required: true,
                 },
             },
+            messages: {
 
+                firstName: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le prénom est requis';
+                        }
+                        else {
+
+                            return 'First Name is required';
+                        }   
+                    },
+                    minlength: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le prénom doit être supérieur ou égal à 3 caractères';
+                        }
+                        else {
+
+                            return 'First Name must be greater than or equal to 3 characters';
+                        }   
+                    }
+                },
+                lastName: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nom de famille est requis';
+                        }
+                        else {
+
+                            return 'Last Name is required';
+                        }   
+                    },
+                    minlength: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nom de famille doit être supérieur ou égal à 3 caractères';
+                        }
+                        else {
+
+                            return 'Last Name must be greater than or equal to 3 characters';
+                        }   
+                    }
+                },
+                address: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'L\'adresse est requise';
+                        }
+                        else {
+
+                            return 'Address is required';
+                        }   
+                    },
+                    minlength: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'L\'adresse doit être supérieure ou égale à 5 caractères';
+                        }
+                        else {
+
+                            return 'Address must be greater than or equal to 5 characters';
+                        }   
+                    }
+                },
+                country: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le pays est requis';
+                        }
+                        else {
+
+                            return 'Country is required';
+                        }   
+                    },
+                },
+                state: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'L\'état est requis';
+                        }
+                        else {
+
+                            return 'State is required';
+                        }   
+                    },
+                },
+                city: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La ville est obligatoire';
+                        }
+                        else {
+
+                            return 'City is required';
+                        }   
+                    },
+                },          
+            },
             submitHandler: function (form) { 
 
                 form.submit();

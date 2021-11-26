@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Dashboard</h3>
+                                <h3>@lang('lang.Dashboard')</h3>
                                 <hr>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="card-box bg-blue">
                                 <div class="inner">
                                     <h3> {{ $totalOrder }} </h3>
-                                    <p> Total Orders </p>
+                                    <p> @lang('lang.Total Orders') </p>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             <div class="card-box bg-green">
                                 <div class="inner">
                                     <h3> {{ $approvedOrder }} </h3>
-                                    <p> Approved Orders </p>
+                                    <p> @lang('lang.Approved Orders') </p>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             <div class="card-box bg-orange">
                                 <div class="inner">
                                     <h3> {{ $deliveredOrder }} </h3>
-                                    <p> Delivered Orders </p>
+                                    <p> @lang('lang.Delivered Orders') </p>
                                 </div>
                             </div>
                         </div>

@@ -78,3 +78,10 @@ function minimumRatingForCookAccountDeletion() {
 
     return $rating;
 }
+
+function mealRemoveFromWebAfterDays() {
+
+    $days = Setting::where('parameter_name', 'meal_remove_from_web_after_days')->where('status', 1)->first() ? Setting::where('parameter_name', 'meal_remove_from_web_after_days')->where('status', 1)->first()->parameter_value : '7';
+
+    return $days;
+}

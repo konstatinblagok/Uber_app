@@ -52,14 +52,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <h3>Edit Meal</h3>
+                                <h3>@lang('lang.Edit Meal')</h3>
                                 <hr>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
 
                             </div>
-                            <div class="col-md-2 form-group">
-                                <a href="{{ route('cook.meal.index') }}" type="button" class="btn btn-chezdon form-control">Back to list</a>
+                            <div class="col-md-3 form-group">
+                                <a href="{{ route('cook.meal.index') }}" type="button" class="btn btn-chezdon form-control">@lang('lang.Back to list')</a>
+                                <hr>
                             </div>
                           </div>
                         </div>
@@ -70,9 +71,9 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-4">
-                                        <label for="category" class="col-12 col-form-label">Category <small class="text-danger">*</small></label> 
+                                        <label for="category" class="col-12 col-form-label">@lang('lang.Category') <small class="text-danger">*</small></label> 
                                         <select name="category" id="category" class="form-control">
-                                          <option value="">Select Category...</option>
+                                          <option value="">@lang('lang.Select Category')...</option>
                                           @if(count($categories) > 0)
                                             @foreach ($categories as $category)
                                               <option value="{{$category->id}}" {{ $meal->food_category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
@@ -82,9 +83,9 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="foodType" class="col-12 col-form-label">Food <small class="text-danger">*</small></label> 
+                                        <label for="foodType" class="col-12 col-form-label">@lang('lang.Food') <small class="text-danger">*</small></label> 
                                         <select name="foodType" id="foodType" class="form-control">
-                                          <option value="">Select Food...</option>
+                                          <option value="">@lang('lang.Select Food')...</option>
                                           @if(count($foodType) > 0)
                                             @foreach ($foodType as $food)
                                               <option value="{{$food->id}}" {{ $meal->food_type_id == $food->id ? 'selected' : '' }}>{{$food->name}}</option>
@@ -94,19 +95,19 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="portion" class="col-12 col-form-label">Total Portion <small class="text-danger">*</small></label> 
-                                        <input id="portion" name="portion" placeholder="No of Portions" class="form-control" type="number" min="1" value="{{ $meal->portions }}">
+                                        <label for="portion" class="col-12 col-form-label">@lang('lang.Total Portion') <small class="text-danger">*</small></label> 
+                                        <input id="portion" name="portion" placeholder="@lang('lang.No. of Portion')" class="form-control" type="number" min="1" value="{{ $meal->portions }}">
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="price" class="col-12 col-form-label">Price <small class="text-danger">*</small></label> 
-                                        <input id="price" name="price" placeholder="Price (One Portion)" class="form-control" type="number" value="{{ $meal->price }}">
+                                        <label for="price" class="col-12 col-form-label">@lang('lang.Price') <small class="text-danger">*</small></label> 
+                                        <input id="price" name="price" placeholder="@lang('lang.Price (One Portion)')" class="form-control" type="number" value="{{ $meal->price }}">
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="price" class="col-12 col-form-label">Currency <small class="text-danger">*</small></label> 
+                                        <label for="price" class="col-12 col-form-label">@lang('lang.Currency') <small class="text-danger">*</small></label> 
                                         <select name="currency" id="currency" class="form-control">
-                                            <option value="">Select Currency...</option>
+                                            <option value="">@lang('lang.Select Currency')...</option>
                                             @if(count($currencies) > 0)
                                               @foreach ($currencies as $currency)
                                                 <option value="{{$currency->id}}" {{ $meal->currency_id == $currency->id ? 'selected' : ''}}>{{$currency->name.'('.$currency->symbol.')'}}</option>
@@ -116,24 +117,24 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="deliveryDate" class="col-12 col-form-label">Pickup Date <small class="text-danger">*</small></label> 
+                                        <label for="deliveryDate" class="col-12 col-form-label">@lang('lang.Pickup Date') <small class="text-danger">*</small></label> 
                                         <input id="deliveryDate" name="deliveryDate" class="form-control" type="date" value="{{ $meal->delivery_date }}">
-                                        <span>The time of pickup is always between {{ foodPickUpStartTime() }} to {{ foodPickUpEndTime() }}!</span>
+                                        <span>@lang('lang.The time of pickup is always between') {{ foodPickUpStartTime() }} @lang('lang.to') {{ foodPickUpEndTime() }}!</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <label for="title" class="col-12 col-form-label">Title <small class="text-danger">*</small></label> 
-                                        <input id="title" name="title" placeholder="Title" class="form-control" type="text" value="{{ $meal->title}}">
+                                        <label for="title" class="col-12 col-form-label">@lang('lang.Title') <small class="text-danger">*</small></label> 
+                                        <input id="title" name="title" placeholder="@lang('lang.Title')" class="form-control" type="text" value="{{ $meal->title}}">
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <label for="description" class="col-12 col-form-label">Description <small class="text-danger">*</small></label> 
-                                        <textarea id="description" placeholder="Description" name="description" class="form-control" rows="4">{{ $meal->description}}</textarea>
+                                        <label for="description" class="col-12 col-form-label">@lang('lang.Description') <small class="text-danger">*</small></label> 
+                                        <textarea id="description" placeholder="@lang('lang.Description')" name="description" class="form-control" rows="4">{{ $meal->description}}</textarea>
                                     </div>
 
                                     <div class="col-md-12 card">
 
-                                        <p class="card-heading p-2">Meal Existing Media</p>
+                                        <p class="card-heading p-2">@lang('lang.Meal Existing Media')</p>
 
                                         @if(count($meal->mealMedia) > 0)
 
@@ -148,12 +149,12 @@
                                                             @if($media->cookFoodMedia->type == 'image')
                         
                                                                 <img src="{{ asset($media->cookFoodMedia->path.'/'.$media->cookFoodMedia->name) }}" width="254" height="220" alt="">
-                                                                <a href="{{ route('cook.meal.remove.media', ['id' => $media->cook_food_media_id]) }}" type="button" class="btn btn-chezdon form-control">Delete</a>
+                                                                <a href="{{ route('cook.meal.remove.media', ['id' => $media->cook_food_media_id]) }}" type="button" class="btn btn-chezdon form-control">@lang('lang.Delete')</a>
                                                             
                                                             @elseif($media->cookFoodMedia->type == 'video')    
 
                                                                 <iframe src="{{ asset($media->cookFoodMedia->path.'/'.$media->cookFoodMedia->name) }}" width="254" height="220" alt="" sandbox></iframe>
-                                                                <a href="{{ route('cook.meal.remove.media', ['id' => $media->cook_food_media_id]) }}" type="button" class="btn btn-chezdon form-control">Delete</a>
+                                                                <a href="{{ route('cook.meal.remove.media', ['id' => $media->cook_food_media_id]) }}" type="button" class="btn btn-chezdon form-control">@lang('lang.Delete')</a>
 
                                                             @endif
 
@@ -170,14 +171,14 @@
                                     </div>
 
                                     <div class="form-group col-md-12 main-section">
-                                        <label for="file-1" class="col-12 col-form-label">Media</label> 
+                                        <label for="file-1" class="col-12 col-form-label">@lang('lang.Media')</label> 
                                         <div class="file-loading">
                                             <input id="file-1" name="mealMedia[]" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
                                         </div>
                                     </div>
 
                                   <div class="form-group col-md-12">
-                                    <button type="submit" class="btn btn-chezdon form-control">Update</button>
+                                    <button type="submit" class="btn btn-chezdon form-control">@lang('lang.Update Meal')</button>
                                   </div>
                                 </div>
                               </div>
@@ -199,7 +200,7 @@
         $("#file-1").fileinput({
             theme: 'fa',
             uploadUrl: '#',
-            allowedFileExtensions: ['jpg', 'png', 'jpeg', 'bmp', 'gif', 'mp4', 'mkv', 'mov', 'avi', 'flv'],
+            allowedFileExtensions: ['jpg', 'png', 'jpeg', 'mp4'],
             overwriteInitial: false,
             maxFileSize: 100000,
             maxFilesNum: 10,
@@ -241,6 +242,27 @@
     $(document).ready(function () {
 
         var mealMediaLength = {!! count($meal->mealMedia) !!};
+        var CurrentLanguage = "{!! \Session::get('locale'); !!}";
+
+        $('#category').change(function () {
+
+            if($(this).val() == 3) {
+
+                $("#foodType option").each(function() {
+                    
+                    if($(this).text().toLowerCase() == 'dessert' || $(this).text().toLowerCase() == 'desert') {
+
+                        $(this).attr('selected','selected');   
+                    }
+                });
+
+                $('#foodType option').not(':selected').attr('disabled', 'disabled');
+            }
+            else {
+
+                $('#foodType option').not(':selected').removeAttr('disabled');
+            }
+        });
         
         //Form Validation
         $('#cookMealForm').validate({
@@ -269,6 +291,7 @@
                 portion: {
 
                     required: true,
+                    min: 1,
                 },
                 deliveryDate:{
                   
@@ -283,6 +306,167 @@
                     required: true,
                 },
             },
+            messages: {
+
+                category: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La catégorie est obligatoire';
+                        }
+                        else {
+
+                            return 'Category is required';
+                        }   
+                    }
+                },
+
+                foodType: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le type d\'aliment est requis';
+                        }
+                        else {
+
+                            return 'Food type is required';
+                        }   
+                    }
+                },
+
+                price: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le prix est requis';
+                        }
+                        else {
+
+                            return 'Price is required';
+                        }   
+                    },
+
+                    min: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le prix doit être supérieur ou égal à 1';
+                        }
+                        else {
+
+                            return 'Price must be greater than or equal to 1';
+                        }   
+                    }
+                },
+
+                currency: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La devise est requise';
+                        }
+                        else {
+
+                            return 'Currency is required';
+                        }   
+                    }
+                },
+
+                portion: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nombre de portions est requis';
+                        }
+                        else {
+
+                            return 'No. of Portion is required';
+                        }   
+                    },
+
+                    min: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La portion doit être supérieure ou égale à 1';
+                        }
+                        else {
+
+                            return 'Portion must be greater than or equal to 1';
+                        }   
+                    }
+                },
+
+                deliveryDate: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La date de ramassage est requise';
+                        }
+                        else {
+
+                            return 'Pickup date is required';
+                        }   
+                    }
+                },
+
+                title: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le titre est requis';
+                        }
+                        else {
+
+                            return 'Title is required';
+                        }   
+                    }
+                },
+
+                description: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'La description est requise';
+                        }
+                        else {
+
+                            return 'Description is required';
+                        }   
+                    }
+                },
+
+                mealMedia: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Un support de repas est requis';
+                        }
+                        else {
+
+                            return 'Meal media is required';
+                        }   
+                    }
+                },
+            }, 
             submitHandler: function (form) { 
 
                 if(mealMediaLength > 0) {
@@ -293,7 +477,14 @@
 
                     if(document.getElementById("file-1").files.length == 0) {
 
-                        alert('Please upload meal media!');
+                        if(CurrentLanguage == 'fr') {
+
+                            alert('Veuillez télécharger des médias de repas !');
+                        }   
+                        else {
+
+                            alert('Please upload meal media!');
+                        }
                     }
                     else {
 

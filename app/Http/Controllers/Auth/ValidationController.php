@@ -9,7 +9,7 @@ class ValidationController extends Controller
 {
     public function email(Request $request) {
 
-        $emailResponse = userEmailExists($request->email);
+        $emailResponse = userEmailExists($request->email, $request->requestSource, $request->userID);
 
         return response()->json(array('success' => $emailResponse));
     }

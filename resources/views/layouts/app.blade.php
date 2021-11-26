@@ -44,6 +44,36 @@
 
 @include('includes.site.scripts')
 
+<script>
+
+    $('#langChanger').change(function() {
+
+        languageSet($(this).val());
+    });
+
+    function languageSet(selectValue) {
+
+        $.ajax({
+
+            url: "{{ route('change.lang') }}",
+            method: 'GET',
+            data: {
+
+                'lang': selectValue,
+            },
+            success: function(data) {
+
+                window.location.reload();
+            },
+            error: function(data) {
+
+                //
+            }
+        });
+    }
+
+</script>
+
 @stack('scripts')
 
 </body>

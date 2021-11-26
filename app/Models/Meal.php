@@ -54,4 +54,9 @@ class Meal extends Model
 
         return $this->hasMany(MealMedia::class, 'meal_id');
     }
+
+    public function cookBillingInfo() {
+
+        return $this->hasOne(BillingInfo::class, 'user_id', 'user_id')->latest();
+    }
 }

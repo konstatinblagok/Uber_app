@@ -107,6 +107,21 @@ function sendLoginInfoEmail($requestUser) {
     }
 }
 
+function sendLoginInfoEmailByAdmin($requestUser, $password) {
+
+    try {
+
+        \Mail::send('emails.loginInfoByAdmin', ['requestUser' => $requestUser, 'password' => $password] ,function($message) use($requestUser) {
+            $message->to($requestUser->email);
+            $message->subject('Login Information');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
 function sendVerificationEmail($email) {
 
     $token = substr(md5(rand()),0,60);
@@ -118,6 +133,107 @@ function sendVerificationEmail($email) {
         \Mail::send('emails.emailVerification', ['token' => $token] ,function($message) use($email) {
             $message->to($email);
             $message->subject('Email Verification');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
+function sendReminderOrderConfirmationEmail($userEmail, $orderID) {
+
+    try {
+
+        $orderObject = Order::with(['billingInfo' => function($q) {
+
+            return $q->with(['city' => function($q1) {
+
+                return $q1->with(['state' => function($q2) {
+
+                    return $q2->with(['country']);
+                }]);
+
+            }]);
+
+        }, 'meal', 'currency'])->where('id', $orderID)->first();
+
+        \Mail::send('emails.admin.customerOrderConfirmation', ['orderObject' => $orderObject] ,function($message) use($userEmail) {
+            $message->to($userEmail);
+            $message->subject('Reminder Order Confirmation Email');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
+function sendDailyOrderDetailsToAdminEmail($adminEmail) {
+
+    try {
+
+        $orderObject = Order::with(['billingInfo' => function($q) {
+
+            return $q->with(['city' => function($q1) {
+
+                return $q1->with(['state' => function($q2) {
+
+                    return $q2->with(['country']);
+                }]);
+
+            }]);
+
+        }, 'meal' => function($qq) {
+
+            return $qq->with(['cookBillingInfo' => function($qq1) {
+
+                return $qq1->with(['city' => function($qq2) {
+    
+                    return $qq2->with(['state' => function($qq3) {
+    
+                        return $qq3->with(['country']);
+                    }]);
+
+                }]);
+    
+            }, 'user']);
+
+        }])->whereDate('delivery_time', date('Y-m-d'))->orderBy('delivery_time', 'ASC')->get();
+
+        \Mail::send('emails.admin.dailyOrderDetails', ['orderObject' => $orderObject] ,function($message) use($adminEmail) {
+            $message->to($adminEmail);
+            $message->subject('Daily Order Details');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
+function sendEmailAmountWithDrawToUser($userEmail) {
+
+    try {
+
+        \Mail::send('emails.cook.amountWithdraw', [], function($message) use($userEmail) {
+            $message->to($userEmail);
+            $message->subject('Amount Withdraw Request');
+        });
+    }
+    catch(\Exception $e) {
+
+        //
+    }
+}
+
+function sendEmailAmountWithDrawToAdmin($adminEmail, $userData, $amount) {
+
+    try {
+
+        \Mail::send('emails.admin.amountWithdraw', ['userData' => $userData, 'amount' => $amount], function($message) use($adminEmail) {
+            $message->to($adminEmail);
+            $message->subject('Amount Withdraw Request');
         });
     }
     catch(\Exception $e) {

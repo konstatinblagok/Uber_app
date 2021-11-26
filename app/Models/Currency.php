@@ -18,4 +18,9 @@ class Currency extends Model
     {
         return $this->hasOne(ReviewBasedCharge::class, 'currency_id');
     }
+
+    public static function getCurrencySymbol($id) {
+
+        return Currency::find($id)->symbol;
+    }
 }

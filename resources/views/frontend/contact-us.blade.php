@@ -13,26 +13,26 @@
 <main>
     <div class="section" id="contactus">
         <div id="contactword">
-            <p>Contact Us</p>
+            <p>@lang('lang.Contact Us')</p>
         </div>
     </div>
     <div class="section" id="location">
         <div class="location_hours">
-            <h3 class="subhead" id="hours">Location & Hours</h3>
-            <h5>We'd love to hear from you!</h5>
+            <h3 class="subhead" id="hours">@lang('lang.Location & Hours')</h3>
+            <h5>@lang('lang.We\'d love to hear from you!')</h5>
             <form id="contactUsForm" action="{{ route('contact.us.store') }}" method="post">
                 <div class="form">
                     @csrf
-                    <h5>Enter Your Name</h5>
-                    <input type="text" name="name" rows="10" placeholder="Name" required>
-                    <h5>Enter Your Email</h5>
-                    <input type="text" name="email" placeholder="Email" required>
-                    <h5>Enter Your Subject</h5>
-                    <input type="text" name="subject" placeholder="Subject" required>
-                    <h5>Enter Your Message</h5>
-                    <textarea name="message" id="explain" cols="30" rows="8" placeholder="Message" required></textarea>
+                    <h5>@lang('lang.Enter Your Name')</h5>
+                    <input type="text" name="name" rows="10" placeholder="@lang('lang.Name')" required>
+                    <h5>@lang('lang.Enter Your Email')</h5>
+                    <input type="text" name="email" placeholder="@lang('lang.Email')" required>
+                    <h5>@lang('lang.Enter Your Subject')</h5>
+                    <input type="text" name="subject" placeholder="@lang('lang.Subject')" required>
+                    <h5>@lang('lang.Enter Your Message')</h5>
+                    <textarea name="message" id="explain" cols="30" rows="8" placeholder="@lang('lang.Message')" required></textarea>
                 </div>
-                <button class="submit">Submit</button>
+                <button class="submit">@lang('lang.Submit')</button>
             </form>
         </div>
         <div class="map">
@@ -48,6 +48,8 @@
 <script>
 
     $(document).ready(function () {
+
+        var CurrentLanguage = "{!! \Session::get('locale'); !!}";
 
         //Form Validation
         $('#contactUsForm').validate({
@@ -70,6 +72,76 @@
                 message: {
 
                     required: true,
+                }
+            },
+            messages: {
+
+                name: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le nom est requis';
+                        }
+                        else {
+
+                            return 'Name is required';
+                        }   
+                    },
+                },
+                email: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'L\'e-mail est requis';
+                        }
+                        else {
+
+                            return 'Email is required';
+                        }   
+                    },
+                    email: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'L\'e-mail doit être une adresse e-mail valide';
+                        }
+                        else {
+
+                            return 'Email should be a valid email address';
+                        }   
+                    }
+                },
+                subject: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le sujet est requis';
+                        }
+                        else {
+
+                            return 'Subject is required';
+                        }   
+                    },
+                },
+                message: {
+
+                    required: function () {
+
+                        if(CurrentLanguage == 'fr') {
+
+                            return 'Le message est requis';
+                        }
+                        else {
+
+                            return 'Message is required';
+                        }   
+                    },
                 }
             },
             submitHandler: function (form) { 

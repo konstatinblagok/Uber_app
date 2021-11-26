@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         $foodTypes = FoodType::where('status', 1)->where('status', 1)->get();
 
-        $contries = Country::all();
+        $contries = Country::where('status', 1)->get();
 
         $data = [
             

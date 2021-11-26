@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
@@ -54,6 +55,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth-admin' => \App\Http\Middleware\AuthAdmin::class,
         'auth-cook' => \App\Http\Middleware\AuthCook::class,
         'auth-customer' => \App\Http\Middleware\AuthCustomer::class,
         'auth-cook-or-admin' => \App\Http\Middleware\AuthCookOrAdmin::class,
